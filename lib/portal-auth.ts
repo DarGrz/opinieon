@@ -1,0 +1,55 @@
+import { createServiceRoleClient } from '@/lib/supabase/server'
+import crypto from 'crypto'
+
+/**
+ * Weryfikuje klucz API portalu
+ * @param apiKey - Klucz API z headera X-Portal-Key
+ * @param portalSlug - Slug portalu (np. 'dobre-firmy')
+ * @returns Portal ID jeśli klucz jest poprawny, null w przeciwnym razie
+ */
+export async function verifyPortalKey(
+  apiKey: string | null,
+  portalSlug: string | null
+): Promise<string | null> {
+  if (!apiKey || !portalSlug) {
+    return null
+  }
+
+  const supabase = createServiceRoleClient()
+
+  // Hash klucza
+  const keyHash = crypto.createHash('sha256').update(apiKey).digest('hex')
+
+  // Sprawdź w bazie
+  const { data } = await supabase
+    .from('portal_keys')
+    .select('portal_id, active, rate_limit, portals!inner(slug, is_active)')
+    .eq('key_hash', keyHash)
+    .eq('active', true)
+    .maybeSingle()
+
+  if (!data) {
+    console.error('[PORTAL-AUTH] Invalid API key or portal slug')
+    return null
+  }
+
+  const portalData = (data as any).portals
+
+  // Sprawdź czy slug się zgadza i portal jest aktywny
+  if (portalData?.slug !== portalSlug || portalData?.is_active !== true) {
+    console.error('[PORTAL-AUTH] Portal slug mismatch or inactive', {
+      expected: portalSlug,
+      actual: portalData?.slug,
+      active: portalData?.is_active,
+    })
+    return null
+  }
+
+  // Zaktualizuj last_used_at
+  await (supabase as any)
+    .from('portal_keys')
+    .update({ last_used_at: new Date().toISOString() })
+    .eq('key_hash', keyHash)
+
+  return (data as any).portal_id
+}

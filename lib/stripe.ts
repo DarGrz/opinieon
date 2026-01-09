@@ -170,7 +170,7 @@ export async function createCheckoutSession({
     cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/onboarding/pricing?canceled=true`,
     allow_promotion_codes: true,
     tax_id_collection: {
-      enabled: false,
+      enabled: true,
     },
   }
 
@@ -198,6 +198,7 @@ export async function createCustomerPortalSession(customerId: string) {
   const session = await stripe.billingPortal.sessions.create({
     customer: customerId,
     return_url: `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard/settings`,
+    configuration: process.env.STRIPE_BILLING_PORTAL_CONFIGURATION_ID,
   })
 
   return session

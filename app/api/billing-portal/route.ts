@@ -16,27 +16,39 @@ export async function POST(request: Request) {
     }
 
     // Get active subscription with customer ID (including trial)
-    const { data: subscription } = await supabase
+    const { data: subscription, error: subError } = await supabase
       .from('subscriptions')
-      .select('stripe_customer_id')
+      .select('stripe_customer_id, status')
       .eq('user_id', user.id)
-      .in('status', ['active', 'trialing'])
-      .single()
+      .or('status.eq.active,status.eq.trialing')
+      .maybeSingle()
+
+    console.log('[BILLING-PORTAL] Subscription query:', { subscription, subError })
 
     const subscriptionData = subscription as any
 
     if (!subscriptionData?.stripe_customer_id) {
+      console.error('[BILLING-PORTAL] No customer ID found:', { subscription })
       return NextResponse.json(
         { error: 'No active subscription found' },
         { status: 404 }
       )
     }
 
+    console.log('[BILLING-PORTAL] Creating session for customer:', subscriptionData.stripe_customer_id)
+
     // Create billing portal session
+    const returnUrl = process.env.NEXT_PUBLIC_APP_URL?.startsWith('http') 
+      ? `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/settings`
+      : `https://${process.env.NEXT_PUBLIC_APP_URL}/dashboard/settings`
+    
     const session = await stripe.billingPortal.sessions.create({
       customer: subscriptionData.stripe_customer_id,
-      return_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/settings`,
+      return_url: returnUrl,
+      configuration: process.env.STRIPE_BILLING_PORTAL_CONFIGURATION_ID,
     })
+
+    console.log('[BILLING-PORTAL] Session created:', session.url)
 
     return NextResponse.json({ url: session.url })
   } catch (error) {
