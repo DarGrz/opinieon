@@ -73,7 +73,6 @@ export async function POST(request: Request) {
         author_name: authorName,
         author_email: authorEmail || null,
         status: 'pending', // Wymaga weryfikacji email
-        verified: false,
         helpful_count: 0,
       })
       .select()
