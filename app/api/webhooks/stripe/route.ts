@@ -56,27 +56,32 @@ export async function POST(req: Request) {
           const currentPeriodEnd = subscription.items.data[0]?.current_period_end 
             || subscription.current_period_end
 
-          const { data: insertedSub, error: insertError } = await supabase.from('subscriptions').insert({
-            user_id: userId,
-            company_id: companyId,
-            plan: plan,
-            status: subscription.status as any,
-            stripe_customer_id: subscription.customer as string,
-            stripe_subscription_id: subscription.id,
-            stripe_price_id: subscription.items.data[0].price.id,
-            trial_end: subscription.trial_end 
-              ? new Date(subscription.trial_end * 1000).toISOString() 
-              : null,
-            current_period_start: currentPeriodStart 
-              ? new Date(currentPeriodStart * 1000).toISOString() 
-              : null,
-            current_period_end: currentPeriodEnd 
-              ? new Date(currentPeriodEnd * 1000).toISOString() 
-              : null,
-          } as any)
+          const { data: insertedSub, error: insertError } = await supabase.from('subscriptions')
+            .upsert({
+              user_id: userId,
+              company_id: companyId,
+              plan: plan,
+              status: subscription.status as any,
+              stripe_customer_id: subscription.customer as string,
+              stripe_subscription_id: subscription.id,
+              stripe_price_id: subscription.items.data[0].price.id,
+              trial_end: subscription.trial_end 
+                ? new Date(subscription.trial_end * 1000).toISOString() 
+                : null,
+              current_period_start: currentPeriodStart 
+                ? new Date(currentPeriodStart * 1000).toISOString() 
+                : null,
+              current_period_end: currentPeriodEnd 
+                ? new Date(currentPeriodEnd * 1000).toISOString() 
+                : null,
+              cancel_at_period_end: false,
+              canceled_at: null,
+            } as any, {
+              onConflict: 'user_id,company_id'
+            })
 
           if (insertError) {
-            console.error('Error inserting subscription:', insertError)
+            console.error('Error upserting subscription:', insertError)
             throw insertError
           }
 
@@ -104,27 +109,32 @@ export async function POST(req: Request) {
         const currentPeriodEnd = subscription.items.data[0]?.current_period_end 
           || subscription.current_period_end
 
-        const { error: insertError } = await supabase.from('subscriptions').insert({
-          user_id: userId,
-          company_id: companyId,
-          plan: plan,
-          status: subscription.status as any,
-          stripe_customer_id: subscription.customer as string,
-          stripe_subscription_id: subscription.id,
-          stripe_price_id: subscription.items.data[0].price.id,
-          trial_end: subscription.trial_end 
-            ? new Date(subscription.trial_end * 1000).toISOString() 
-            : null,
-          current_period_start: currentPeriodStart 
-            ? new Date(currentPeriodStart * 1000).toISOString() 
-            : null,
-          current_period_end: currentPeriodEnd 
-            ? new Date(currentPeriodEnd * 1000).toISOString() 
-            : null,
-        } as any)
+        const { error: insertError } = await supabase.from('subscriptions')
+          .upsert({
+            user_id: userId,
+            company_id: companyId,
+            plan: plan,
+            status: subscription.status as any,
+            stripe_customer_id: subscription.customer as string,
+            stripe_subscription_id: subscription.id,
+            stripe_price_id: subscription.items.data[0].price.id,
+            trial_end: subscription.trial_end 
+              ? new Date(subscription.trial_end * 1000).toISOString() 
+              : null,
+            current_period_start: currentPeriodStart 
+              ? new Date(currentPeriodStart * 1000).toISOString() 
+              : null,
+            current_period_end: currentPeriodEnd 
+              ? new Date(currentPeriodEnd * 1000).toISOString() 
+              : null,
+            cancel_at_period_end: false,
+            canceled_at: null,
+          } as any, {
+            onConflict: 'user_id,company_id'
+          })
 
         if (insertError) {
-          console.error('[WEBHOOK] Error inserting subscription:', insertError)
+          console.error('[WEBHOOK] Error upserting subscription:', insertError)
           throw insertError
         }
 
