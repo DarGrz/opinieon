@@ -27,36 +27,41 @@ export async function GET(request: Request) {
 
     console.log('[SEARCH-API] Fetching companies...')
 
-    // Pobierz firmy przypisane do tego portalu
-    let dbQuery = supabase
+    // Pobierz IDs firm przypisanych do tego portalu
+    const { data: portalProfiles } = await supabase
       .from('company_portal_profiles')
-      .select(`
-        company_id,
-        is_active,
-        companies!inner(
-          id,
-          name,
-          slug,
-          description,
-          logo_url,
-          website,
-          city,
-          verified
-        )
-      `, { count: 'exact' })
+      .select('company_id')
       .eq('portal_id', portalId)
       .eq('is_active', true)
 
-    // Wyszukiwanie po nazwie lub mieście
-    if (query) {
-      dbQuery = dbQuery.or(`companies.name.ilike.%${query}%,companies.city.ilike.%${query}%`)
+    const companyIds = (portalProfiles || []).map((p: any) => p.company_id)
+    console.log('[SEARCH-API] Portal company IDs:', companyIds.length)
+
+    if (companyIds.length === 0) {
+      return NextResponse.json({
+        companies: [],
+        total: 0,
+        page,
+        limit,
+      })
     }
 
-    const { data: profiles, error, count } = await dbQuery
-      .order('companies.name', { ascending: true, foreignTable: 'companies' })
+    // Pobierz firmy
+    let dbQuery = supabase
+      .from('companies')
+      .select('id, name, slug, description, logo_url, website, city, verified', { count: 'exact' })
+      .in('id', companyIds)
+
+    // Wyszukiwanie po nazwie lub mieście
+    if (query) {
+      dbQuery = dbQuery.or(`name.ilike.%${query}%,city.ilike.%${query}%`)
+    }
+
+    const { data: companies, error, count } = await dbQuery
+      .order('name', { ascending: true })
       .range(offset, offset + limit - 1)
 
-    console.log('[SEARCH-API] Companies fetched:', { count: profiles?.length, error: error?.message })
+    console.log('[SEARCH-API] Companies fetched:', { count: companies?.length, total: count, error: error?.message })
 
     if (error) {
       console.error('[SEARCH-API] Database error:', error)
@@ -65,8 +70,8 @@ export async function GET(request: Request) {
 
     // Dla każdej firmy pobierz statystyki
     const companiesWithStats = await Promise.all(
-      (profiles || []).map(async (profile) => {
-        const companyData = (profile as any).companies
+      (companies || []).map(async (company) => {
+        const companyData = company as any
         const { data: stats } = await supabase
           .from('company_portal_stats')
           .select('review_count, avg_rating')
