@@ -15,25 +15,24 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Get user profile
-    const { data: profile } = await supabase
-      .from('user_profiles')
+    // Get active subscription with customer ID
+    const { data: subscription } = await supabase
+      .from('subscriptions')
       .select('stripe_customer_id')
-      .eq('id', user.id)
+      .eq('user_id', user.id)
+      .eq('status', 'active')
       .single()
 
-    const profileData = profile as any
-
-    if (!profileData?.stripe_customer_id) {
+    if (!subscription?.stripe_customer_id) {
       return NextResponse.json(
-        { error: 'No customer found' },
+        { error: 'No active subscription found' },
         { status: 404 }
       )
     }
 
     // Create billing portal session
     const session = await stripe.billingPortal.sessions.create({
-      customer: profileData.stripe_customer_id,
+      customer: subscription.stripe_customer_id,
       return_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/settings`,
     })
 
