@@ -247,7 +247,7 @@ export default async function FirmaPage({
 import { useState } from 'react'
 import { opinieonClient } from '@/lib/opinieon-client'
 
-export function ReviewForm({ companyId }: { companyId: string }) {
+export function ReviewForm({ companySlug }: { companySlug: string }) {
   const [rating, setRating] = useState(5)
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -260,7 +260,7 @@ export function ReviewForm({ companyId }: { companyId: string }) {
 
     try {
       await opinieonClient.createReview({
-        companyId,
+        companySlug,
         rating,
         title: formData.get('title') as string,
         content: formData.get('content') as string,
@@ -399,6 +399,72 @@ export function ReviewForm({ companyId }: { companyId: string }) {
     </form>
   )
 }
+```
+
+## Podsumowanie - Jak działa portal
+
+1. **Użytkownik wchodzi:** `dobre-firmy.pl/firma/nazwa-firmy-slug`
+
+2. **Next.js pobiera dane:**
+   ```typescript
+   // Dane firmy
+   GET https://opinieon.pl/api/public/companies/nazwa-firmy-slug?portal=dobre-firmy
+   Headers: X-Portal-Key: pk_xxx
+   
+   // Opinie firmy
+   GET https://opinieon.pl/api/public/companies/nazwa-firmy-slug/reviews?portal=dobre-firmy
+   Headers: X-Portal-Key: pk_xxx
+   ```
+
+3. **API opinieon.pl zwraca:**
+   ```json
+   // Firma
+   {
+     "id": "uuid",
+     "name": "Nazwa firmy",
+     "slug": "nazwa-firmy-slug",
+     "description": "...",
+     "logo_url": "...",
+     "stats": {
+       "review_count": 15,
+       "avg_rating": 4.5
+     },
+     "portal_settings": {
+       "reviews_enabled": true,
+       "is_active": true
+     }
+   }
+   
+   // Opinie
+   {
+     "reviews": [
+       {
+         "id": "uuid",
+         "rating": 5,
+         "title": "Świetna firma!",
+         "content": "...",
+         "pros": "...",
+         "cons": "...",
+         "author_name": "Jan Kowalski",
+         "created_at": "2026-01-09T..."
+       }
+     ],
+     "total": 15,
+     "reviews_enabled": true
+   }
+   ```
+
+4. **Portal renderuje** stronę z danymi i opiniami tylko dla swojego portalu
+
+## Routing w portalu
+
+```
+dobre-firmy.pl/
+├── firmy              → lista wszystkich firm (search)
+├── firmy?q=nazwa      → wyszukiwanie
+├── firma/[slug]       → profil firmy + opinie
+└── kategorie/[kat]    → firmy w kategorii (opcjonalne)
+```
 ```
 
 ## 4. Jak wygenerować klucz API
