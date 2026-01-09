@@ -20,11 +20,13 @@ export default async function DashboardPage() {
     .select('*')
     .eq('user_id', user.id)
 
-  // Pobierz ostatnie opinie
+  const companiesData = (companies || []) as any[]
+
+  // Pobierz ostatnie opinie dla firm użytkownika
   const { data: recentReviews } = await supabase
     .from('reviews')
     .select('*, companies(name)')
-    .eq('user_id', user.id)
+    .in('company_id', companiesData.map(c => c.id))
     .order('created_at', { ascending: false })
     .limit(5)
 

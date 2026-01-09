@@ -24,7 +24,7 @@ export default async function ReviewsPage() {
     .eq('is_active', true)
 
   // Pobierz opinie
-  const { data: reviews } = await supabase
+  const { data: reviews, error: reviewsError } = await supabase
     .from('reviews')
     .select(`
       *,
@@ -32,7 +32,9 @@ export default async function ReviewsPage() {
       portal:portals(name, slug)
     `)
     .in('company_id', companiesData.map(c => c.id))
-    .order('review_date', { ascending: false })
+    .order('created_at', { ascending: false })
+
+  console.log('Reviews query:', { count: reviews?.length, error: reviewsError })
 
   const reviewsData = (reviews || []) as any[]
 

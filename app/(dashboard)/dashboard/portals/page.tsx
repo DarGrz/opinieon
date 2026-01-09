@@ -31,12 +31,13 @@ export default async function PortalsPage() {
     .eq('user_id', user.id)
 
   const company = companies?.[0]
+  const companiesData = (companies || []) as any[]
 
-  // Pobierz statystyki opinii dla każdego portalu
+  // Pobierz statystyki opinii dla firm użytkownika
   const { data: reviews } = await supabase
     .from('reviews')
     .select('portal, rating')
-    .eq('user_id', user.id)
+    .in('company_id', companiesData.map(c => c.id))
 
   // Oblicz statystyki dla każdego portalu
   const portalStats = PORTALS.map((portal) => {
