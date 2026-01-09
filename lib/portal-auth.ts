@@ -11,7 +11,14 @@ export async function verifyPortalKey(
   apiKey: string | null,
   portalSlug: string | null
 ): Promise<string | null> {
+  console.log('[PORTAL-AUTH] Verifying portal key...', {
+    hasApiKey: !!apiKey,
+    apiKeyPrefix: apiKey?.substring(0, 10),
+    portalSlug,
+  })
+
   if (!apiKey || !portalSlug) {
+    console.error('[PORTAL-AUTH] Missing API key or portal slug')
     return null
   }
 
@@ -19,14 +26,23 @@ export async function verifyPortalKey(
 
   // Hash klucza
   const keyHash = crypto.createHash('sha256').update(apiKey).digest('hex')
+  console.log('[PORTAL-AUTH] Key hash generated:', {
+    hashPrefix: keyHash.substring(0, 20),
+  })
 
   // Sprawdź w bazie
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from('portal_keys')
     .select('portal_id, active, rate_limit, portals!inner(slug, is_active)')
     .eq('key_hash', keyHash)
     .eq('active', true)
-    .maybeSingle()
+    .maybeSingle() as { data: { portal_id: string; active: boolean; rate_limit: number | null; portals: { slug: string; is_active: boolean } } | null; error: any }
+
+  console.log('[PORTAL-AUTH] Database query result:', {
+    found: !!data,
+    error: error?.message,
+    data: data ? { portal_id: data.portal_id, active: data.active } : null,
+  })
 
   if (!data) {
     console.error('[PORTAL-AUTH] Invalid API key or portal slug')

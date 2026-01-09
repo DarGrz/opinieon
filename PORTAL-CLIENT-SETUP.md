@@ -1,13 +1,36 @@
 # Jak połączyć dobre-firmy.pl z API opinieon.pl
 
+## ⚠️ WAŻNE: Localhost vs Produkcja
+
+**Portal NIE MOŻE używać `localhost` do połączenia z opinieon.pl!**
+
+- Next.js renderuje strony **server-side** (na serwerze)
+- Gdy dobre-firmy.pl działa na `localhost:3001`, server-side fetch próbuje połączyć się z `localhost:3000`
+- To się NIE UDA - każdy localhost to osobny komputer/proces
+- **Rozwiązanie**: Użyj publicznego URL nawet w developmencie
+
 ## 1. Konfiguracja środowiska (.env.local)
 
 W projekcie **dobre-firmy.pl** utwórz plik `.env.local`:
 
+### DEVELOPMENT (testowanie lokalne)
 ```bash
-# API opinieon.pl
-NEXT_PUBLIC_OPINIEON_API_URL=https://opinieon.pl/api/public
+# ❌ ŹLE - nie działa server-side:
+# NEXT_PUBLIC_OPINIEON_API_URL=http://localhost:3000/api/public
+
+# ✅ DOBRZE - używaj publicznego URL opinieon.pl:
+NEXT_PUBLIC_OPINIEON_API_URL=https://opinieon.vercel.app/api/public
+# lub gdy opinieon.pl już działa w produkcji:
+# NEXT_PUBLIC_OPINIEON_API_URL=https://opinieon.pl/api/public
+
 OPINIEON_PORTAL_KEY=pk_xxxxxxxxxxxxxxxxxxxxxxxxx  # Klucz z Supabase
+NEXT_PUBLIC_PORTAL_SLUG=dobre-firmy
+```
+
+### PRODUCTION (Vercel)
+```bash
+NEXT_PUBLIC_OPINIEON_API_URL=https://opinieon.pl/api/public
+OPINIEON_PORTAL_KEY=pk_xxxxxxxxxxxxxxxxxxxxxxxxx
 NEXT_PUBLIC_PORTAL_SLUG=dobre-firmy
 ```
 
