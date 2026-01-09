@@ -27,7 +27,7 @@ export async function verifyPortalKey(
   // Hash klucza
   const keyHash = crypto.createHash('sha256').update(apiKey).digest('hex')
   console.log('[PORTAL-AUTH] Key hash generated:', {
-    hashPrefix: keyHash.substring(0, 20),
+    fullHash: keyHash,
   })
 
   // Sprawdź w bazie

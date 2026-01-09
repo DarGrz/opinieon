@@ -27,31 +27,46 @@ export async function GET(request: Request) {
 
     console.log('[SEARCH-API] Fetching companies...')
 
-    // Najpierw pobierz firmy bez filtrowania po portalu (uproszczone)
+    // Pobierz firmy przypisane do tego portalu
     let dbQuery = supabase
-      .from('companies')
-      .select('id, name, slug, description, logo_url, website, city, verified', { count: 'exact' })
+      .from('company_portal_profiles')
+      .select(`
+        company_id,
+        is_active,
+        companies!inner(
+          id,
+          name,
+          slug,
+          description,
+          logo_url,
+          website,
+          city,
+          verified
+        )
+      `, { count: 'exact' })
+      .eq('portal_id', portalId)
+      .eq('is_active', true)
 
     // Wyszukiwanie po nazwie lub mieście
     if (query) {
-      dbQuery = dbQuery.or(`name.ilike.%${query}%,city.ilike.%${query}%`)
+      dbQuery = dbQuery.or(`companies.name.ilike.%${query}%,companies.city.ilike.%${query}%`)
     }
 
-    const { data: companies, error, count } = await dbQuery
-      .order('name', { ascending: true })
+    const { data: profiles, error, count } = await dbQuery
+      .order('companies.name', { ascending: true, foreignTable: 'companies' })
       .range(offset, offset + limit - 1)
 
-    console.log('[SEARCH-API] Companies fetched:', { count: companies?.length, error: error?.message })
+    console.log('[SEARCH-API] Companies fetched:', { count: profiles?.length, error: error?.message })
 
     if (error) {
       console.error('[SEARCH-API] Database error:', error)
       throw error
     }
 
-    // Dla każdej firmy pobierz statystyki z tego portalu
+    // Dla każdej firmy pobierz statystyki
     const companiesWithStats = await Promise.all(
-      (companies || []).map(async (company) => {
-        const companyData = company as any
+      (profiles || []).map(async (profile) => {
+        const companyData = (profile as any).companies
         const { data: stats } = await supabase
           .from('company_portal_stats')
           .select('review_count, avg_rating')
