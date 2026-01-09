@@ -22,16 +22,35 @@ export default async function SettingsPage() {
 
   const profileData = profile as any
 
+  // Fetch active subscription
+  const { data: subscription } = await supabase
+    .from('subscriptions')
+    .select('*')
+    .eq('user_id', user.id)
+    .eq('status', 'active')
+    .single()
+
   // Calculate plan display
   let planDisplay = 'Brak aktywnego planu'
   let trialDaysLeft = null
   
-  if (profileData?.trial_end_date) {
-    const trialEnd = new Date(profileData.trial_end_date)
-    const now = new Date()
-    if (trialEnd > now) {
-      trialDaysLeft = Math.ceil((trialEnd.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
-      planDisplay = `Trial (${trialDaysLeft} dni pozostało)`
+  if (subscription) {
+    // Map plan enum to Polish names
+    const planNames: Record<string, string> = {
+      'START': 'Start',
+      'PRO': 'Pro',
+      'BIZNES': 'Biznes'
+    }
+    planDisplay = planNames[subscription.plan] || subscription.plan
+    
+    // Check if in trial
+    if (subscription.trial_end) {
+      const trialEnd = new Date(subscription.trial_end)
+      const now = new Date()
+      if (trialEnd > now) {
+        trialDaysLeft = Math.ceil((trialEnd.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
+        planDisplay = `${planDisplay} (Trial - ${trialDaysLeft} dni pozostało)`
+      }
     }
   }
 
@@ -79,19 +98,19 @@ export default async function SettingsPage() {
               {isActive ? 'Aktywna' : 'Nieaktywna'}
             </span>
           </div>
-          {trialDaysLeft && (
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-2">
-              <p className="text-sm text-blue-800">
-                <strong>Okres próbny:</strong> Pozostało {trialDaysLeft} dni. Po zakończeniu automatycznie przejdziesz na wybrany plan.
-              </p>
-            </div>
-          )}
-          {profileData?.subscription_end_date && !trialDaysLeft && (
+          {subscription?.current_period_end && (
             <div>
               <span className="text-gray-600">Data odnowienia:</span>
               <span className="ml-2 font-medium text-gray-900">
-                {new Date(profileData.subscription_end_date).toLocaleDateString('pl-PL')}
+                {new Date(subscription.current_period_end).toLocaleDateString('pl-PL')}
               </span>
+            </div>
+          )}
+          {subscription?.cancel_at_period_end && (
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mt-2">
+              <p className="text-sm text-yellow-800">
+                <strong>Uwaga:</strong> Twoja subskrypcja zostanie anulowana {new Date(subscription.current_period_end).toLocaleDateString('pl-PL')}
+              </p>
             </div>
           )}
         </div>

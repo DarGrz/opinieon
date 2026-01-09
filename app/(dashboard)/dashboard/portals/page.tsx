@@ -8,8 +8,8 @@ type Portal = 'Dobre Firmy' | 'Arena Biznesu' | 'Panteon Firm'
 const PORTALS: Portal[] = ['Dobre Firmy', 'Arena Biznesu', 'Panteon Firm']
 
 const PORTAL_URLS = {
-  'Dobre Firmy': 'https://dobrefirmy.pl',
-  'Arena Biznesu': 'https://arenabiznesu.pl',
+  'Dobre Firmy': 'https://dobre-firmy.pl',
+  'Arena Biznesu': 'https://arena-biznesu.pl',
   'Panteon Firm': 'https://panteonfirm.pl',
 }
 
