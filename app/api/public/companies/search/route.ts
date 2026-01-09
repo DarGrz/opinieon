@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+import { createServiceRoleClient } from '@/lib/supabase/server'
 import { verifyPortalKey } from '@/lib/portal-auth'
 
 export async function GET(request: Request) {
@@ -22,7 +22,7 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const supabase = await createClient()
+    const supabase = createServiceRoleClient()
     const offset = (page - 1) * limit
 
     console.log('[SEARCH-API] Fetching companies...')
