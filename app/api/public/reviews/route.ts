@@ -85,13 +85,10 @@ export async function POST(request: Request) {
 
     const reviewData = review as any
 
-    // TODO: Wyślij email weryfikacyjny
-    // await sendVerificationEmail(reviewData.id, authorEmail)
-
     return NextResponse.json({
       success: true,
       review_id: reviewData.id,
-      message: 'Review submitted. Please check your email to verify.',
+      message: 'Opinia została dodana i czeka na moderację.',
     })
   } catch (error) {
     console.error('Error in POST /api/public/reviews:', error)
