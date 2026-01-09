@@ -4,9 +4,10 @@ import { verifyPortalKey } from '@/lib/portal-auth'
 
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    const { slug } = await params
     const portalKey = request.headers.get('x-portal-key')
     const { searchParams } = new URL(request.url)
     const portalSlug = searchParams.get('portal')
@@ -23,7 +24,7 @@ export async function GET(
     const { data: company, error: companyError } = await supabase
       .from('companies')
       .select('*')
-      .eq('slug', params.slug)
+      .eq('slug', slug)
       .single()
 
     if (companyError || !company) {
