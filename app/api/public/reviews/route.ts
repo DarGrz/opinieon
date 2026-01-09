@@ -25,8 +25,8 @@ export async function POST(request: Request) {
       authorEmail,
     } = body
 
-    // Walidacja
-    if (!companyId || !rating || !title || !content || !authorName || !authorEmail) {
+    // Walidacja - tylko companyId, rating, content i authorName są wymagane
+    if (!companyId || !rating || !content || !authorName) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -66,12 +66,12 @@ export async function POST(request: Request) {
         company_id: companyId,
         portal_id: portalId,
         rating,
-        title,
+        title: title || 'Opinia',
         content,
         pros: pros || null,
         cons: cons || null,
         author_name: authorName,
-        author_email: authorEmail,
+        author_email: authorEmail || null,
         status: 'pending', // Wymaga weryfikacji email
         verified: false,
         helpful_count: 0,
