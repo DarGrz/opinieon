@@ -4,6 +4,7 @@ import { verifyPortalKey } from '@/lib/portal-auth'
 
 export async function GET(request: Request) {
   try {
+    console.log('[SEARCH-API] Request received')
     const portalKey = request.headers.get('x-portal-key')
     const { searchParams } = new URL(request.url)
     const portalSlug = searchParams.get('portal')
@@ -11,24 +12,25 @@ export async function GET(request: Request) {
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '20')
 
+    console.log('[SEARCH-API] Params:', { portalSlug, query, page, limit, hasKey: !!portalKey })
+
     // Weryfikacja portal key
     const portalId = await verifyPortalKey(portalKey, portalSlug)
+    console.log('[SEARCH-API] Portal ID:', portalId)
     if (!portalId) {
+      console.error('[SEARCH-API] Unauthorized')
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     const supabase = await createClient()
     const offset = (page - 1) * limit
 
+    console.log('[SEARCH-API] Fetching companies...')
+
+    // Najpierw pobierz firmy bez filtrowania po portalu (uproszczone)
     let dbQuery = supabase
       .from('companies')
       .select('id, name, slug, description, logo_url, website, city, verified', { count: 'exact' })
-
-    // Filtruj tylko firmy aktywne na tym portalu
-    if (portalId) {
-      dbQuery = dbQuery.eq('company_portal_profiles.portal_id', portalId)
-        .eq('company_portal_profiles.is_active', true)
-    }
 
     // Wyszukiwanie po nazwie lub mieście
     if (query) {
@@ -39,7 +41,10 @@ export async function GET(request: Request) {
       .order('name', { ascending: true })
       .range(offset, offset + limit - 1)
 
+    console.log('[SEARCH-API] Companies fetched:', { count: companies?.length, error: error?.message })
+
     if (error) {
+      console.error('[SEARCH-API] Database error:', error)
       throw error
     }
 
@@ -72,10 +77,10 @@ export async function GET(request: Request) {
       page,
       limit,
     })
-  } catch (error) {
-    console.error('Error searching companies:', error)
+  } catch (error: any) {
+    console.error('[SEARCH-API] Error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error', message: error?.message || 'Unknown error' },
       { status: 500 }
     )
   }
