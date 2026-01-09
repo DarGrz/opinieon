@@ -23,7 +23,9 @@ export async function POST(request: Request) {
       .eq('status', 'active')
       .single()
 
-    if (!subscription?.stripe_customer_id) {
+    const subscriptionData = subscription as any
+
+    if (!subscriptionData?.stripe_customer_id) {
       return NextResponse.json(
         { error: 'No active subscription found' },
         { status: 404 }
@@ -32,7 +34,7 @@ export async function POST(request: Request) {
 
     // Create billing portal session
     const session = await stripe.billingPortal.sessions.create({
-      customer: subscription.stripe_customer_id,
+      customer: subscriptionData.stripe_customer_id,
       return_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/settings`,
     })
 

@@ -30,22 +30,24 @@ export default async function SettingsPage() {
     .eq('status', 'active')
     .single()
 
+  const subscriptionData = subscription as any
+
   // Calculate plan display
   let planDisplay = 'Brak aktywnego planu'
   let trialDaysLeft = null
   
-  if (subscription) {
+  if (subscriptionData) {
     // Map plan enum to Polish names
     const planNames: Record<string, string> = {
       'START': 'Start',
       'PRO': 'Pro',
       'BIZNES': 'Biznes'
     }
-    planDisplay = planNames[subscription.plan] || subscription.plan
+    planDisplay = planNames[subscriptionData.plan] || subscriptionData.plan
     
     // Check if in trial
-    if (subscription.trial_end) {
-      const trialEnd = new Date(subscription.trial_end)
+    if (subscriptionData.trial_end) {
+      const trialEnd = new Date(subscriptionData.trial_end)
       const now = new Date()
       if (trialEnd > now) {
         trialDaysLeft = Math.ceil((trialEnd.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
@@ -56,14 +58,14 @@ export default async function SettingsPage() {
 
   // Fetch invoices
   let invoices: any[] = []
-  if (profileData?.stripe_customer_id) {
+  if (subscriptionData?.stripe_customer_id) {
     try {
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
         apiVersion: '2025-12-15.clover',
       })
       
       const stripeInvoices = await stripe.invoices.list({
-        customer: profileData.stripe_customer_id,
+        customer: subscriptionData.stripe_customer_id,
         limit: 20,
       })
       invoices = stripeInvoices.data
@@ -72,7 +74,7 @@ export default async function SettingsPage() {
     }
   }
 
-  const isActive = profileData?.subscription_status === 'active'
+  const isActive = subscriptionData?.status === 'active'
 
   return (
     <div className="max-w-4xl mx-auto py-8">
@@ -98,18 +100,18 @@ export default async function SettingsPage() {
               {isActive ? 'Aktywna' : 'Nieaktywna'}
             </span>
           </div>
-          {subscription?.current_period_end && (
+          {subscriptionData?.current_period_end && (
             <div>
               <span className="text-gray-600">Data odnowienia:</span>
               <span className="ml-2 font-medium text-gray-900">
-                {new Date(subscription.current_period_end).toLocaleDateString('pl-PL')}
+                {new Date(subscriptionData.current_period_end).toLocaleDateString('pl-PL')}
               </span>
             </div>
           )}
-          {subscription?.cancel_at_period_end && (
+          {subscriptionData?.cancel_at_period_end && (
             <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mt-2">
               <p className="text-sm text-yellow-800">
-                <strong>Uwaga:</strong> Twoja subskrypcja zostanie anulowana {new Date(subscription.current_period_end).toLocaleDateString('pl-PL')}
+                <strong>Uwaga:</strong> Twoja subskrypcja zostanie anulowana {new Date(subscriptionData.current_period_end).toLocaleDateString('pl-PL')}
               </p>
             </div>
           )}
