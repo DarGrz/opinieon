@@ -8,12 +8,12 @@ export default function Home() {
   return (
     <div className="bg-white">
       {/* Header */}
-      <header className="absolute inset-x-0 top-0 z-50">
+      <header className="absolute inset-x-0 top-0 z-50 bg-gray-900">
         <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
             <Link href="/" className="-m-1.5 p-1.5">
               <Image 
-                src="/opinieon-logo-sq.png" 
+                src="/opinieon-logo-sq-new-green.png" 
                 alt="opinieOn Logo" 
                 width={150} 
                 height={40}
@@ -24,14 +24,14 @@ export default function Home() {
           <div className="flex gap-x-4">
             <Link
               href="/login"
-              className="text-sm font-semibold leading-6 text-gray-900 hover:text-orange-600"
+              className="text-sm font-semibold leading-6 text-white hover:text-green-400"
             >
               Zaloguj się
             </Link>
             <Link
               href="/register"
               className="rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-90 transition-opacity"
-              style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}
+              style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}
             >
               Rozpocznij za darmo
             </Link>
@@ -53,7 +53,7 @@ export default function Home() {
               <Link
                 href="/register"
                 className="rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-90 transition-opacity"
-                style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}
+                style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}
               >
                 Rozpocznij 14-dniowy trial
               </Link>
@@ -69,7 +69,7 @@ export default function Home() {
       <div className="py-24 sm:py-32 bg-gray-50">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold leading-7 text-orange-600">Wszystko czego potrzebujesz</h2>
+            <h2 className="text-base font-semibold leading-7 text-green-600">Wszystko czego potrzebujesz</h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Funkcje które ułatwią Ci zarządzanie opiniami
             </p>
@@ -78,7 +78,7 @@ export default function Home() {
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
               <div className="flex flex-col">
                 <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                  <MessageSquare className="h-5 w-5 flex-none text-orange-600" />
+                  <MessageSquare className="h-5 w-5 flex-none text-green-600" />
                   Zarządzanie opiniami
                 </dt>
                 <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
@@ -87,7 +87,7 @@ export default function Home() {
               </div>
               <div className="flex flex-col">
                 <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                  <BarChart3 className="h-5 w-5 flex-none text-orange-600" />
+                  <BarChart3 className="h-5 w-5 flex-none text-green-600" />
                   Analityka i statystyki
                 </dt>
                 <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
@@ -96,7 +96,7 @@ export default function Home() {
               </div>
               <div className="flex flex-col">
                 <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                  <Star className="h-5 w-5 flex-none text-orange-600" />
+                  <Star className="h-5 w-5 flex-none text-green-600" />
                   Odpowiedzi na opinie
                 </dt>
                 <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
@@ -133,7 +133,7 @@ export default function Home() {
                     <div className="flex items-center justify-between gap-x-4">
                       <h3 className="text-lg font-semibold leading-8 text-gray-900">{plan.name}</h3>
                       {isPopular && (
-                        <p className="rounded-full bg-orange-600 px-2.5 py-1 text-xs font-semibold leading-5 text-white">
+                        <p className="rounded-full bg-green-600 px-2.5 py-1 text-xs font-semibold leading-5 text-white">
                           Najpopularniejszy
                         </p>
                       )}
@@ -145,7 +145,7 @@ export default function Home() {
                     <ul className="mt-8 space-y-3 text-sm leading-6 text-gray-600">
                       {plan.features.map((feature) => (
                         <li key={feature} className="flex gap-x-3">
-                          <Check className="h-6 w-5 flex-none text-orange-600" />
+                          <Check className="h-6 w-5 flex-none text-green-600" />
                           {feature}
                         </li>
                       ))}
@@ -155,10 +155,10 @@ export default function Home() {
                     href="/register"
                     className={`mt-8 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
                       isPopular
-                        ? 'text-white hover:opacity-90 transition-opacity focus-visible:outline-orange-600'
-                        : 'text-orange-600 ring-1 ring-inset ring-orange-200 hover:ring-orange-300'
+                        ? 'text-white hover:opacity-90 transition-opacity focus-visible:outline-green-600'
+                        : 'text-green-600 ring-1 ring-inset ring-green-200 hover:ring-green-300'
                     }`}
-                    style={isPopular ? { background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' } : undefined}
+                    style={isPopular ? { background: 'linear-gradient(to right, #4ab144, #0d833f)' } : undefined}
                   >
                     Wybierz plan {plan.name}
                   </Link>

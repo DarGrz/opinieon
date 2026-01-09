@@ -65,7 +65,7 @@ export default async function PortalsPage() {
         </div>
         <button
           className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white hover:opacity-90 transition-opacity"
-          style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}
+          style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}
         >
           <RefreshCw className="mr-2 h-5 w-5" />
           Synchronizuj wszystkie
@@ -79,7 +79,7 @@ export default async function PortalsPage() {
           </p>
           <Link
             href="/onboarding/company"
-            className="mt-3 inline-flex items-center text-sm font-medium text-orange-600 hover:text-orange-700"
+            className="mt-3 inline-flex items-center text-sm font-medium text-green-600 hover:text-green-700"
           >
             Dodaj firmę →
           </Link>
@@ -90,7 +90,7 @@ export default async function PortalsPage() {
         {portalStats.map((portal) => (
           <div
             key={portal.name}
-            className="bg-white shadow rounded-lg overflow-hidden border border-gray-200 hover:border-orange-300 transition-colors"
+            className="bg-white shadow rounded-lg overflow-hidden border border-gray-200 hover:border-green-300 transition-colors"
           >
             <div className="p-6">
               <div className="flex items-center justify-between mb-4">
@@ -147,7 +147,7 @@ export default async function PortalsPage() {
                 </a>
                 <button
                   className="flex items-center justify-center w-full px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white hover:opacity-90 transition-opacity"
-                  style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}
+                  style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}
                 >
                   <RefreshCw className="mr-2 h-4 w-4" />
                   Synchronizuj

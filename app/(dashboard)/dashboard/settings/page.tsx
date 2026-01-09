@@ -170,7 +170,7 @@ export default async function SettingsPage() {
                           href={invoice.invoice_pdf}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-orange-600 hover:text-orange-800"
+                          className="text-green-600 hover:text-green-800"
                         >
                           Pobierz
                         </a>

@@ -120,7 +120,7 @@ export default async function DashboardPage() {
         <div className="bg-white overflow-hidden shadow rounded-lg">
           <div className="p-5">
             <div className="flex items-center">
-              <div className="flex-shrink-0 p-3 rounded-md" style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}>
+              <div className="flex-shrink-0 p-3 rounded-md" style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}>
                 <Building2 className="h-6 w-6 text-white" />
               </div>
               <div className="ml-5 w-0 flex-1">
@@ -132,7 +132,7 @@ export default async function DashboardPage() {
             </div>
           </div>
           <div className="bg-gray-50 px-5 py-3">
-            <Link href="/dashboard/portals" className="text-sm text-orange-600 hover:text-orange-700">
+            <Link href="/dashboard/portals" className="text-sm text-green-600 hover:text-green-700">
               Zarządzaj profilami →
             </Link>
           </div>
@@ -153,7 +153,7 @@ export default async function DashboardPage() {
             </div>
           </div>
           <div className="bg-gray-50 px-5 py-3">
-            <Link href="/dashboard/reviews" className="text-sm text-orange-600 hover:text-orange-700">
+            <Link href="/dashboard/reviews" className="text-sm text-green-600 hover:text-green-700">
               Zobacz opinie →
             </Link>
           </div>
@@ -174,7 +174,7 @@ export default async function DashboardPage() {
             </div>
           </div>
           <div className="bg-gray-50 px-5 py-3">
-            <Link href="/dashboard/analytics" className="text-sm text-orange-600 hover:text-orange-700">
+            <Link href="/dashboard/analytics" className="text-sm text-green-600 hover:text-green-700">
               Analityka →
             </Link>
           </div>
@@ -185,7 +185,7 @@ export default async function DashboardPage() {
       <div className="bg-white shadow rounded-lg mb-8">
         <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
           <h2 className="text-lg font-medium text-gray-900">Najnowsze opinie</h2>
-          <Link href="/dashboard/reviews" className="text-sm text-orange-600 hover:text-orange-700 font-medium">
+          <Link href="/dashboard/reviews" className="text-sm text-green-600 hover:text-green-700 font-medium">
             Zobacz wszystkie →
           </Link>
         </div>
@@ -227,7 +227,7 @@ export default async function DashboardPage() {
                 <Link
                   href="/dashboard/reviews/new"
                   className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white hover:opacity-90 transition-opacity"
-                  style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}
+                  style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}
                 >
                   <Plus className="mr-2 h-5 w-5" />
                   Dodaj opinię
@@ -246,7 +246,7 @@ export default async function DashboardPage() {
         <div className="p-6">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             {['Dobre Firmy', 'Arena Biznesu', 'Panteon Firm'].map((portal) => (
-              <div key={portal} className="border border-gray-200 rounded-lg p-4 hover:border-orange-300 transition-colors">
+              <div key={portal} className="border border-gray-200 rounded-lg p-4 hover:border-green-300 transition-colors">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="font-medium text-gray-900">{portal}</h3>
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">

@@ -119,7 +119,7 @@ export default function NewReviewPage() {
                 required
                 value={formData.companyId}
                 onChange={(e) => setFormData({ ...formData, companyId: e.target.value })}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
               >
                 <option value="">Wybierz firmę</option>
                 {companies.map((company) => (
@@ -140,7 +140,7 @@ export default function NewReviewPage() {
                 required
                 value={formData.portalId}
                 onChange={(e) => setFormData({ ...formData, portalId: e.target.value })}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
               >
                 <option value="">Wybierz portal</option>
                 {portals.map((portal) => (
@@ -162,7 +162,7 @@ export default function NewReviewPage() {
                 required
                 value={formData.authorName}
                 onChange={(e) => setFormData({ ...formData, authorName: e.target.value })}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
                 placeholder="Jan Kowalski"
               />
             </div>
@@ -177,7 +177,7 @@ export default function NewReviewPage() {
                 name="authorEmail"
                 value={formData.authorEmail}
                 onChange={(e) => setFormData({ ...formData, authorEmail: e.target.value })}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
                 placeholder="jan@example.com"
               />
             </div>
@@ -193,7 +193,7 @@ export default function NewReviewPage() {
                 required
                 value={formData.reviewDate}
                 onChange={(e) => setFormData({ ...formData, reviewDate: e.target.value })}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
               />
             </div>
 
@@ -237,7 +237,7 @@ export default function NewReviewPage() {
               name="title"
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
               placeholder="Świetna obsługa!"
             />
           </div>
@@ -252,7 +252,7 @@ export default function NewReviewPage() {
               rows={4}
               value={formData.content}
               onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
               placeholder="Opisz doświadczenie..."
             />
           </div>
@@ -267,8 +267,8 @@ export default function NewReviewPage() {
             <button
               type="submit"
               disabled={loading}
-              className="px-6 py-2 text-sm font-medium text-white border border-transparent rounded-md hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50"
-              style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}
+              className="px-6 py-2 text-sm font-medium text-white border border-transparent rounded-md hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50"
+              style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}
             >
               {loading ? 'Dodawanie...' : 'Dodaj opinię'}
             </button>

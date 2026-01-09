@@ -236,7 +236,7 @@ function CompanyFormContent() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Ładowanie danych...</p>
         </div>
       </div>
@@ -252,7 +252,7 @@ function CompanyFormContent() {
               Uzupełnij dane
             </h2>
             <p className="mt-2 text-sm text-gray-600">
-              Wybrany plan: <span className="font-semibold text-orange-600">{selectedPlan.name}</span> ({selectedPlan.price} zł/miesiąc)
+              Wybrany plan: <span className="font-semibold text-green-600">{selectedPlan.name}</span> ({selectedPlan.price} zł/miesiąc)
             </p>
           </div>
 
@@ -277,7 +277,7 @@ function CompanyFormContent() {
                     required
                     value={formData.firstName}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
                   />
                 </div>
                 <div>
@@ -291,7 +291,7 @@ function CompanyFormContent() {
                     required
                     value={formData.lastName}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
                   />
                 </div>
                 <div>
@@ -305,7 +305,7 @@ function CompanyFormContent() {
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
                   />
                 </div>
               </div>
@@ -325,7 +325,7 @@ function CompanyFormContent() {
                     required
                     value={formData.companyName}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
                   />
                 </div>
                 <div>
@@ -338,7 +338,7 @@ function CompanyFormContent() {
                     id="nip"
                     value={formData.nip}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
                   />
                 </div>
                 <div>
@@ -351,7 +351,7 @@ function CompanyFormContent() {
                     id="companyPhone"
                     value={formData.companyPhone}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
                   />
                 </div>
                 <div className="sm:col-span-2">
@@ -364,7 +364,7 @@ function CompanyFormContent() {
                     id="address"
                     value={formData.address}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
                   />
                 </div>
                 <div>
@@ -377,7 +377,7 @@ function CompanyFormContent() {
                     id="city"
                     value={formData.city}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
                   />
                 </div>
                 <div>
@@ -390,7 +390,7 @@ function CompanyFormContent() {
                     id="postalCode"
                     value={formData.postalCode}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
                   />
                 </div>
                 <div>
@@ -403,7 +403,7 @@ function CompanyFormContent() {
                     id="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
                   />
                 </div>
                 <div>
@@ -416,7 +416,7 @@ function CompanyFormContent() {
                     id="website"
                     value={formData.website}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
                   />
                 </div>
                 <div className="sm:col-span-2">
@@ -429,7 +429,7 @@ function CompanyFormContent() {
                     rows={3}
                     value={formData.description}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm border px-3 py-2"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm border px-3 py-2"
                   />
                 </div>
               </div>
@@ -446,8 +446,8 @@ function CompanyFormContent() {
               <button
                 type="submit"
                 disabled={loading}
-                className="px-6 py-2 text-sm font-medium text-white border border-transparent rounded-md hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50"
-                style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}
+                className="px-6 py-2 text-sm font-medium text-white border border-transparent rounded-md hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50"
+                style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}
               >
                 {loading ? 'Przetwarzanie...' : 'Przejdź do płatności'}
               </button>

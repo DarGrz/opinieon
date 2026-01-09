@@ -37,26 +37,13 @@ export default function Sidebar() {
   return (
     <div className="flex flex-col w-64 bg-gray-900">
       <div className="flex items-center justify-center h-16 bg-gray-800 px-4">
-        <Link href="/dashboard" className="flex items-center gap-2">
+        <Link href="/dashboard">
           <Image 
-            src="/opinieon-logo-sq.png" 
+            src="/opinieon-logo-sq-new-green.png" 
             alt="opinieOn Logo" 
-            width={40} 
-            height={40}
+            width={88} 
+            height={88}
           />
-          <span className="text-white text-xl font-bold">
-            Opinie
-            <span 
-              style={{ 
-                background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}
-            >
-              On
-            </span>
-          </span>
         </Link>
       </div>
       <div className="flex flex-col flex-1 overflow-y-auto">

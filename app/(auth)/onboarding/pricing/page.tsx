@@ -37,12 +37,12 @@ export default function PricingPage() {
               <div
                 key={planKey}
                 className={`rounded-lg shadow-lg divide-y divide-gray-200 ${
-                  isPopular ? 'border-2 border-orange-500 relative' : 'border border-gray-200'
+                  isPopular ? 'border-2 border-green-500 relative' : 'border border-gray-200'
                 } bg-white`}
               >
                 {isPopular && (
                   <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-0">
-                    <span className="inline-flex rounded-full px-4 py-1 text-xs font-semibold text-white" style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}>
+                    <span className="inline-flex rounded-full px-4 py-1 text-xs font-semibold text-white" style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}>
                       Najpopularniejszy
                     </span>
                   </div>
@@ -58,9 +58,9 @@ export default function PricingPage() {
                     className={`mt-8 block w-full rounded-md px-6 py-3 text-center text-sm font-semibold ${
                       isPopular
                         ? 'text-white hover:opacity-90 transition-opacity'
-                        : 'bg-orange-50 text-orange-700 hover:bg-orange-100'
+                        : 'bg-orange-50 text-green-700 hover:bg-orange-100'
                     }`}
-                    style={isPopular ? { background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' } : undefined}
+                    style={isPopular ? { background: 'linear-gradient(to right, #4ab144, #0d833f)' } : undefined}
                   >
                     Wybierz {plan.name}
                   </button>

@@ -48,7 +48,7 @@ export default async function ReviewsPage() {
           <Link
             href="/onboarding/pricing"
             className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white hover:opacity-90 transition-opacity"
-            style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}
+            style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}
           >
             <Plus className="mr-2 h-5 w-5" />
             Dodaj firmę
@@ -75,7 +75,7 @@ export default async function ReviewsPage() {
           <Link
             href="/dashboard/reviews/new"
             className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white hover:opacity-90 transition-opacity"
-            style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}
+            style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}
           >
             <Plus className="mr-2 h-5 w-5" />
             Dodaj opinię
@@ -88,7 +88,7 @@ export default async function ReviewsPage() {
         <div className="bg-white overflow-hidden shadow rounded-lg">
           <div className="p-5">
             <div className="flex items-center">
-              <div className="flex-shrink-0 p-3 rounded-md" style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}>
+              <div className="flex-shrink-0 p-3 rounded-md" style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}>
                 <MessageSquare className="h-6 w-6 text-white" />
               </div>
               <div className="ml-5 w-0 flex-1">
@@ -159,7 +159,7 @@ export default async function ReviewsPage() {
               <Link
                 href="/dashboard/reviews/new"
                 className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white hover:opacity-90 transition-opacity"
-                style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}
+                style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}
               >
                 <Plus className="mr-2 h-5 w-5" />
                 Dodaj opinię
@@ -177,10 +177,10 @@ export default async function ReviewsPage() {
                   <div className="flex items-center justify-between">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <p className="text-sm font-medium text-orange-600 truncate">
+                        <p className="text-sm font-medium text-green-600 truncate">
                           {review.company?.name}
                         </p>
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-green-800">
                           {review.portal?.name}
                         </span>
                       </div>

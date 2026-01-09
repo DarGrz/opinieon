@@ -31,7 +31,7 @@ export function ManageBillingButton() {
       onClick={handleClick}
       disabled={loading}
       className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white hover:opacity-90 transition-opacity disabled:opacity-50"
-      style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}
+      style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}
     >
       {loading ? 'Ładowanie...' : 'Zarządzaj danymi płatności'}
     </button>

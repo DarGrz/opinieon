@@ -30,8 +30,8 @@ export default async function AnalyticsPage() {
       <div>
         <h1 className="text-2xl font-semibold text-gray-900 mb-8">Analityka</h1>
         
-        <div className="bg-gradient-to-r from-orange-50 to-yellow-50 border border-orange-200 rounded-lg p-8 text-center">
-          <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full mb-4" style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}>
+        <div className="bg-gradient-to-r from-orange-50 to-yellow-50 border border-green-200 rounded-lg p-8 text-center">
+          <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full mb-4" style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}>
             <TrendingUp className="h-6 w-6 text-white" />
           </div>
           <h3 className="text-lg font-semibold text-gray-900 mb-2">Analityka dostępna w planie PRO i BIZNES</h3>
@@ -41,7 +41,7 @@ export default async function AnalyticsPage() {
           <a
             href="/onboarding/pricing"
             className="inline-flex items-center px-6 py-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-white hover:opacity-90 transition-opacity"
-            style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}
+            style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}
           >
             Uaktualnij plan
           </a>
@@ -113,7 +113,7 @@ export default async function AnalyticsPage() {
         <div className="bg-white overflow-hidden shadow rounded-lg">
           <div className="p-5">
             <div className="flex items-center">
-              <div className="flex-shrink-0 p-3 rounded-md" style={{ background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)' }}>
+              <div className="flex-shrink-0 p-3 rounded-md" style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}>
                 <MessageSquare className="h-6 w-6 text-white" />
               </div>
               <div className="ml-5 w-0 flex-1">
@@ -206,7 +206,7 @@ export default async function AnalyticsPage() {
                       className="h-2 rounded-full"
                       style={{
                         width: `${totalReviews > 0 ? (portal.count / totalReviews) * 100 : 0}%`,
-                        background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)',
+                        background: 'linear-gradient(to right, #4ab144, #0d833f)',
                       }}
                     />
                   </div>
@@ -235,7 +235,7 @@ export default async function AnalyticsPage() {
                         className="h-6 rounded-full flex items-center justify-end pr-2"
                         style={{
                           width: `${item.percentage}%`,
-                          background: 'linear-gradient(to right, #EB5B1E, #E89D1B, #F7B621)',
+                          background: 'linear-gradient(to right, #4ab144, #0d833f)',
                         }}
                       >
                         <span className="text-xs font-medium text-white">{item.count}</span>
