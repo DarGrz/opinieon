@@ -44,10 +44,12 @@ export default function Home() {
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Zarządzaj opiniami w 3 portalach z jednego miejsca
+              Zbieraj opinie kiedy chcesz, jak chcesz.
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              opinieOn to kompleksowe narzędzie do zarządzania opiniami w portalach Dobre Firmy, Arena Biznesu i Panteon Firm. Wszystko w jednym miejscu, z pełną analityką.
+              OpinieOn to narzędzie do zarządzania opiniami klientów, które pomaga firmom budować zaufanie i zwiększać widoczność online.
+              Pokaż swoją firmę z najlepszej strony dzięki opiniom od zadowolonych klientów. 
+
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
