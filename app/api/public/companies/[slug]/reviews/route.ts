@@ -4,10 +4,10 @@ import { verifyPortalKey } from '@/lib/portal-auth'
 
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const { id } = await params
+    const { slug } = await params
     const portalKey = request.headers.get('x-portal-key')
     const { searchParams } = new URL(request.url)
     const portalSlug = searchParams.get('portal')
@@ -22,11 +22,25 @@ export async function GET(
 
     const supabase = await createClient()
 
+    // Pobierz firmę po slug
+    const { data: company } = await supabase
+      .from('companies')
+      .select('id')
+      .eq('slug', slug)
+      .single()
+
+    if (!company) {
+      return NextResponse.json({ error: 'Company not found' }, { status: 404 })
+    }
+
+    const companyData = company as any
+    const companyId = companyData.id
+
     // Sprawdź czy firma ma włączone opinie na tym portalu
     const { data: profile } = await supabase
       .from('company_portal_profiles')
       .select('reviews_enabled')
-      .eq('company_id', id)
+      .eq('company_id', companyId)
       .eq('portal_id', portalId)
       .maybeSingle()
 
@@ -39,7 +53,7 @@ export async function GET(
     const { data: reviews, error, count } = await supabase
       .from('reviews')
       .select('*', { count: 'exact' })
-      .eq('company_id', id)
+      .eq('company_id', companyId)
       .eq('portal_id', portalId)
       .eq('status', 'approved')
       .order('created_at', { ascending: false })
