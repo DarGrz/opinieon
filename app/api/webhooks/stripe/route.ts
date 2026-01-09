@@ -135,12 +135,14 @@ export async function POST(req: Request) {
       case 'customer.subscription.updated': {
         const subscription = event.data.object as Stripe.Subscription
         
+        console.log('[WEBHOOK] Updating subscription:', subscription.id)
+        
         const currentPeriodStart = subscription.items.data[0]?.current_period_start 
           || subscription.current_period_start
         const currentPeriodEnd = subscription.items.data[0]?.current_period_end 
           || subscription.current_period_end
 
-        await supabase
+        const { error: updateError } = await supabase
           .from('subscriptions')
           .update({
             status: subscription.status as any,
@@ -156,6 +158,13 @@ export async function POST(req: Request) {
               : null,
           } as any)
           .eq('stripe_subscription_id', subscription.id)
+        
+        if (updateError) {
+          console.error('[WEBHOOK] Error updating subscription:', updateError)
+          throw updateError
+        }
+        
+        console.log('[WEBHOOK] Subscription updated successfully')
         break
       }
 
