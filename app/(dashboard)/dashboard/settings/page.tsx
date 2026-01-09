@@ -22,12 +22,12 @@ export default async function SettingsPage() {
 
   const profileData = profile as any
 
-  // Fetch active subscription
+  // Fetch active subscription (including trial)
   const { data: subscription } = await supabase
     .from('subscriptions')
     .select('*')
     .eq('user_id', user.id)
-    .eq('status', 'active')
+    .in('status', ['active', 'trialing'])
     .single()
 
   const subscriptionData = subscription as any
@@ -74,7 +74,7 @@ export default async function SettingsPage() {
     }
   }
 
-  const isActive = subscriptionData?.status === 'active'
+  const isActive = subscriptionData?.status === 'active' || subscriptionData?.status === 'trialing'
 
   return (
     <div className="max-w-4xl mx-auto py-8">
