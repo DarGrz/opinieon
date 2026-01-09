@@ -22,7 +22,9 @@ export async function POST(request: Request) {
       .eq('id', user.id)
       .single()
 
-    if (!profile?.stripe_customer_id) {
+    const profileData = profile as any
+
+    if (!profileData?.stripe_customer_id) {
       return NextResponse.json(
         { error: 'No customer found' },
         { status: 404 }
@@ -31,7 +33,7 @@ export async function POST(request: Request) {
 
     // Create billing portal session
     const session = await stripe.billingPortal.sessions.create({
-      customer: profile.stripe_customer_id,
+      customer: profileData.stripe_customer_id,
       return_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/settings`,
     })
 
