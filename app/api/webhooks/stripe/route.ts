@@ -8,16 +8,22 @@ import { createServiceRoleClient } from '@/lib/supabase/server'
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
 
 export async function POST(req: Request) {
+  console.log('[WEBHOOK] Received request from Stripe')
+  
   const body = await req.text()
   const headersList = await headers()
   const signature = headersList.get('stripe-signature')!
+
+  console.log('[WEBHOOK] Has signature:', !!signature)
+  console.log('[WEBHOOK] Webhook secret configured:', !!webhookSecret)
 
   let event: Stripe.Event
 
   try {
     event = stripe.webhooks.constructEvent(body, signature, webhookSecret)
+    console.log('[WEBHOOK] Event verified successfully:', event.type)
   } catch (err) {
-    console.error('Webhook signature verification failed:', err)
+    console.error('[WEBHOOK] Signature verification failed:', err)
     return NextResponse.json({ error: 'Webhook signature verification failed' }, { status: 400 })
   }
 
@@ -76,6 +82,53 @@ export async function POST(req: Request) {
 
           console.log('Subscription created successfully:', insertedSub)
         }
+        break
+      }
+
+      case 'customer.subscription.created': {
+        const subscription = event.data.object as Stripe.Subscription
+        
+        const userId = subscription.metadata?.user_id
+        const companyId = subscription.metadata?.company_id
+        const plan = subscription.metadata?.plan as 'START' | 'PRO' | 'BIZNES'
+
+        if (!userId || !companyId || !plan) {
+          console.error('[WEBHOOK] Missing metadata in subscription', { userId, companyId, plan })
+          break
+        }
+
+        console.log('[WEBHOOK] Creating subscription from customer.subscription.created:', { userId, companyId, plan, subscriptionId: subscription.id })
+
+        const currentPeriodStart = subscription.items.data[0]?.current_period_start 
+          || subscription.current_period_start
+        const currentPeriodEnd = subscription.items.data[0]?.current_period_end 
+          || subscription.current_period_end
+
+        const { error: insertError } = await supabase.from('subscriptions').insert({
+          user_id: userId,
+          company_id: companyId,
+          plan: plan,
+          status: subscription.status as any,
+          stripe_customer_id: subscription.customer as string,
+          stripe_subscription_id: subscription.id,
+          stripe_price_id: subscription.items.data[0].price.id,
+          trial_end: subscription.trial_end 
+            ? new Date(subscription.trial_end * 1000).toISOString() 
+            : null,
+          current_period_start: currentPeriodStart 
+            ? new Date(currentPeriodStart * 1000).toISOString() 
+            : null,
+          current_period_end: currentPeriodEnd 
+            ? new Date(currentPeriodEnd * 1000).toISOString() 
+            : null,
+        } as any)
+
+        if (insertError) {
+          console.error('[WEBHOOK] Error inserting subscription:', insertError)
+          throw insertError
+        }
+
+        console.log('[WEBHOOK] Subscription created successfully from customer.subscription.created')
         break
       }
 
