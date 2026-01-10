@@ -36,22 +36,51 @@ export default async function PortalsPage() {
   // Pobierz statystyki opinii dla firm użytkownika
   const { data: reviews } = await supabase
     .from('reviews')
-    .select('portal, rating')
+    .select('portal_id, rating, portals(name, slug)')
     .in('company_id', companiesData.map(c => c.id))
 
+  console.log('Reviews with portals:', reviews)
+
+  // Pobierz wszystkie portale z bazy (bez Google Reviews i duplikatów)
+  const { data: portalsFromDb } = await supabase
+    .from('portals')
+    .select('*')
+    .eq('is_active', true)
+    .neq('slug', 'google-reviews')
+    .neq('name', 'Google Reviews')
+
+  const portalsDbData = (portalsFromDb || []) as any[]
+  
+  // Usuń duplikaty po nazwie i odfiltruj Google (na wszelki wypadek)
+  const uniquePortals = portalsDbData
+    .filter((portal: any) => !portal.name?.toLowerCase().includes('google'))
+    .reduce((acc: any[], portal: any) => {
+      if (!acc.find(p => p.name === portal.name)) {
+        acc.push(portal)
+      }
+      return acc
+    }, [])
+
+  console.log('Unique portals:', uniquePortals.map(p => ({ name: p.name, slug: p.slug, id: p.id })))
+  console.log('Total reviews:', reviews?.length)
+
   // Oblicz statystyki dla każdego portalu
-  const portalStats = PORTALS.map((portal) => {
-    const portalReviews = (reviews as any)?.filter((r: any) => r.portal === portal) || []
+  const portalStats = uniquePortals.map((portal) => {
+    const portalReviews = (reviews as any)?.filter((r: any) => r.portal_id === portal.id) || []
+    console.log(`Portal ${portal.name} (${portal.id}): ${portalReviews.length} reviews`)
     const avgRating = portalReviews.length > 0
       ? (portalReviews.reduce((sum: number, r: any) => sum + r.rating, 0) / portalReviews.length).toFixed(1)
       : '0.0'
     
     return {
-      name: portal,
+      id: portal.id,
+      name: portal.name,
+      slug: portal.slug,
       reviewCount: portalReviews.length,
       avgRating,
       status: portalReviews.length > 0 ? 'active' : 'inactive',
       lastSync: portalReviews.length > 0 ? new Date().toLocaleDateString('pl-PL') : null,
+      url: portal.url || `https://${portal.slug}.pl`,
     }
   })
 
@@ -138,7 +167,7 @@ export default async function PortalsPage() {
 
               <div className="mt-6 space-y-2">
                 <a
-                  href={PORTAL_URLS[portal.name]}
+                  href={portal.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center w-full px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"

@@ -1,9 +1,18 @@
 import { NextResponse } from 'next/server'
 import { createServiceRoleClient } from '@/lib/supabase/server'
 import { verifyPortalKey } from '@/lib/portal-auth'
+import { withRateLimit, addRateLimitHeaders, checkRateLimit, getClientIp, rateLimitExceededResponse } from '@/lib/rate-limit'
 
 export async function POST(request: Request) {
   try {
+    // Rate limiting - restrykcyjny dla dodawania opinii (5/min)
+    const clientIp = getClientIp(request)
+    const rateLimitResult = await checkRateLimit('addReview', clientIp)
+    
+    if (rateLimitResult && !rateLimitResult.success) {
+      return rateLimitExceededResponse(rateLimitResult)
+    }
+
     const portalKey = request.headers.get('x-portal-key')
     const portalSlug = request.headers.get('x-portal-slug')
 

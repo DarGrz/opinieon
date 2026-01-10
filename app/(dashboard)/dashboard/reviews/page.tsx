@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Star, MessageSquare, Plus } from 'lucide-react'
+import { ReviewsList } from './components/ReviewsList'
 
 export default async function ReviewsPage() {
   const supabase = await createClient()
@@ -149,76 +150,7 @@ export default async function ReviewsPage() {
       </div>
 
       {/* Lista opinii */}
-      <div className="bg-white shadow overflow-hidden sm:rounded-md">
-        {reviewsData.length === 0 ? (
-          <div className="text-center py-12">
-            <MessageSquare className="mx-auto h-12 w-12 text-gray-400" />
-            <h3 className="mt-2 text-sm font-semibold text-gray-900">Brak opinii</h3>
-            <p className="mt-1 text-sm text-gray-500">
-              Dodaj pierwszą opinię aby zacząć
-            </p>
-            <div className="mt-6">
-              <Link
-                href="/dashboard/reviews/new"
-                className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white hover:opacity-90 transition-opacity"
-                style={{ background: 'linear-gradient(to right, #4ab144, #0d833f)' }}
-              >
-                <Plus className="mr-2 h-5 w-5" />
-                Dodaj opinię
-              </Link>
-            </div>
-          </div>
-        ) : (
-          <ul className="divide-y divide-gray-200">
-            {reviewsData.map((review) => (
-              <li key={review.id}>
-                <Link
-                  href={`/dashboard/reviews/${review.id}`}
-                  className="block hover:bg-gray-50 p-6"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <p className="text-sm font-medium text-green-600 truncate">
-                          {review.company?.name}
-                        </p>
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-green-800">
-                          {review.portal?.name}
-                        </span>
-                      </div>
-                      <div className="mt-2 flex items-center">
-                        <div className="flex items-center">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className={`h-5 w-5 ${
-                                i < review.rating
-                                  ? 'text-yellow-400 fill-current'
-                                  : 'text-gray-300'
-                              }`}
-                            />
-                          ))}
-                        </div>
-                        <span className="ml-2 text-sm text-gray-500">
-                          {review.author_name}
-                        </span>
-                      </div>
-                      {review.content && (
-                        <p className="mt-2 text-sm text-gray-600 line-clamp-2">
-                          {review.content}
-                        </p>
-                      )}
-                    </div>
-                    <div className="ml-5 flex-shrink-0 text-sm text-gray-500">
-                      {new Date(review.review_date).toLocaleDateString('pl-PL')}
-                    </div>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      <ReviewsList reviews={reviewsData} />
     </div>
   )
 }

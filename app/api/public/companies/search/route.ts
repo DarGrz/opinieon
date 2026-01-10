@@ -1,9 +1,18 @@
 import { NextResponse } from 'next/server'
 import { createServiceRoleClient } from '@/lib/supabase/server'
 import { verifyPortalKey } from '@/lib/portal-auth'
+import { checkRateLimit, getClientIp, rateLimitExceededResponse } from '@/lib/rate-limit'
 
 export async function GET(request: Request) {
   try {
+    // Rate limiting - 30/min dla wyszukiwania
+    const clientIp = getClientIp(request)
+    const rateLimitResult = await checkRateLimit('search', clientIp)
+    
+    if (rateLimitResult && !rateLimitResult.success) {
+      return rateLimitExceededResponse(rateLimitResult)
+    }
+
     console.log('[SEARCH-API] Request received')
     const portalKey = request.headers.get('x-portal-key')
     const { searchParams } = new URL(request.url)

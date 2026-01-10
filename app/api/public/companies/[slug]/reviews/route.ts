@@ -1,12 +1,21 @@
 import { NextResponse } from 'next/server'
 import { createServiceRoleClient } from '@/lib/supabase/server'
 import { verifyPortalKey } from '@/lib/portal-auth'
+import { checkRateLimit, getClientIp, rateLimitExceededResponse } from '@/lib/rate-limit'
 
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    // Rate limiting - 60/min dla publicznego API
+    const clientIp = getClientIp(request)
+    const rateLimitResult = await checkRateLimit('publicApi', clientIp)
+    
+    if (rateLimitResult && !rateLimitResult.success) {
+      return rateLimitExceededResponse(rateLimitResult)
+    }
+
     const { slug } = await params
     const portalKey = request.headers.get('x-portal-key')
     const { searchParams } = new URL(request.url)
@@ -47,7 +56,7 @@ export async function GET(
     const profileData = profile as any
     const reviewsEnabled = profileData?.reviews_enabled !== false
 
-    // Pobierz opinie dla tego portalu
+    // Pobierz opinie dla tego portalu (tylko zatwierdzone, bez archived)
     const offset = (page - 1) * limit
 
     const { data: reviews, error, count } = await supabase
@@ -56,6 +65,7 @@ export async function GET(
       .eq('company_id', companyId)
       .eq('portal_id', portalId)
       .eq('status', 'approved')
+      .neq('status', 'archived')
       .order('created_at', { ascending: false })
       .range(offset, offset + limit - 1)
 

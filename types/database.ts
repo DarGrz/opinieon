@@ -7,14 +7,16 @@ export type Json =
   | Json[]
 
 export type SubscriptionPlan = 'START' | 'PRO' | 'BIZNES'
-export type SubscriptionStatus = 
-  | 'active' 
-  | 'trialing' 
-  | 'past_due' 
-  | 'canceled' 
-  | 'incomplete' 
-  | 'incomplete_expired' 
+export type SubscriptionStatus =
+  | 'active'
+  | 'trialing'
+  | 'past_due'
+  | 'canceled'
+  | 'incomplete'
+  | 'incomplete_expired'
   | 'unpaid'
+
+export type ReviewStatus = 'pending' | 'approved' | 'rejected' | 'archived'
 
 export type Tables<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Row']
 export type Inserts<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Insert']
@@ -48,6 +50,7 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: []
       }
       portals: {
         Row: {
@@ -80,12 +83,14 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: []
       }
       companies: {
         Row: {
           id: string
           user_id: string
           name: string
+          slug: string | null
           nip: string | null
           address: string | null
           city: string | null
@@ -105,6 +110,7 @@ export interface Database {
           id?: string
           user_id: string
           name: string
+          slug?: string | null
           nip?: string | null
           address?: string | null
           city?: string | null
@@ -124,6 +130,7 @@ export interface Database {
           id?: string
           user_id?: string
           name?: string
+          slug?: string | null
           nip?: string | null
           address?: string | null
           city?: string | null
@@ -139,6 +146,15 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: 'companies_user_id_fkey'
+            columns: ['user_id']
+            isOneToOne: false
+            referencedRelation: 'users'
+            referencedColumns: ['id']
+          }
+        ]
       }
       subscriptions: {
         Row: {
@@ -192,6 +208,22 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: 'subscriptions_user_id_fkey'
+            columns: ['user_id']
+            isOneToOne: false
+            referencedRelation: 'users'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'subscriptions_company_id_fkey'
+            columns: ['company_id']
+            isOneToOne: false
+            referencedRelation: 'companies'
+            referencedColumns: ['id']
+          }
+        ]
       }
       company_portal_profiles: {
         Row: {
@@ -224,6 +256,22 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: 'company_portal_profiles_company_id_fkey'
+            columns: ['company_id']
+            isOneToOne: false
+            referencedRelation: 'companies'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'company_portal_profiles_portal_id_fkey'
+            columns: ['portal_id']
+            isOneToOne: false
+            referencedRelation: 'portals'
+            referencedColumns: ['id']
+          }
+        ]
       }
       reviews: {
         Row: {
@@ -235,8 +283,12 @@ export interface Database {
           rating: number
           title: string | null
           content: string | null
+          pros: string | null
+          cons: string | null
+          status: ReviewStatus
           review_date: string
           is_verified: boolean
+          helpful_count: number
           response_count: number
           created_at: string
           updated_at: string
@@ -250,8 +302,12 @@ export interface Database {
           rating: number
           title?: string | null
           content?: string | null
+          pros?: string | null
+          cons?: string | null
+          status?: ReviewStatus
           review_date?: string
           is_verified?: boolean
+          helpful_count?: number
           response_count?: number
           created_at?: string
           updated_at?: string
@@ -265,12 +321,32 @@ export interface Database {
           rating?: number
           title?: string | null
           content?: string | null
+          pros?: string | null
+          cons?: string | null
+          status?: ReviewStatus
           review_date?: string
           is_verified?: boolean
+          helpful_count?: number
           response_count?: number
           created_at?: string
           updated_at?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: 'reviews_company_id_fkey'
+            columns: ['company_id']
+            isOneToOne: false
+            referencedRelation: 'companies'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'reviews_portal_id_fkey'
+            columns: ['portal_id']
+            isOneToOne: false
+            referencedRelation: 'portals'
+            referencedColumns: ['id']
+          }
+        ]
       }
       review_replies: {
         Row: {
@@ -300,6 +376,29 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: 'review_replies_review_id_fkey'
+            columns: ['review_id']
+            isOneToOne: false
+            referencedRelation: 'reviews'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'review_replies_company_id_fkey'
+            columns: ['company_id']
+            isOneToOne: false
+            referencedRelation: 'companies'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'review_replies_user_id_fkey'
+            columns: ['user_id']
+            isOneToOne: false
+            referencedRelation: 'users'
+            referencedColumns: ['id']
+          }
+        ]
       }
       plan_portal_access: {
         Row: {
@@ -320,10 +419,78 @@ export interface Database {
           portal_id?: string
           created_at?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: 'plan_portal_access_portal_id_fkey'
+            columns: ['portal_id']
+            isOneToOne: false
+            referencedRelation: 'portals'
+            referencedColumns: ['id']
+          }
+        ]
+      }
+      portal_keys: {
+        Row: {
+          id: string
+          portal_id: string
+          key_hash: string
+          name: string
+          rate_limit: number
+          active: boolean
+          last_used_at: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          portal_id: string
+          key_hash: string
+          name: string
+          rate_limit?: number
+          active?: boolean
+          last_used_at?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          portal_id?: string
+          key_hash?: string
+          name?: string
+          rate_limit?: number
+          active?: boolean
+          last_used_at?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'portal_keys_portal_id_fkey'
+            columns: ['portal_id']
+            isOneToOne: false
+            referencedRelation: 'portals'
+            referencedColumns: ['id']
+          }
+        ]
       }
     }
     Views: {
-      [_ in never]: never
+      company_portal_stats: {
+        Row: {
+          company_id: string
+          portal_id: string
+          portal_slug: string
+          portal_name: string
+          review_count: number
+          avg_rating: number | null
+          five_star_count: number
+          four_star_count: number
+          three_star_count: number
+          two_star_count: number
+          one_star_count: number
+          reviews_enabled: boolean
+          discussions_enabled: boolean
+          is_active: boolean
+        }
+        Relationships: []
+      }
     }
     Functions: {
       has_portal_access: {
@@ -337,6 +504,7 @@ export interface Database {
     Enums: {
       subscription_plan: 'START' | 'PRO' | 'BIZNES'
       subscription_status: 'active' | 'trialing' | 'past_due' | 'canceled' | 'incomplete' | 'incomplete_expired' | 'unpaid'
+      review_status: 'pending' | 'approved' | 'rejected' | 'archived'
     }
     CompositeTypes: {
       [_ in never]: never
