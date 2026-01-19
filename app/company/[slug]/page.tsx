@@ -5,6 +5,7 @@ import { Metadata } from 'next'
 import { StarRating } from '@/components/StarRating'
 import { HomeHeader } from '@/components/HomeHeader'
 import { HomeFooter } from '@/components/HomeFooter'
+import { ReviewForm } from '@/components/ReviewForm'
 import { MapPin, Globe, Phone, Mail, Calendar, CheckCircle2, Building2, Share2, Flag, Star } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -288,27 +289,19 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
                             )}
                         </div>
 
-                        {/* Add Review Placeholder Form */}
-                        <div id="add-review" className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        {/* Add Review Form */}
+                        <div id="add-review" className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 scroll-mt-24">
                             <h2 className="text-lg font-bold text-gray-900 mb-2">Podziel się swoją opinią</h2>
                             <p className="text-gray-500 text-sm mb-6">Twoja opinia pomoże innym w podjęciu dobrej decyzji.</p>
-                            <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 text-center">
+                            <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
                                 {user ? (
-                                    <div className="text-left">
-                                        {/* Form would go here */}
-                                        <p className="font-medium text-green-700 mb-2">Jesteś zalogowany.</p>
-                                        <textarea
-                                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none h-32"
-                                            placeholder="Napisz swoją opinię..."
-                                        ></textarea>
-                                        <div className="mt-4 flex justify-end">
-                                            <button className="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-500">
-                                                Opublikuj opinię
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <ReviewForm
+                                        companyId={company.id}
+                                        portalId={portalId}
+                                        companyName={company.name}
+                                    />
                                 ) : (
-                                    <>
+                                    <div className="text-center py-4">
                                         <p className="text-sm text-gray-600 mb-4">Aby dodać opinię, musisz być zalogowany.</p>
                                         <div className="flex justify-center gap-4">
                                             <Link href={`/login?next=/company/${company.slug}`} className="bg-green-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-green-500 transition-colors shadow-sm">
@@ -318,7 +311,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
                                                 Załóż konto
                                             </Link>
                                         </div>
-                                    </>
+                                    </div>
                                 )}
                             </div>
                         </div>
