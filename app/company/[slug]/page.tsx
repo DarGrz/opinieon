@@ -1,5 +1,4 @@
-
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceRoleClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { StarRating } from '@/components/StarRating'
@@ -13,30 +12,37 @@ import Image from 'next/image'
 export const revalidate = 3600 // Revalidate every hour
 
 async function getCompanyData(slug: string) {
-    const supabase = createClient()
+    const supabase = createServiceRoleClient()
 
     // 1. Get Portal ID for 'opinieon'
-    const { data: portal } = await (await supabase).from('portals')
+    const { data: portal } = await supabase.from('portals')
         .select('id')
         .eq('slug', 'opinieon')
         .single()
 
-    if (!portal) return null
+    if (!portal) {
+        console.error('Portal not found')
+        return null
+    }
 
     // 2. Get Company
-    const { data: company } = await (await supabase).from('companies')
+    const { data: company } = await supabase.from('companies')
         .select('*')
         .eq('slug', slug)
         .single()
 
-    if (!company) return null
+    if (!company) {
+        console.error('Company not found for slug:', slug)
+        return null
+    }
 
     // 3. Get Reviews
-    const { data: allReviews } = await (await supabase).from('reviews')
+    const { data: allReviews } = await supabase.from('reviews')
         .select('*')
         .eq('company_id', company.id)
         .eq('portal_id', portal.id)
         .order('created_at', { ascending: false })
+
     const reviews = (allReviews || []).filter((r: any) => !r.status || r.status === 'published')
 
     // Calculate Aggregates
