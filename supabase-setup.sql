@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS companies (
   email TEXT,
   gmb_link TEXT,
   description TEXT,
+  category TEXT,
   geolocation JSONB,
   logo_url TEXT,
   is_active BOOLEAN DEFAULT true,
@@ -116,6 +117,7 @@ CREATE TABLE IF NOT EXISTS reviews (
   content TEXT,
   review_date DATE NOT NULL DEFAULT CURRENT_DATE,
   is_verified BOOLEAN DEFAULT false,
+  status TEXT DEFAULT 'published',
   response_count INTEGER DEFAULT 0,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
@@ -308,7 +310,8 @@ CREATE TRIGGER update_review_replies_updated_at BEFORE UPDATE ON review_replies 
 INSERT INTO portals (name, domain, slug, settings) VALUES
   ('Dobre Firmy', 'dobre-firmy.pl', 'dobre-firmy', '{"allow_replies": true, "show_rankings": true, "custom_fields": {}}'::jsonb),
   ('Arena Biznesu', 'arena-biznesu.pl', 'arena-biznesu', '{"allow_replies": true, "show_rankings": true, "custom_fields": {}}'::jsonb),
-  ('Panteon Firm', 'panteonfirm.pl', 'panteonfirm', '{"allow_replies": true, "show_rankings": false, "custom_fields": {}}'::jsonb)
+  ('Panteon Firm', 'panteonfirm.pl', 'panteonfirm', '{"allow_replies": true, "show_rankings": false, "custom_fields": {}}'::jsonb),
+  ('OpinieOn', 'opinieon.pl', 'opinieon', '{"allow_replies": true, "show_rankings": true, "custom_fields": {}}'::jsonb)
 ON CONFLICT (slug) DO NOTHING;
 
 -- Konfiguracja dostępu do portali

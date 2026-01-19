@@ -1,12 +1,8 @@
--- ============================================
--- Generowanie klucza API dla portalu dobre-firmy
--- ============================================
 
--- KROK 1: Wygeneruj klucz i WYŚWIETL GO
 WITH new_key_data AS (
   SELECT 
     'pk_' || encode(gen_random_bytes(32), 'hex') as raw_key,
-    (SELECT id FROM portals WHERE slug = 'dobre-firmy') as portal_id
+    (SELECT id FROM portals WHERE slug = 'panteonfirm') as portal_id
 ),
 key_with_hash AS (
   SELECT 
@@ -37,17 +33,3 @@ SELECT
   i.id as "ID w bazie"
 FROM key_with_hash kwh
 JOIN inserted i ON i.key_hash = kwh.key_hash;
-
--- KROK 2: Sprawdź czy klucz został zapisany
-SELECT 
-  pk.id,
-  pk.name,
-  p.slug as portal,
-  pk.active,
-  pk.key_hash as hash_w_bazie,
-  pk.created_at
-FROM portal_keys pk
-JOIN portals p ON p.id = pk.portal_id
-WHERE p.slug = 'dobre-firmy'
-ORDER BY pk.created_at DESC
-LIMIT 1;
