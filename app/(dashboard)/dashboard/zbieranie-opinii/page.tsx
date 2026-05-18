@@ -72,7 +72,7 @@ export default function ZbieranieOpiniiPage() {
     const links = [
         {
             name: 'opinieOn',
-            url: `${baseUrl}/company/${company.slug}#add-review`,
+            url: `${baseUrl}/${company.slug}#add-review`,
             color: 'green',
             description: 'Link do dodania opinii na opinieOn.pl'
         },

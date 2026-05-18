@@ -43,7 +43,7 @@ async function getCompanyData(slug: string) {
         .eq('portal_id', portal.id)
         .order('created_at', { ascending: false })
 
-    const reviews = (allReviews || []).filter((r: any) => !r.status || r.status === 'published')
+    const reviews = (allReviews || []).filter((r: any) => !r.status || r.status === 'published' || r.status === 'approved')
 
     // Calculate Aggregates
     const reviewCount = reviews.length
@@ -70,11 +70,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const { company, stats } = data
 
     return {
-        title: `${company.name} - Opinie, Kontakt, Dane Firmy | OpinieOn`,
+        title: `Opinie ${company.name} | OpinieOn.pl`,
         description: `Sprawdź ${stats.reviewCount} autentycznych opinii o ${company.name}. Ocena: ${stats.avgRating}/5. Zobacz dane kontaktowe, ofertę i zdjęcia.`,
         openGraph: {
-            title: `${company.name} - Opinie i informacje`,
-            description: `Sprawdź autentyczne opinie o ${company.name} na OpinieOn.`,
+            title: `Opinie ${company.name} | OpinieOn.pl`,
+            description: `Sprawdź autentyczne opinie o ${company.name} na OpinieOn.pl.`,
             images: company.logo_url ? [company.logo_url] : [],
         }
     }
@@ -305,12 +305,13 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
                                         companyId={company.id}
                                         portalId={portalId}
                                         companyName={company.name}
+                                        companySlug={company.slug || ''}
                                     />
                                 ) : (
                                     <div className="text-center py-4">
                                         <p className="text-sm text-gray-600 mb-4">Aby dodać opinię, musisz być zalogowany.</p>
                                         <div className="flex justify-center gap-4">
-                                            <Link href={`/login?next=/company/${company.slug}`} className="bg-green-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-green-500 transition-colors shadow-sm">
+                                            <Link href={`/login?next=/${company.slug}`} className="bg-green-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-green-500 transition-colors shadow-sm">
                                                 Zaloguj się
                                             </Link>
                                             <Link href="/register" className="bg-white text-gray-900 px-6 py-2.5 rounded-lg font-semibold border border-gray-300 hover:bg-gray-50 transition-colors shadow-sm">

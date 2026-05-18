@@ -5,18 +5,21 @@ import { createClient } from '@/lib/supabase/client'
 import { StarRating } from '@/components/StarRating'
 import { Star } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { addReview } from '@/app/actions/add-review'
 
 interface ReviewFormProps {
     companyId: string
     portalId: string
     companyName: string
+    companySlug?: string
     onSuccess?: () => void
 }
 
-export function ReviewForm({ companyId, portalId, companyName, onSuccess }: ReviewFormProps) {
+export function ReviewForm({ companyId, portalId, companyName, companySlug, onSuccess }: ReviewFormProps) {
     const [rating, setRating] = useState(0)
     const [content, setContent] = useState('')
     const [title, setTitle] = useState('')
+    const [authorName, setAuthorName] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const [success, setSuccess] = useState(false)
@@ -33,6 +36,10 @@ export function ReviewForm({ companyId, portalId, companyName, onSuccess }: Revi
             setError('Opinia musi mieć co najmniej 10 znaków.')
             return
         }
+        if (!authorName.trim()) {
+            setError('Proszę podać imię lub podpis.')
+            return
+        }
 
         setIsSubmitting(true)
         setError(null)
@@ -45,28 +52,24 @@ export function ReviewForm({ companyId, portalId, companyName, onSuccess }: Revi
                 return
             }
 
-            const { error: submitError } = await supabase
-                .from('reviews')
-                .insert({
-                    company_id: companyId,
-                    portal_id: portalId,
-                    user_id: user.id,
-                    author_name: user.user_metadata?.full_name || user.email?.split('@')[0] || 'Anonim',
-                    author_email: user.email,
-                    rating,
-                    content,
-                    title: title || undefined,
-                    status: 'published' as any // Use explicit cast for enum
-                })
-
-            if (submitError) throw submitError
+            await addReview({
+                companyId,
+                portalId,
+                rating,
+                content,
+                title: title || undefined,
+                authorName,
+                authorEmail: user.email,
+                slug: companySlug || ''
+            })
 
             setSuccess(true)
             setContent('')
             setRating(0)
             setTitle('')
+            setAuthorName('')
             if (onSuccess) onSuccess()
-            router.refresh()
+            // We don't need router.refresh() if the server action revalidates the path
         } catch (err: any) {
             console.error('Error submitting review:', err)
             setError(err.message || 'Wystąpił błąd podczas dodawania opinii.')
@@ -112,6 +115,20 @@ export function ReviewForm({ companyId, portalId, companyName, onSuccess }: Revi
                         </button>
                     ))}
                 </div>
+            </div>
+
+            <div className="space-y-2">
+                <label htmlFor="authorName" className="block text-sm font-semibold text-gray-900">
+                    Twój podpis (imię lub nick)
+                </label>
+                <input
+                    id="authorName"
+                    type="text"
+                    value={authorName}
+                    onChange={(e) => setAuthorName(e.target.value)}
+                    placeholder="np. Jan Kowalski"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none text-sm"
+                />
             </div>
 
             <div className="space-y-2">

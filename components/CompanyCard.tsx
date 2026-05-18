@@ -43,7 +43,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
                 <div className="flex items-start justify-between gap-4">
                     <div>
                         <h3 className="text-lg font-bold text-gray-900 group-hover:text-green-600 transition-colors truncate pr-4">
-                            <Link href={`/company/${company.slug}`}>
+                            <Link href={`/${company.slug}`}>
                                 {company.name}
                             </Link>
                         </h3>
@@ -60,7 +60,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
                     </div>
                     <div className="hidden sm:block">
                         <Link
-                            href={`/company/${company.slug}`}
+                            href={`/${company.slug}`}
                             className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                         >
                             Zobacz profil
@@ -83,7 +83,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
             </div>
             <div className="sm:hidden mt-4">
                 <Link
-                    href={`/company/${company.slug}`}
+                    href={`/${company.slug}`}
                     className="block w-full text-center rounded-lg bg-gray-50 px-4 py-2.5 text-sm font-semibold text-gray-900 hover:bg-gray-100"
                 >
                     Zobacz profil

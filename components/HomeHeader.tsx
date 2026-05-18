@@ -14,10 +14,10 @@ export function HomeHeader() {
                 <div className="flex flex-1 items-center">
                     <Link href="/" className="-m-1.5 p-1.5 flex items-center">
                         <Image
-                            src="/opinieon-logo-sq-new-green.png"
+                            src="/opinieon-logo-wide-black.png"
                             alt="opinieOn Logo"
-                            width={120}
-                            height={32}
+                            width={150}
+                            height={40}
                             priority
                             className="h-8 w-auto"
                         />
@@ -28,7 +28,7 @@ export function HomeHeader() {
                     <Link href="/search" className="text-sm font-semibold leading-6 text-gray-900 hover:text-green-600">
                         Przeglądaj firmy
                     </Link>
-                    <Link href="#business" className="text-sm font-semibold leading-6 text-gray-900 hover:text-green-600">
+                    <Link href="/dla-firm" className="text-sm font-semibold leading-6 text-gray-900 hover:text-green-600">
                         Oferta dla firm
                     </Link>
                     <div className="h-6 w-px bg-gray-200"></div>
@@ -70,10 +70,10 @@ export function HomeHeader() {
                         <div className="flex items-center mb-8 mt-2">
                             <Link href="/" className="flex items-center" onClick={() => setMenuOpen(false)}>
                                 <Image
-                                    src="/opinieon-logo-sq-new-green.png"
+                                    src="/opinieon-logo-wide-black.png"
                                     alt="opinieOn Logo"
-                                    width={100}
-                                    height={28}
+                                    width={130}
+                                    height={36}
                                     className="h-7 w-auto"
                                 />
                             </Link>
@@ -88,7 +88,7 @@ export function HomeHeader() {
                                 Przeglądaj firmy
                             </Link>
                             <Link
-                                href="#business"
+                                href="/dla-firm"
                                 className="text-base font-semibold text-gray-900 hover:text-green-600 py-2 border-b border-gray-100"
                                 onClick={() => setMenuOpen(false)}
                             >

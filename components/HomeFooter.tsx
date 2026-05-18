@@ -29,7 +29,7 @@ export function HomeFooter() {
                         <ul className="space-y-2 text-gray-400 text-sm">
                             <li><Link href="/register" className="hover:text-green-400">Dodaj firmę</Link></li>
                             <li><Link href="/login" className="hover:text-green-400">Logowanie</Link></li>
-                            <li><Link href="#pricing" className="hover:text-green-400">Cennik</Link></li>
+                            <li><Link href="/dla-firm#pricing" className="hover:text-green-400">Cennik</Link></li>
                         </ul>
                     </div>
                     <div>
