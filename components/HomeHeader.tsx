@@ -28,6 +28,9 @@ export function HomeHeader() {
                     <Link href="/search" className="text-sm font-semibold leading-6 text-gray-900 hover:text-green-600">
                         Przeglądaj firmy
                     </Link>
+                    <Link href="/ochrona-wizerunku-w-sieci" className="text-sm font-semibold leading-6 text-gray-900 hover:text-green-600">
+                        Ochrona wizerunku
+                    </Link>
                     <Link href="/dla-firm" className="text-sm font-semibold leading-6 text-gray-900 hover:text-green-600">
                         Oferta dla firm
                     </Link>
@@ -86,6 +89,13 @@ export function HomeHeader() {
                                 onClick={() => setMenuOpen(false)}
                             >
                                 Przeglądaj firmy
+                            </Link>
+                            <Link
+                                href="/ochrona-wizerunku-w-sieci"
+                                className="text-base font-semibold text-gray-900 hover:text-green-600 py-2 border-b border-gray-100"
+                                onClick={() => setMenuOpen(false)}
+                            >
+                                Ochrona wizerunku
                             </Link>
                             <Link
                                 href="/dla-firm"

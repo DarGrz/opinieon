@@ -5,7 +5,7 @@ export function HomeFooter() {
     return (
         <footer className="bg-gray-900 border-t border-gray-800">
             <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
                     <div>
                         <Image
                             src="/opinieon-logo-sq-new-green.png"
@@ -22,6 +22,13 @@ export function HomeFooter() {
                             <li><Link href="/search" className="hover:text-green-400">Przeglądaj firmy</Link></li>
                             <li><Link href="/rankings" className="hover:text-green-400">Rankingi</Link></li>
                             <li><Link href="/categories" className="hover:text-green-400">Kategorie</Link></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="text-white font-semibold mb-4">Poradniki</h3>
+                        <ul className="space-y-2 text-gray-400 text-sm">
+                            <li><Link href="/ochrona-wizerunku-w-sieci" className="hover:text-green-400">Ochrona wizerunku</Link></li>
+                            <li><Link href="/zla-opinia-w-internecie" className="hover:text-green-400">Zła opinia w sieci</Link></li>
                         </ul>
                     </div>
                     <div>
