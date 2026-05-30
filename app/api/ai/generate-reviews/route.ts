@@ -54,6 +54,26 @@ export async function POST(request: Request) {
       .eq('id', company_id)
       .single()
 
+    // Get existing author names to avoid duplicates
+    const { data: existingReviews } = await supabaseAdmin
+      .from('reviews')
+      .select('author_name')
+      .eq('company_id', company_id)
+
+    const { data: queuedReviews } = await supabaseAdmin
+      .from('review_queue')
+      .select('author_name')
+      .eq('company_id', company_id)
+      .eq('status', 'pending')
+
+    const existingNames = [
+      ...(existingReviews?.map(r => r.author_name) || []),
+      ...(queuedReviews?.map(r => r.author_name) || [])
+    ]
+
+    const uniqueExistingNames = [...new Set(existingNames)]
+    const uniqueExistingNamesLower = uniqueExistingNames.map(n => n.toLowerCase().trim())
+
     // Initialize Claude client
     const anthropic = new Anthropic({
       apiKey: apiKey,
@@ -72,8 +92,10 @@ WAŻNE:
 - Używaj polskiego języka
 - Długość opinii: 50-200 słów
 ${ratingInstructions}
-- Imiona autorów: polskie imiona i nazwiska
+- Imiona autorów: polskie imiona i nazwiska - KAŻDE IMIĘ MUSI BYĆ UNIKALNE (różne osoby)
 - Styl: naturalny, jak prawdziwy klient
+
+${uniqueExistingNames.length > 0 ? `UWAGA - NIE UŻYWAJ tych imion (już istnieją w bazie):\n${uniqueExistingNames.join(', ')}\n` : ''}
 
 Zwróć TYLKO i wyłącznie poprawny JSON w formacie:
 {
@@ -118,14 +140,29 @@ Nie dodawaj żadnych innych komentarzy ani tekstu poza JSON.`
       throw new Error('Invalid response format')
     }
 
-    // Validate reviews
-    const validReviews = result.reviews.filter((r: any) => 
-      r.author_name && 
-      r.rating >= 1 && 
-      r.rating <= 5 && 
-      r.content && 
-      r.content.length >= 20
-    )
+    // Validate reviews and filter duplicates
+    const seenNames = new Set(uniqueExistingNamesLower)
+    const validReviews = result.reviews.filter((r: any) => {
+      // Basic validation
+      if (!r.author_name || !r.rating || !r.content || r.content.length < 20) {
+        return false
+      }
+      
+      if (r.rating < 1 || r.rating > 5) {
+        return false
+      }
+      
+      // Check for duplicate name (case-insensitive)
+      const nameLower = r.author_name.toLowerCase().trim()
+      if (seenNames.has(nameLower)) {
+        console.log(`Filtered duplicate name: ${r.author_name}`)
+        return false
+      }
+      
+      // Add to seen names
+      seenNames.add(nameLower)
+      return true
+    })
 
     return NextResponse.json({ 
       reviews: validReviews,
