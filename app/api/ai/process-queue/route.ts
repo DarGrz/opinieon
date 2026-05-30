@@ -59,9 +59,8 @@ export async function GET(request: Request) {
             content: queueItem.content,
             review_date: queueItem.review_date,
             created_at: new Date().toISOString(),
-            status: 'published',
-            is_verified: false,
-            source: 'ai_generated'
+            status: 'approved' as const,
+            is_verified: false
           })
 
         if (insertError) {
@@ -71,7 +70,7 @@ export async function GET(request: Request) {
           await supabase
             .from('review_queue')
             .update({
-              status: 'failed',
+              status: 'failed' as const,
               error_message: insertError.message
             })
             .eq('id', queueItem.id)
@@ -85,7 +84,7 @@ export async function GET(request: Request) {
         const { error: updateError } = await supabase
           .from('review_queue')
           .update({
-            status: 'published',
+            status: 'published' as const,
             published_at: new Date().toISOString()
           })
           .eq('id', queueItem.id)

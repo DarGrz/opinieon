@@ -53,7 +53,7 @@ export async function POST(request: Request) {
         content: review.content,
         review_date: reviewDate.toISOString(),
         generation_prompt: review.generation_prompt,
-        status: 'pending'
+        status: 'pending' as const
       }
     })
 
