@@ -26,6 +26,16 @@ interface PresetTemplate {
   count: number
 }
 
+interface QueueItem {
+  id: string
+  author_name: string
+  rating: number
+  content: string
+  review_date: string
+  status: string
+  portal_id: string
+}
+
 export default function AIGeneratorPage() {
   const [portals, setPortals] = useState<Portal[]>([])
   const [selectedPortal, setSelectedPortal] = useState<string>('')
@@ -43,6 +53,7 @@ export default function AIGeneratorPage() {
   const [presetName, setPresetName] = useState('')
   
   const [generatedReviews, setGeneratedReviews] = useState<GeneratedReview[]>([])
+  const [queueItems, setQueueItems] = useState<QueueItem[]>([])
   const [queueCount, setQueueCount] = useState(0)
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
 
@@ -50,6 +61,7 @@ export default function AIGeneratorPage() {
     loadData()
     loadPresets()
     loadLastUsed()
+    loadQueueItems()
   }, [])
 
   function loadPresets() {
@@ -112,6 +124,36 @@ export default function AIGeneratorPage() {
     setPresets(updated)
     localStorage.setItem('ai-generator-presets', JSON.stringify(updated))
     setMessage({ type: 'success', text: 'Szablon usunięty' })
+  }
+
+  async function loadQueueItems() {
+    try {
+      const response = await fetch('/api/ai/queue')
+      if (response.ok) {
+        const data = await response.json()
+        setQueueItems(data.queue || [])
+        setQueueCount(data.count || 0)
+      }
+    } catch (error) {
+      console.error('Error loading queue:', error)
+    }
+  }
+
+  async function deleteQueueItem(id: string) {
+    try {
+      const response = await fetch(`/api/ai/queue/${id}`, {
+        method: 'DELETE'
+      })
+
+      if (response.ok) {
+        setMessage({ type: 'success', text: 'Opinia usunięta z kolejki' })
+        loadQueueItems() // Reload queue
+      } else {
+        throw new Error('Nie udało się usunąć opinii')
+      }
+    } catch (error: any) {
+      setMessage({ type: 'error', text: error.message })
+    }
   }
 
   async function loadData() {
@@ -240,6 +282,7 @@ export default function AIGeneratorPage() {
       setMessage({ type: 'success', text: `Dodano ${selectedReviews.length} opinii do kolejki` })
       setGeneratedReviews([])
       setQueueCount(prev => prev + selectedReviews.length)
+      loadQueueItems() // Reload queue to show new items
     } catch (error: any) {
       console.error('Error adding to queue:', error)
       setMessage({ type: 'error', text: error.message })
@@ -479,6 +522,72 @@ export default function AIGeneratorPage() {
             )}
           </div>
         </div>
+      </div>
+
+      {/* Queue list */}
+      <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <Clock className="w-5 h-5 text-blue-600" />
+          Kolejka oczekujących ({queueCount})
+        </h2>
+
+        {queueItems.length === 0 ? (
+          <div className="text-center py-8 text-gray-500">
+            <Clock className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+            <p>Brak opinii w kolejce</p>
+          </div>
+        ) : (
+          <div className="space-y-3 max-h-[400px] overflow-y-auto">
+            {queueItems.map(item => {
+              const reviewDate = new Date(item.review_date)
+              const isPublishable = reviewDate <= new Date()
+              const portal = portals.find(p => p.id === item.portal_id)
+              
+              return (
+                <div
+                  key={item.id}
+                  className="border border-gray-200 rounded-lg p-4 bg-white hover:shadow-sm transition-shadow"
+                >
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-semibold text-gray-900">{item.author_name}</span>
+                        <span className="text-xs text-gray-500">• {portal?.name}</span>
+                      </div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="flex items-center gap-1">
+                          {Array.from({ length: 5 }).map((_, i) => (
+                            <span
+                              key={i}
+                              className={i < item.rating ? 'text-yellow-400' : 'text-gray-300'}
+                            >
+                              ★
+                            </span>
+                          ))}
+                        </div>
+                        <span className={`text-xs px-2 py-1 rounded ${
+                          isPublishable 
+                            ? 'bg-green-100 text-green-700' 
+                            : 'bg-yellow-100 text-yellow-700'
+                        }`}>
+                          {isPublishable ? '✓ Gotowa do publikacji' : `📅 ${reviewDate.toLocaleDateString('pl-PL')}`}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-600 line-clamp-2">{item.content}</p>
+                    </div>
+                    <button
+                      onClick={() => deleteQueueItem(item.id)}
+                      className="ml-3 p-2 text-red-600 hover:bg-red-50 rounded transition-colors"
+                      title="Usuń z kolejki"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )}
       </div>
 
       {/* Queue info */}
