@@ -24,6 +24,7 @@ interface PresetTemplate {
   prompt: string
   keywords: string
   count: number
+  ratingDistribution: string
 }
 
 interface QueueItem {
@@ -47,6 +48,7 @@ export default function AIGeneratorPage() {
   const [prompt, setPrompt] = useState('')
   const [keywords, setKeywords] = useState('')
   const [count, setCount] = useState(5)
+  const [ratingDistribution, setRatingDistribution] = useState('excellent')
   
   const [presets, setPresets] = useState<PresetTemplate[]>([])
   const [showPresetDialog, setShowPresetDialog] = useState(false)
@@ -74,10 +76,11 @@ export default function AIGeneratorPage() {
   function loadLastUsed() {
     const saved = localStorage.getItem('ai-generator-last-used')
     if (saved) {
-      const { prompt: p, keywords: k, count: c } = JSON.parse(saved)
+      const { prompt: p, keywords: k, count: c, ratingDistribution: r } = JSON.parse(saved)
       if (p) setPrompt(p)
       if (k) setKeywords(k)
       if (c) setCount(c)
+      if (r) setRatingDistribution(r)
     }
   }
 
@@ -85,7 +88,8 @@ export default function AIGeneratorPage() {
     localStorage.setItem('ai-generator-last-used', JSON.stringify({
       prompt,
       keywords,
-      count
+      count,
+      ratingDistribution
     }))
   }
 
@@ -100,7 +104,8 @@ export default function AIGeneratorPage() {
       name: presetName,
       prompt,
       keywords,
-      count
+      count,
+      ratingDistribution
     }
 
     const updated = [...presets, newPreset]
@@ -116,6 +121,7 @@ export default function AIGeneratorPage() {
     setPrompt(preset.prompt)
     setKeywords(preset.keywords)
     setCount(preset.count)
+    setRatingDistribution(preset.ratingDistribution || 'excellent')
     setMessage({ type: 'success', text: `Wczytano szablon: ${preset.name}` })
   }
 
@@ -221,7 +227,8 @@ export default function AIGeneratorPage() {
           company_id: companyId,
           prompt,
           keywords,
-          count
+          count,
+          ratingDistribution
         })
       })
 
@@ -412,6 +419,22 @@ export default function AIGeneratorPage() {
                 placeholder="Np. szybko, profesjonalnie, tanio"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Rozkład ocen
+              </label>
+              <select
+                value={ratingDistribution}
+                onChange={(e) => setRatingDistribution(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              >
+                <option value="excellent">Doskonałe (tylko 5★)</option>
+                <option value="very-good">Bardzo dobre (90% 5★, 10% 4★)</option>
+                <option value="good">Dobre (60% 5★, 30% 4★, 10% 3★)</option>
+                <option value="mixed">Mieszane (różne oceny)</option>
+              </select>
             </div>
 
             <div>
@@ -628,6 +651,12 @@ export default function AIGeneratorPage() {
             <div className="mb-4 p-3 bg-gray-50 rounded text-sm text-gray-600">
               <p><strong>Wytyczne:</strong> {prompt || '(brak)'}</p>
               <p><strong>Słowa kluczowe:</strong> {keywords || '(brak)'}</p>
+              <p><strong>Rozkład ocen:</strong> {
+                ratingDistribution === 'excellent' ? 'Doskonałe (tylko 5★)' :
+                ratingDistribution === 'very-good' ? 'Bardzo dobre (90% 5★, 10% 4★)' :
+                ratingDistribution === 'good' ? 'Dobre (60% 5★, 30% 4★, 10% 3★)' :
+                'Mieszane (różne oceny)'
+              }</p>
               <p><strong>Liczba opinii:</strong> {count}</p>
             </div>
 

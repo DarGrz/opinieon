@@ -14,10 +14,29 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const { portal_id, company_id, prompt, keywords, count } = await request.json()
+    const { portal_id, company_id, prompt, keywords, count, ratingDistribution } = await request.json()
 
     if (!portal_id || !company_id || !count) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+    }
+
+    // Define rating instructions based on distribution
+    let ratingInstructions = ''
+    switch (ratingDistribution) {
+      case 'excellent':
+        ratingInstructions = '- Wszystkie opinie muszą mieć 5 gwiazdek'
+        break
+      case 'very-good':
+        ratingInstructions = '- 90% opinii: 5 gwiazdek, 10% opinii: 4 gwiazdki'
+        break
+      case 'good':
+        ratingInstructions = '- 60% opinii: 5 gwiazdek, 30% opinii: 4 gwiazdki, 10% opinii: 3 gwiazdki'
+        break
+      case 'mixed':
+        ratingInstructions = '- Różnorodne oceny: głównie 4-5 gwiazdek, czasem 3, rzadko 2'
+        break
+      default:
+        ratingInstructions = '- Oceny: głównie 4-5 gwiazdek, czasem 3'
     }
 
     // Get API key from environment
@@ -52,7 +71,7 @@ WAŻNE:
 - Każda opinia powinna być unikalna i naturalna
 - Używaj polskiego języka
 - Długość opinii: 50-200 słów
-- Oceny: głównie 4-5 gwiazdek, czasem 3
+${ratingInstructions}
 - Imiona autorów: polskie imiona i nazwiska
 - Styl: naturalny, jak prawdziwy klient
 
