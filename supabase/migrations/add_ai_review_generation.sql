@@ -1,7 +1,3 @@
--- Add Claude API key to user_profiles
-ALTER TABLE user_profiles
-ADD COLUMN IF NOT EXISTS claude_api_key TEXT;
-
 -- Create review_queue table
 CREATE TABLE IF NOT EXISTS review_queue (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),

@@ -429,6 +429,76 @@ export interface Database {
           }
         ]
       }
+      review_queue: {
+        Row: {
+          id: string
+          user_id: string
+          company_id: string
+          portal_id: string
+          author_name: string
+          rating: number
+          content: string
+          review_date: string
+          status: 'pending' | 'published' | 'failed'
+          generation_prompt: string | null
+          created_at: string
+          published_at: string | null
+          error_message: string | null
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          company_id: string
+          portal_id: string
+          author_name: string
+          rating: number
+          content: string
+          review_date: string
+          status?: 'pending' | 'published' | 'failed'
+          generation_prompt?: string | null
+          created_at?: string
+          published_at?: string | null
+          error_message?: string | null
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          company_id?: string
+          portal_id?: string
+          author_name?: string
+          rating?: number
+          content?: string
+          review_date?: string
+          status?: 'pending' | 'published' | 'failed'
+          generation_prompt?: string | null
+          created_at?: string
+          published_at?: string | null
+          error_message?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'fk_user'
+            columns: ['user_id']
+            isOneToOne: false
+            referencedRelation: 'users'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'fk_company'
+            columns: ['company_id']
+            isOneToOne: false
+            referencedRelation: 'companies'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'fk_portal'
+            columns: ['portal_id']
+            isOneToOne: false
+            referencedRelation: 'portals'
+            referencedColumns: ['id']
+          }
+        ]
+      }
       portal_keys: {
         Row: {
           id: string
