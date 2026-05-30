@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { createServiceRoleClient } from '@/lib/supabase/server'
 import Anthropic from '@anthropic-ai/sdk'
+
+export const maxDuration = 60
 
 export async function POST(request: Request) {
   try {
@@ -24,8 +27,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'API key not configured' }, { status: 500 })
     }
 
-    // Get company name for context
-    const { data: company } = await supabase
+    // Get company name for context (use service role to bypass RLS)
+    const supabaseAdmin = createServiceRoleClient()
+    const { data: company } = await supabaseAdmin
       .from('companies')
       .select('name')
       .eq('id', company_id)

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { createServiceRoleClient } from '@/lib/supabase/server'
 
 // Helper function to generate random review_date from the past
 // Each review gets a unique day to ensure max ~2 reviews per day
@@ -57,8 +58,9 @@ export async function POST(request: Request) {
       }
     })
 
-    // Insert into queue
-    const { data, error } = await supabase
+    // Insert into queue (use service role to bypass RLS)
+    const supabaseAdmin = createServiceRoleClient()
+    const { data, error } = await supabaseAdmin
       .from('review_queue')
       .insert(queueItems)
       .select()

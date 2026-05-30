@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { Sparkles, Plus, Trash2, CheckCircle2, Clock, AlertCircle } from 'lucide-react'
+import { Sparkles, Plus, Trash2, CheckCircle2, Clock, AlertCircle, Save, BookmarkPlus } from 'lucide-react'
 
 interface GeneratedReview {
   id: string
@@ -18,6 +18,14 @@ interface Portal {
   slug: string
 }
 
+interface PresetTemplate {
+  id: string
+  name: string
+  prompt: string
+  keywords: string
+  count: number
+}
+
 export default function AIGeneratorPage() {
   const [portals, setPortals] = useState<Portal[]>([])
   const [selectedPortal, setSelectedPortal] = useState<string>('')
@@ -30,13 +38,81 @@ export default function AIGeneratorPage() {
   const [keywords, setKeywords] = useState('')
   const [count, setCount] = useState(5)
   
+  const [presets, setPresets] = useState<PresetTemplate[]>([])
+  const [showPresetDialog, setShowPresetDialog] = useState(false)
+  const [presetName, setPresetName] = useState('')
+  
   const [generatedReviews, setGeneratedReviews] = useState<GeneratedReview[]>([])
   const [queueCount, setQueueCount] = useState(0)
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
 
   useEffect(() => {
     loadData()
+    loadPresets()
+    loadLastUsed()
   }, [])
+
+  function loadPresets() {
+    const saved = localStorage.getItem('ai-generator-presets')
+    if (saved) {
+      setPresets(JSON.parse(saved))
+    }
+  }
+
+  function loadLastUsed() {
+    const saved = localStorage.getItem('ai-generator-last-used')
+    if (saved) {
+      const { prompt: p, keywords: k, count: c } = JSON.parse(saved)
+      if (p) setPrompt(p)
+      if (k) setKeywords(k)
+      if (c) setCount(c)
+    }
+  }
+
+  function saveLastUsed() {
+    localStorage.setItem('ai-generator-last-used', JSON.stringify({
+      prompt,
+      keywords,
+      count
+    }))
+  }
+
+  function savePreset() {
+    if (!presetName.trim()) {
+      setMessage({ type: 'error', text: 'Podaj nazwę szablonu' })
+      return
+    }
+
+    const newPreset: PresetTemplate = {
+      id: Date.now().toString(),
+      name: presetName,
+      prompt,
+      keywords,
+      count
+    }
+
+    const updated = [...presets, newPreset]
+    setPresets(updated)
+    localStorage.setItem('ai-generator-presets', JSON.stringify(updated))
+    
+    setShowPresetDialog(false)
+    setPresetName('')
+    setMessage({ type: 'success', text: 'Szablon zapisany' })
+  }
+
+  function loadPreset(preset: PresetTemplate) {
+    setPrompt(preset.prompt)
+    setKeywords(preset.keywords)
+    setCount(preset.count)
+    setMessage({ type: 'success', text: `Wczytano szablon: ${preset.name}` })
+  }
+
+  function deletePreset(id: string) {
+    const updated = presets.filter(p => p.id !== id)
+    setPresets(updated)
+    localStorage.setItem('ai-generator-presets', JSON.stringify(updated))
+    setMessage({ type: 'success', text: 'Szablon usunięty' })
+  }
 
   async function loadData() {
     try {
@@ -69,14 +145,12 @@ export default function AIGeneratorPage() {
         }
       }
 
-      // Load queue count
-      const { count: qCount } = await supabase
-        .from('review_queue')
-        .select('*', { count: 'exact', head: true })
-        .eq('user_id', user.id)
-        .eq('status', 'pending')
-
-      setQueueCount(qCount || 0)
+      // Load queue count via API (bypasses RLS)
+      const queueResponse = await fetch('/api/ai/queue')
+      if (queueResponse.ok) {
+        const queueData = await queueResponse.json()
+        setQueueCount(queueData.count || 0)
+      }
     } catch (error) {
       console.error('Error loading data:', error)
     } finally {
@@ -92,6 +166,9 @@ export default function AIGeneratorPage() {
 
     setGenerating(true)
     setMessage(null)
+
+    // Save last used parameters
+    saveLastUsed()
 
     try {
       const response = await fetch('/api/ai/generate-reviews', {
@@ -223,6 +300,33 @@ export default function AIGeneratorPage() {
             Parametry generowania
           </h2>
 
+          {/* Saved presets */}
+          {presets.length > 0 && (
+            <div className="mb-4 p-3 bg-gray-50 rounded-lg">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Zapisane szablony
+              </label>
+              <div className="space-y-2">
+                {presets.map(preset => (
+                  <div key={preset.id} className="flex items-center gap-2">
+                    <button
+                      onClick={() => loadPreset(preset)}
+                      className="flex-1 text-left px-3 py-2 text-sm bg-white border border-gray-200 rounded hover:bg-gray-50 transition-colors"
+                    >
+                      {preset.name}
+                    </button>
+                    <button
+                      onClick={() => deletePreset(preset.id)}
+                      className="p-2 text-red-600 hover:bg-red-50 rounded transition-colors"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -297,6 +401,15 @@ export default function AIGeneratorPage() {
                   Generuj opinie
                 </>
               )}
+            </button>
+
+            <button
+              onClick={() => setShowPresetDialog(true)}
+              disabled={!prompt && !keywords}
+              className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 disabled:bg-gray-100 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2 text-sm"
+            >
+              <BookmarkPlus className="w-4 h-4" />
+              Zapisz jako szablon
             </button>
           </div>
         </div>
@@ -380,6 +493,56 @@ export default function AIGeneratorPage() {
           <li>• Dzięki temu opinie pojawiają się stopniowo i naturalnie</li>
         </ul>
       </div>
+
+      {/* Save preset dialog */}
+      {showPresetDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              Zapisz szablon
+            </h3>
+            
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Nazwa szablonu
+              </label>
+              <input
+                type="text"
+                value={presetName}
+                onChange={(e) => setPresetName(e.target.value)}
+                placeholder="Np. Pozytywne opinie o instalacjach"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                autoFocus
+              />
+            </div>
+
+            <div className="mb-4 p-3 bg-gray-50 rounded text-sm text-gray-600">
+              <p><strong>Wytyczne:</strong> {prompt || '(brak)'}</p>
+              <p><strong>Słowa kluczowe:</strong> {keywords || '(brak)'}</p>
+              <p><strong>Liczba opinii:</strong> {count}</p>
+            </div>
+
+            <div className="flex gap-2">
+              <button
+                onClick={() => {
+                  setShowPresetDialog(false)
+                  setPresetName('')
+                }}
+                className="flex-1 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                Anuluj
+              </button>
+              <button
+                onClick={savePreset}
+                disabled={!presetName.trim()}
+                className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+              >
+                Zapisz
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
