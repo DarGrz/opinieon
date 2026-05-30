@@ -13,7 +13,8 @@ import {
   Plus,
   Building,
   X,
-  QrCode
+  QrCode,
+  Sparkles
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
@@ -25,6 +26,7 @@ const navigation = [
   { name: 'Portale', href: '/dashboard/portals', icon: Building2 },
   { name: 'Opinie', href: '/dashboard/reviews', icon: MessageSquare },
   { name: 'Zbieranie opinii', href: '/dashboard/zbieranie-opinii', icon: QrCode },
+  { name: 'Generator AI', href: '/dashboard/ai-generator', icon: Sparkles },
   { name: 'Analityka', href: '/dashboard/analytics', icon: BarChart3 },
   { name: 'Ustawienia', href: '/dashboard/settings', icon: Settings },
 ]
