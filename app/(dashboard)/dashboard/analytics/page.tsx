@@ -80,14 +80,14 @@ export default async function AnalyticsPage() {
   // Opinie w ostatnim miesiącu
   const lastMonth = new Date()
   lastMonth.setMonth(lastMonth.getMonth() - 1)
-  const recentReviews = (reviews as any)?.filter((r: any) => new Date(r.created_at) > lastMonth) || []
+  const recentReviews = (reviews as any)?.filter((r: any) => new Date(r.review_date) > lastMonth) || []
   const recentCount = recentReviews.length
 
   // Trend (prosty wzrost/spadek)
   const prevMonth = new Date()
   prevMonth.setMonth(prevMonth.getMonth() - 2)
   const prevMonthReviews = (reviews as any)?.filter((r: any) => {
-    const date = new Date(r.created_at)
+    const date = new Date(r.review_date)
     return date > prevMonth && date <= lastMonth
   }) || []
   const trend = recentCount - prevMonthReviews.length

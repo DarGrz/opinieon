@@ -214,7 +214,7 @@ export default async function DashboardPage() {
                   </div>
                   <div className="ml-4 text-right">
                     <p className="text-xs text-gray-500">
-                      {new Date(review.created_at).toLocaleDateString('pl-PL')}
+                      {new Date(review.review_date).toLocaleDateString('pl-PL')}
                     </p>
                   </div>
                 </div>

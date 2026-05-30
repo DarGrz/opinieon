@@ -65,16 +65,20 @@ async function getCompanies(searchParams: { q?: string; city?: string }) {
         // Dla każdej firmy pobierz statystyki z reviews
         const companiesWithStats = await Promise.all(
             (companies || []).map(async (company: any) => {
-                const { data: reviews } = await supabase
+                const { data: allReviews } = await supabase
                     .from('reviews')
                     .select('rating')
                     .eq('company_id', company.id)
                     .eq('portal_id', portal.id)
-                    .eq('status', 'published' as any)
 
-                const reviewCount = reviews?.length || 0
+                // Filtruj opinie (sprawdzaj różne statusy lub brak statusu)
+                const reviews = (allReviews || []).filter((r: any) => 
+                    !r.status || r.status === 'published' || r.status === 'approved'
+                )
+
+                const reviewCount = reviews.length
                 const avgRating = reviewCount > 0
-                    ? reviews!.reduce((sum: number, r: any) => sum + r.rating, 0) / reviewCount
+                    ? reviews.reduce((sum: number, r: any) => sum + r.rating, 0) / reviewCount
                     : 0
 
                 return {

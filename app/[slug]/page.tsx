@@ -96,21 +96,12 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
 
     const jsonLd = {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
+        "@type": "Product",
         "name": company.name,
-        "image": company.logo_url,
-        "description": company.description,
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": company.address,
-            "addressLocality": company.city,
-            "postalCode": company.postal_code,
-            "addressCountry": "PL"
-        },
         "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": stats.avgRating,
-            "reviewCount": stats.reviewCount || 1, // Avoid 0 for schema if possible or omit
+            "reviewCount": stats.reviewCount || 1,
             "bestRating": "5",
             "worstRating": "1"
         }
@@ -258,7 +249,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
                                                         <div className="font-semibold text-gray-900 text-sm">{review.author_name}</div>
                                                         <div className="text-xs text-gray-500 flex items-center gap-2">
                                                             {/* Date formatting */}
-                                                            {new Date(review.created_at).toLocaleDateString('pl-PL')}
+                                                            {new Date(review.review_date).toLocaleDateString('pl-PL')}
                                                         </div>
                                                     </div>
                                                 </div>

@@ -73,6 +73,7 @@ export default function NewReviewPage() {
           title: formData.title || null,
           content: formData.content || null,
           review_date: formData.reviewDate,
+          created_at: new Date(formData.reviewDate).toISOString(),
         } as any)
 
       if (insertError) throw insertError
