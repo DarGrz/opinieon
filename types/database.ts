@@ -231,6 +231,7 @@ export interface Database {
           company_id: string
           portal_id: string
           is_active: boolean
+          review_form_enabled: boolean
           profile_url: string | null
           custom_data: Json
           created_at: string
@@ -241,6 +242,7 @@ export interface Database {
           company_id: string
           portal_id: string
           is_active?: boolean
+          review_form_enabled?: boolean
           profile_url?: string | null
           custom_data?: Json
           created_at?: string
@@ -251,6 +253,7 @@ export interface Database {
           company_id?: string
           portal_id?: string
           is_active?: boolean
+          review_form_enabled?: boolean
           profile_url?: string | null
           custom_data?: Json
           created_at?: string

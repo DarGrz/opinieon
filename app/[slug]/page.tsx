@@ -41,7 +41,7 @@ async function getCompanyData(slug: string) {
         .select('*')
         .eq('company_id', company.id)
         .eq('portal_id', portal.id)
-        .order('created_at', { ascending: false })
+        .order('review_date', { ascending: false })
 
     const reviews = (allReviews || []).filter((r: any) => !r.status || r.status === 'published' || r.status === 'approved')
 
@@ -51,6 +51,16 @@ async function getCompanyData(slug: string) {
         ? reviews.reduce((acc: number, r: any) => acc + r.rating, 0) / reviewCount
         : 0
 
+    // 4. Check if review form is enabled for this portal
+    const { data: profile } = await supabase
+        .from('company_portal_profiles')
+        .select('review_form_enabled')
+        .eq('company_id', company.id)
+        .eq('portal_id', portal.id)
+        .maybeSingle()
+
+    const reviewFormEnabled = profile?.review_form_enabled !== false // Default to true
+
     return {
         company,
         reviews: reviews || [],
@@ -58,7 +68,8 @@ async function getCompanyData(slug: string) {
             reviewCount,
             avgRating: Number(avgRating.toFixed(1))
         },
-        portalId: portal.id
+        portalId: portal.id,
+        reviewFormEnabled
     }
 }
 
@@ -88,7 +99,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
         notFound()
     }
 
-    const { company, reviews, stats, portalId } = data
+    const { company, reviews, stats, portalId, reviewFormEnabled } = data
 
     // Check auth
     const supabase = await createClient()
@@ -287,32 +298,34 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
                         </div>
 
                         {/* Add Review Form */}
-                        <div id="add-review" className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 scroll-mt-24">
-                            <h2 className="text-lg font-bold text-gray-900 mb-2">Podziel się swoją opinią</h2>
-                            <p className="text-gray-500 text-sm mb-6">Twoja opinia pomoże innym w podjęciu dobrej decyzji.</p>
-                            <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
-                                {user ? (
-                                    <ReviewForm
-                                        companyId={company.id}
-                                        portalId={portalId}
-                                        companyName={company.name}
-                                        companySlug={company.slug || ''}
-                                    />
-                                ) : (
-                                    <div className="text-center py-4">
-                                        <p className="text-sm text-gray-600 mb-4">Aby dodać opinię, musisz być zalogowany.</p>
-                                        <div className="flex justify-center gap-4">
-                                            <Link href={`/login?next=/${company.slug}`} className="bg-green-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-green-500 transition-colors shadow-sm">
-                                                Zaloguj się
-                                            </Link>
-                                            <Link href="/register" className="bg-white text-gray-900 px-6 py-2.5 rounded-lg font-semibold border border-gray-300 hover:bg-gray-50 transition-colors shadow-sm">
-                                                Załóż konto
-                                            </Link>
+                        {reviewFormEnabled && (
+                            <div id="add-review" className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 scroll-mt-24">
+                                <h2 className="text-lg font-bold text-gray-900 mb-2">Podziel się swoją opinią</h2>
+                                <p className="text-gray-500 text-sm mb-6">Twoja opinia pomoże innym w podjęciu dobrej decyzji.</p>
+                                <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                                    {user ? (
+                                        <ReviewForm
+                                            companyId={company.id}
+                                            portalId={portalId}
+                                            companyName={company.name}
+                                            companySlug={company.slug || ''}
+                                        />
+                                    ) : (
+                                        <div className="text-center py-4">
+                                            <p className="text-sm text-gray-600 mb-4">Aby dodać opinię, musisz być zalogowany.</p>
+                                            <div className="flex justify-center gap-4">
+                                                <Link href={`/login?next=/${company.slug}`} className="bg-green-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-green-500 transition-colors shadow-sm">
+                                                    Zaloguj się
+                                                </Link>
+                                                <Link href="/register" className="bg-white text-gray-900 px-6 py-2.5 rounded-lg font-semibold border border-gray-300 hover:bg-gray-50 transition-colors shadow-sm">
+                                                    Załóż konto
+                                                </Link>
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
+                                    )}
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
 
                     {/* Sidebar Info */}

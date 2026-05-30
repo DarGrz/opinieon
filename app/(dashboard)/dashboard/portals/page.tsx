@@ -1,7 +1,8 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import { Plus, ExternalLink, Star, MessageSquare, RefreshCw } from 'lucide-react'
+import { Plus, ExternalLink, Star, MessageSquare, RefreshCw, Eye, EyeOff } from 'lucide-react'
+import { ReviewFormToggle } from './components/ReviewFormToggle'
 
 type Portal = 'Dobre Firmy' | 'Arena Biznesu' | 'Panteon Firm'
 
@@ -61,6 +62,15 @@ export default async function PortalsPage() {
       return acc
     }, [])
 
+  // Pobierz profile dla tych portali
+  const { data: profiles } = await supabase
+    .from('company_portal_profiles')
+    .select('*')
+    .in('portal_id', uniquePortals.map(p => p.id))
+    .in('company_id', companiesData.map(c => c.id))
+
+  const profilesData = (profiles || []) as any[]
+
   console.log('Unique portals:', uniquePortals.map(p => ({ name: p.name, slug: p.slug, id: p.id })))
   console.log('Total reviews:', reviews?.length)
 
@@ -72,6 +82,9 @@ export default async function PortalsPage() {
       ? (portalReviews.reduce((sum: number, r: any) => sum + r.rating, 0) / portalReviews.length).toFixed(1)
       : '0.0'
     
+    // Find profile for this portal
+    const profile = profilesData.find(p => p.portal_id === portal.id)
+    
     return {
       id: portal.id,
       name: portal.name,
@@ -81,6 +94,8 @@ export default async function PortalsPage() {
       status: portalReviews.length > 0 ? 'active' : 'inactive',
       lastSync: portalReviews.length > 0 ? new Date().toLocaleDateString('pl-PL') : null,
       url: portal.url || `https://${portal.slug}.pl`,
+      profileId: profile?.id,
+      reviewFormEnabled: profile?.review_form_enabled !== false, // Default to true
     }
   })
 
@@ -166,6 +181,15 @@ export default async function PortalsPage() {
               </div>
 
               <div className="mt-6 space-y-2">
+                {company && (
+                  <ReviewFormToggle
+                    portalId={portal.id}
+                    profileId={portal.profileId}
+                    companyId={company.id}
+                    enabled={portal.reviewFormEnabled}
+                    portalName={portal.name}
+                  />
+                )}
                 <a
                   href={portal.url}
                   target="_blank"
