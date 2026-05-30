@@ -50,11 +50,36 @@ export default async function AnalyticsPage() {
     )
   }
 
-  // Pobierz opinie
+  // Pobierz firmę użytkownika
+  const { data: company } = await supabase
+    .from('companies')
+    .select('id')
+    .eq('user_id', user.id)
+    .single()
+
+  if (!company) {
+    return (
+      <div>
+        <h1 className="text-2xl font-semibold text-gray-900 mb-8">Analityka</h1>
+        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+          <p className="text-gray-700">Nie znaleziono firmy przypisanej do Twojego konta.</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Pobierz opinie z joinami
   const { data: reviews } = await supabase
     .from('reviews')
-    .select('*')
-    .eq('user_id', user.id)
+    .select(`
+      *,
+      portals:portal_id (
+        id,
+        name,
+        slug
+      )
+    `)
+    .eq('company_id', company.id)
     .order('created_at', { ascending: false })
 
   // Oblicz statystyki
@@ -63,19 +88,30 @@ export default async function AnalyticsPage() {
     ? ((reviews as any).reduce((sum: number, r: any) => sum + r.rating, 0) / reviews.length).toFixed(1)
     : '0.0'
 
-  // Statystyki według portalu
-  const portalStats = ['Dobre Firmy', 'Arena Biznesu', 'Panteon Firm'].map((portal) => {
-    const portalReviews = (reviews as any)?.filter((r: any) => r.portal === portal) || []
+  // Statystyki według portalu - pogrupuj rzeczywiste portale
+  const portalMap = new Map<string, { name: string; reviews: any[] }>()
+  
+  if (reviews) {
+    (reviews as any).forEach((review: any) => {
+      const portalName = review.portals?.name || 'Nieznany portal'
+      if (!portalMap.has(portalName)) {
+        portalMap.set(portalName, { name: portalName, reviews: [] })
+      }
+      portalMap.get(portalName)?.reviews.push(review)
+    })
+  }
+
+  const portalStats = Array.from(portalMap.values()).map(({ name, reviews: portalReviews }) => {
     const portalAvg = portalReviews.length > 0
       ? (portalReviews.reduce((sum: number, r: any) => sum + r.rating, 0) / portalReviews.length).toFixed(1)
       : '0.0'
     
     return {
-      name: portal,
+      name,
       count: portalReviews.length,
       avg: portalAvg,
     }
-  })
+  }).sort((a, b) => b.count - a.count) // Sortuj według liczby opinii
 
   // Opinie w ostatnim miesiącu
   const lastMonth = new Date()
