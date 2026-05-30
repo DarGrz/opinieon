@@ -129,10 +129,10 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
 
                 {/* Header / Cover */}
                 <div className="bg-white border-b border-gray-200">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                        <div className="lg:flex lg:items-start lg:justify-between gap-8">
-                            <div className="flex items-start gap-6">
-                                <div className="relative h-24 w-24 sm:h-32 sm:w-32 flex-none rounded-2xl border border-gray-100 bg-white p-2 shadow-sm">
+                    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
+                        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 sm:gap-8">
+                            <div className="flex items-start gap-3 sm:gap-6 min-w-0 flex-1">
+                                <div className="relative h-20 w-20 sm:h-24 sm:w-24 lg:h-32 lg:w-32 flex-none rounded-xl sm:rounded-2xl border border-gray-100 bg-white p-2 shadow-sm">
                                     {company.logo_url ? (
                                         <Image
                                             src={company.logo_url}
@@ -148,9 +148,9 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
                                     )}
                                 </div>
 
-                                <div className="pt-1">
-                                    <div className="flex items-center gap-3 mb-2">
-                                        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">
+                                <div className="pt-1 min-w-0 flex-1">
+                                    <div className="flex items-start flex-wrap gap-2 sm:gap-3 mb-2">
+                                        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight break-words">
                                             {company.name}
                                         </h1>
                                         {/* Verified Badge - assuming logic based on GMB link or verified flag */}
@@ -162,36 +162,36 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
                                         )}
                                     </div>
 
-                                    <div className="flex items-center gap-4 text-sm text-gray-600 mb-4 flex-wrap">
-                                        <div className="flex items-center gap-1.5 font-medium text-gray-900">
-                                            <span className="text-xl font-bold text-gray-900">{stats.avgRating}</span>
+                                    <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 flex-wrap">
+                                        <div className="flex items-center gap-1 sm:gap-1.5 font-medium text-gray-900">
+                                            <span className="text-lg sm:text-xl font-bold text-gray-900">{stats.avgRating}</span>
                                             <StarRating rating={stats.avgRating} size="sm" />
-                                            <span className="text-gray-500 font-normal ml-1">({stats.reviewCount} opinii)</span>
+                                            <span className="text-gray-500 font-normal ml-0.5 sm:ml-1 text-xs sm:text-sm">({stats.reviewCount})</span>
                                         </div>
-                                        <span className="text-gray-300">|</span>
-                                        <div className="flex items-center gap-1.5">
-                                            <MapPin className="w-4 h-4 text-gray-400" />
-                                            {company.city}
+                                        <span className="hidden sm:inline text-gray-300">|</span>
+                                        <div className="flex items-center gap-1 sm:gap-1.5">
+                                            <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-400" />
+                                            <span className="truncate">{company.city}</span>
                                         </div>
-                                        {company.postal_code && <span className="text-gray-400 text-xs text-gray-500">({company.postal_code})</span>}
+                                        {company.postal_code && <span className="hidden sm:inline text-gray-400 text-xs">({company.postal_code})</span>}
                                     </div>
 
-                                    <div className="flex gap-3">
-                                        <a href="#add-review" className="rounded-full bg-green-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">
+                                    <div className="flex flex-wrap gap-2 sm:gap-3">
+                                        <a href="#add-review" className="rounded-full bg-green-600 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">
                                             Dodaj opinię
                                         </a>
-                                        <button className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                                        <button className="hidden sm:inline-flex rounded-full bg-white px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                                             Obserwuj
                                         </button>
-                                        <button className="p-2 text-gray-400 hover:text-gray-600 border border-gray-200 rounded-full hover:bg-gray-50">
-                                            <Share2 className="w-5 h-5" />
+                                        <button className="p-1.5 sm:p-2 text-gray-400 hover:text-gray-600 border border-gray-200 rounded-full hover:bg-gray-50">
+                                            <Share2 className="w-4 h-4 sm:w-5 sm:h-5" />
                                         </button>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Claim Box */}
-                            <div className="mt-6 lg:mt-0 flex flex-col gap-3 min-w-[300px] bg-blue-50/50 p-4 rounded-xl border border-blue-100">
+                            <div className="mt-4 lg:mt-0 flex flex-col gap-3 w-full lg:min-w-[280px] lg:max-w-[300px] bg-blue-50/50 p-3 sm:p-4 rounded-lg sm:rounded-xl border border-blue-100">
                                 <h3 className="text-sm font-semibold text-blue-900 flex items-center gap-2">
                                     <Flag className="w-4 h-4" />
                                     To Twoja firma?
@@ -207,36 +207,36 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
                     </div>
 
                     {/* Navigation Tabs (Fake for now) */}
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-                        <div className="flex gap-8 border-b border-gray-200">
-                            <a href="#overview" className="border-b-2 border-green-600 py-4 text-sm font-medium text-green-600">Przegląd</a>
-                            <a href="#reviews" className="border-b-2 border-transparent py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Opinie ({stats.reviewCount})</a>
-                            <a href="#photos" className="border-b-2 border-transparent py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Zdjęcia</a>
-                            <a href="#about" className="border-b-2 border-transparent py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">O firmie</a>
+                    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 mt-2 sm:mt-4">
+                        <div className="flex gap-4 sm:gap-8 border-b border-gray-200 overflow-x-auto scrollbar-hide">
+                            <a href="#overview" className="border-b-2 border-green-600 py-3 sm:py-4 text-xs sm:text-sm font-medium text-green-600 whitespace-nowrap">Przegląd</a>
+                            <a href="#reviews" className="border-b-2 border-transparent py-3 sm:py-4 text-xs sm:text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap">Opinie ({stats.reviewCount})</a>
+                            <a href="#photos" className="border-b-2 border-transparent py-3 sm:py-4 text-xs sm:text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap">Zdjęcia</a>
+                            <a href="#about" className="border-b-2 border-transparent py-3 sm:py-4 text-xs sm:text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap">O firmie</a>
                         </div>
                     </div>
                 </div>
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8">
                     {/* Main Content: Reviews */}
-                    <div className="lg:col-span-2 space-y-8">
+                    <div className="lg:col-span-2 space-y-4 sm:space-y-8">
 
                         {/* About Section (Short) */}
                         {company.description && (
-                            <div id="overview" className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                                <h2 className="text-lg font-bold text-gray-900 mb-4">O firmie {company.name}</h2>
-                                <p className="text-gray-600 leading-relaxed text-sm">
+                            <div id="overview" className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-100">
+                                <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">O firmie {company.name}</h2>
+                                <p className="text-gray-600 leading-relaxed text-sm break-words">
                                     {company.description}
                                 </p>
                             </div>
                         )}
 
                         {/* Reviews Section */}
-                        <div id="reviews" className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                            <div className="flex items-center justify-between mb-6">
-                                <h2 className="text-lg font-bold text-gray-900">Opinie klientów</h2>
-                                <div className="text-sm text-gray-500">
-                                    Sortuj wg: <span className="font-medium text-gray-900">Najnowsze</span>
+                        <div id="reviews" className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-100">
+                            <div className="flex items-center justify-between mb-4 sm:mb-6 gap-2">
+                                <h2 className="text-base sm:text-lg font-bold text-gray-900">Opinie klientów</h2>
+                                <div className="text-xs sm:text-sm text-gray-500 whitespace-nowrap">
+                                    <span className="hidden sm:inline">Sortuj wg: </span><span className="font-medium text-gray-900">Najnowsze</span>
                                 </div>
                             </div>
 
@@ -248,16 +248,16 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
                                     <a href="#add-review" className="text-green-600 font-semibold hover:underline">Dodaj opinię</a>
                                 </div>
                             ) : (
-                                <div className="space-y-8">
+                                <div className="space-y-4 sm:space-y-8">
                                     {reviews.map((review: any) => (
-                                        <div key={review.id} className="border-b border-gray-100 last:border-0 pb-8 last:pb-0">
-                                            <div className="flex items-start justify-between mb-2">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-green-100 to-green-50 flex items-center justify-center text-green-700 font-bold text-sm">
+                                        <div key={review.id} className="border-b border-gray-100 last:border-0 pb-4 sm:pb-8 last:pb-0">
+                                            <div className="flex items-start justify-between mb-2 gap-2">
+                                                <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+                                                    <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-gradient-to-tr from-green-100 to-green-50 flex items-center justify-center text-green-700 font-bold text-xs sm:text-sm flex-shrink-0">
                                                         {review.author_name?.[0]?.toUpperCase() || 'A'}
                                                     </div>
-                                                    <div>
-                                                        <div className="font-semibold text-gray-900 text-sm">{review.author_name}</div>
+                                                    <div className="min-w-0 flex-1">
+                                                        <div className="font-semibold text-gray-900 text-sm truncate">{review.author_name}</div>
                                                         <div className="text-xs text-gray-500 flex items-center gap-2">
                                                             {/* Date formatting */}
                                                             {new Date(review.review_date).toLocaleDateString('pl-PL')}
@@ -265,28 +265,28 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
                                                     </div>
                                                 </div>
                                                 {review.is_verified && (
-                                                    <div className="flex items-center gap-1 text-xs text-green-700 bg-green-50 px-2 py-1 rounded-full">
-                                                        <CheckCircle2 className="w-3 h-3" /> Zweryfikowany
+                                                    <div className="flex items-center gap-1 text-xs text-green-700 bg-green-50 px-2 py-1 rounded-full flex-shrink-0">
+                                                        <CheckCircle2 className="w-3 h-3" /> <span className="hidden sm:inline">Zweryfikowany</span>
                                                     </div>
                                                 )}
                                             </div>
                                             <div className="mb-2">
                                                 <StarRating rating={review.rating} size="sm" />
                                             </div>
-                                            {review.title && <h3 className="font-semibold text-gray-900 mb-2 text-sm">{review.title}</h3>}
-                                            <p className="text-gray-600 text-sm leading-relaxed">
+                                            {review.title && <h3 className="font-semibold text-gray-900 mb-2 text-sm break-words">{review.title}</h3>}
+                                            <p className="text-gray-600 text-sm leading-relaxed break-words">
                                                 {review.content}
                                             </p>
                                             {(review.pros || review.cons) && (
-                                                <div className="mt-4 flex gap-4 text-xs">
+                                                <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row gap-2 sm:gap-4 text-xs">
                                                     {review.pros && (
                                                         <div className="flex gap-2 text-green-700">
-                                                            <span className="font-bold">Plusy:</span> {review.pros}
+                                                            <span className="font-bold flex-shrink-0">Plusy:</span> <span className="break-words">{review.pros}</span>
                                                         </div>
                                                     )}
                                                     {review.cons && (
                                                         <div className="flex gap-2 text-red-700">
-                                                            <span className="font-bold">Minusy:</span> {review.cons}
+                                                            <span className="font-bold flex-shrink-0">Minusy:</span> <span className="break-words">{review.cons}</span>
                                                         </div>
                                                     )}
                                                 </div>
@@ -299,10 +299,10 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
 
                         {/* Add Review Form */}
                         {reviewFormEnabled && (
-                            <div id="add-review" className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 scroll-mt-24">
-                                <h2 className="text-lg font-bold text-gray-900 mb-2">Podziel się swoją opinią</h2>
-                                <p className="text-gray-500 text-sm mb-6">Twoja opinia pomoże innym w podjęciu dobrej decyzji.</p>
-                                <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                            <div id="add-review" className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-100 scroll-mt-20 sm:scroll-mt-24">
+                                <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-2">Podziel się swoją opinią</h2>
+                                <p className="text-gray-500 text-sm mb-4 sm:mb-6">Twoja opinia pomoże innym w podjęciu dobrej decyzji.</p>
+                                <div className="bg-gray-50 p-4 sm:p-6 rounded-lg sm:rounded-xl border border-gray-200">
                                     {user ? (
                                         <ReviewForm
                                             companyId={company.id}
@@ -312,12 +312,12 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
                                         />
                                     ) : (
                                         <div className="text-center py-4">
-                                            <p className="text-sm text-gray-600 mb-4">Aby dodać opinię, musisz być zalogowany.</p>
-                                            <div className="flex justify-center gap-4">
-                                                <Link href={`/login?next=/${company.slug}`} className="bg-green-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-green-500 transition-colors shadow-sm">
+                                            <p className="text-xs sm:text-sm text-gray-600 mb-4">Aby dodać opinię, musisz być zalogowany.</p>
+                                            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+                                                <Link href={`/login?next=/${company.slug}`} className="bg-green-600 text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-sm font-semibold hover:bg-green-500 transition-colors shadow-sm">
                                                     Zaloguj się
                                                 </Link>
-                                                <Link href="/register" className="bg-white text-gray-900 px-6 py-2.5 rounded-lg font-semibold border border-gray-300 hover:bg-gray-50 transition-colors shadow-sm">
+                                                <Link href="/register" className="bg-white text-gray-900 px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-sm font-semibold border border-gray-300 hover:bg-gray-50 transition-colors shadow-sm">
                                                     Załóż konto
                                                 </Link>
                                             </div>
@@ -329,44 +329,44 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
                     </div>
 
                     {/* Sidebar Info */}
-                    <div className="space-y-6">
-                        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 sticky top-24">
-                            <h3 className="font-semibold text-gray-900 mb-4">Dane kontaktowe</h3>
-                            <ul className="space-y-4">
+                    <div className="space-y-4 sm:space-y-6">
+                        <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-100 lg:sticky lg:top-24">
+                            <h3 className="font-semibold text-gray-900 mb-3 sm:mb-4 text-sm sm:text-base">Dane kontaktowe</h3>
+                            <ul className="space-y-3 sm:space-y-4">
                                 {company.website && (
-                                    <li className="flex items-start gap-3 text-sm">
-                                        <Globe className="w-5 h-5 text-gray-400 mt-0.5" />
-                                        <a href={company.website} target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline break-all">
+                                    <li className="flex items-start gap-2 sm:gap-3 text-xs sm:text-sm">
+                                        <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 mt-0.5 flex-shrink-0" />
+                                        <a href={company.website} target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline break-all min-w-0">
                                             {company.website.replace(/^https?:\/\//, '')}
                                         </a>
                                     </li>
                                 )}
                                 {company.phone && (
-                                    <li className="flex items-center gap-3 text-sm">
-                                        <Phone className="w-5 h-5 text-gray-400" />
+                                    <li className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm">
+                                        <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0" />
                                         <a href={`tel:${company.phone}`} className="text-gray-900 hover:text-green-600">{company.phone}</a>
                                     </li>
                                 )}
                                 {company.email && (
-                                    <li className="flex items-center gap-3 text-sm">
-                                        <Mail className="w-5 h-5 text-gray-400" />
-                                        <a href={`mailto:${company.email}`} className="text-gray-900 hover:text-green-600">{company.email}</a>
+                                    <li className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm">
+                                        <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0" />
+                                        <a href={`mailto:${company.email}`} className="text-gray-900 hover:text-green-600 break-all min-w-0">{company.email}</a>
                                     </li>
                                 )}
-                                <li className="flex items-start gap-3 text-sm">
-                                    <MapPin className="w-5 h-5 text-gray-400 mt-0.5" />
-                                    <span className="text-gray-600">
+                                <li className="flex items-start gap-2 sm:gap-3 text-xs sm:text-sm">
+                                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 mt-0.5 flex-shrink-0" />
+                                    <span className="text-gray-600 break-words">
                                         {company.address}<br />
                                         {company.postal_code} {company.city}
                                     </span>
                                 </li>
                             </ul>
 
-                            <hr className="my-6 border-gray-100" />
+                            <hr className="my-4 sm:my-6 border-gray-100" />
 
-                            <h3 className="font-semibold text-gray-900 mb-4">Godziny otwarcia</h3>
-                            <div className="flex items-start gap-3 text-sm text-gray-600">
-                                <Calendar className="w-5 h-5 text-gray-400 mt-0.5" />
+                            <h3 className="font-semibold text-gray-900 mb-3 sm:mb-4 text-sm sm:text-base">Godziny otwarcia</h3>
+                            <div className="flex items-start gap-2 sm:gap-3 text-xs sm:text-sm text-gray-600">
+                                <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 mt-0.5 flex-shrink-0" />
                                 <div>
                                     <p className="flex justify-between w-full min-w-[150px] mb-1">
                                         <span>Pon - Pt:</span>
