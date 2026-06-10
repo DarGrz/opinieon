@@ -11,6 +11,26 @@ import Image from 'next/image'
 
 export const revalidate = 3600 // Revalidate every hour
 
+function getReviewCountText(count: number): string {
+    if (count === 1) return '1 opinia'
+    
+    const lastDigit = count % 10
+    const lastTwoDigits = count % 100
+    
+    // Wyjątki dla liczb 12-14
+    if (lastTwoDigits >= 12 && lastTwoDigits <= 14) {
+        return `${count} opinii`
+    }
+    
+    // 2, 3, 4, 22, 23, 24, 32, 33, 34, etc.
+    if (lastDigit >= 2 && lastDigit <= 4) {
+        return `${count} opinie`
+    }
+    
+    // Wszystkie pozostałe (0, 5-9, 11, 12-14, etc.)
+    return `${count} opinii`
+}
+
 async function getCompanyData(slug: string) {
     const supabase = createServiceRoleClient()
 
@@ -79,12 +99,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (!data) return {}
 
     const { company, stats } = data
+    const reviewCountText = getReviewCountText(stats.reviewCount)
 
     return {
-        title: `Opinie ${company.name} | OpinieOn.pl`,
-        description: `Sprawdź ${stats.reviewCount} autentycznych opinii o ${company.name}. Ocena: ${stats.avgRating}/5. Zobacz dane kontaktowe, ofertę i zdjęcia.`,
+        title: `Opinie ${company.name} ${company.city} - ${reviewCountText} | OpinieOn.pl`,
+        description: `Sprawdź ${reviewCountText} o ${company.name}. Ocena: ${stats.avgRating}/5. Zobacz dane kontaktowe, ofertę i zdjęcia.`,
         openGraph: {
-            title: `Opinie ${company.name} | OpinieOn.pl`,
+            title: `Opinie ${company.name} ${company.city} - ${reviewCountText} | OpinieOn.pl`,
             description: `Sprawdź autentyczne opinie o ${company.name} na OpinieOn.pl.`,
             images: company.logo_url ? [company.logo_url] : [],
         }
