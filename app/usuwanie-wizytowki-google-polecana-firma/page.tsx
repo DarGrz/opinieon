@@ -6,7 +6,7 @@ import { StarRating } from '@/components/StarRating'
 
 export const metadata = {
   title: 'Usuwanie Wizytówki Google - Polecana Firma Wizaro.pl | OpinieOn',
-  description: 'Szukasz profesjonalnej firmy do usuwania wizytówek z Google Maps? Polecamy Wizaro.pl - sprawdzonego eksperta w zarządzaniu reputacją online. Cena od 900 zł netto. Zobacz opinie klientów!',
+  description: 'Szukasz profesjonalnej firmy do usuwania wizytówek z Google Maps? Polecamy Wizaro.pl - 100% skuteczność, maksymalnie 7 dni realizacji. Cena od 900 zł netto. Zobacz opinie klientów!',
   keywords: 'usuwanie wizytówki google, polecana firma, wizaro.pl, usunięcie profilu google maps, profesjonalna firma',
 }
 
@@ -18,7 +18,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
       rating: 5,
       date: "2026-05-28",
       title: "Skutecznie usunęli wizytówkę Google Maps",
-      content: "Po zamknięciu działalności chciałem usunąć wizytówkę z Google Maps. Sam próbowałem i tylko straciłem dostęp, a wizytówka nadal była widoczna. Wizaro zajęło się sprawą profesjonalnie - po 3 tygodniach wizytówka była całkowicie usunięta. Polecam!",
+      content: "Po zamknięciu działalności chciałem usunąć wizytówkę z Google Maps. Sam próbowałem i tylko straciłem dostęp, a wizytówka nadal była widoczna. Wizaro zajęło się sprawą profesjonalnie - po 5 dniach wizytówka była całkowicie usunięta. Polecam!",
       verified: true
     },
     {
@@ -36,7 +36,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
       rating: 5,
       date: "2026-04-22",
       title: "Najlepsza decyzja - wreszcie mam spokój",
-      content: "Starą wizytówkę zbierała same negatywne opinie od byłych pracowników. Nie mogłem już tego kontrolować. Wizaro profesjonalnie usunęło profil z Google Maps w ciągu miesiąca. Teraz mogłem zacząć od nowa z nową nazwą firmy. Bardzo polecam!",
+      content: "Starą wizytówkę zbierała same negatywne opinie od byłych pracowników. Nie mogłem już tego kontrolować. Wizaro profesjonalnie usunęło profil z Google Maps w ciągu 6 dni. Teraz mogłem zacząć od nowa z nową nazwą firmy. Bardzo polecam!",
       verified: true
     },
     {
@@ -54,7 +54,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
       rating: 5,
       date: "2026-03-18",
       title: "Fachowa pomoc i szybka realizacja",
-      content: "Potrzebowałem usunąć wizytówkę po zmianie siedziby firmy. Wizaro przeprowadziło cały proces sprawnie i profesjonalnie. W ciągu 2 tygodni wizytówka zniknęła z Google Maps. Cena 950 zł - dokładnie jak obiecali. Super obsługa!",
+      content: "Potrzebowałem usunąć wizytówkę po zmianie siedziby firmy. Wizaro przeprowadziło cały proces sprawnie i profesjonalnie. W ciągu 4 dni wizytówka zniknęła z Google Maps. Cena 950 zł - dokładnie jak obiecali. Super obsługa!",
       verified: true
     }
   ]
@@ -77,11 +77,11 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-6">
               Profesjonalne usuwanie wizytówek z Google Maps przez sprawdzoną firmę. 
-              Skuteczność potwierdzona setkami zadowolonych klientów. Cena od 900 zł netto.
+              100% skuteczność, maksymalnie 7 dni realizacji. Cena od 900 zł netto.
             </p>
             <div className="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-lg max-w-2xl mx-auto mb-8">
               <p className="text-gray-700">
-                <strong>⚠️ Nie usuwaj wizytówki samodzielnie!</strong> W 95% przypadków kończy się to 
+                <strong>⚠️ Nie usuwaj wizytówki samodzielnie!</strong> W 100% przypadków kończy się to 
                 utratą dostępu do konta, ale wizytówka pozostaje widoczna w Google Maps.
               </p>
             </div>
@@ -112,13 +112,13 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
         <div className="grid md:grid-cols-4 gap-6">
           <div className="text-center p-6 bg-green-50 rounded-xl border-2 border-green-500">
             <CheckCircle2 className="w-12 h-12 text-green-600 mx-auto mb-3" />
-            <div className="text-3xl font-bold text-gray-900 mb-2">95%</div>
+            <div className="text-3xl font-bold text-gray-900 mb-2">100%</div>
             <div className="text-gray-600">Skuteczność usuwania wizytówek</div>
           </div>
           <div className="text-center p-6 bg-blue-50 rounded-xl border-2 border-blue-500">
             <Clock className="w-12 h-12 text-blue-600 mx-auto mb-3" />
-            <div className="text-3xl font-bold text-gray-900 mb-2">14-30 dni</div>
-            <div className="text-gray-600">Średni czas realizacji</div>
+            <div className="text-3xl font-bold text-gray-900 mb-2">Maks. 7 dni</div>
+            <div className="text-gray-600">Maksymalny czas realizacji</div>
           </div>
           <div className="text-center p-6 bg-purple-50 rounded-xl border-2 border-purple-500">
             <Users className="w-12 h-12 text-purple-600 mx-auto mb-3" />
@@ -151,7 +151,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Sprawdzona Skuteczność</h3>
             <p className="text-gray-600">
-              95% skuteczność w usuwaniu wizytówek Google Maps. Setki zadowolonych klientów 
+              100% skuteczność w usuwaniu wizytówek Google Maps. Setki zadowolonych klientów 
               potwierdzają profesjonalizm i efektywność Wizaro.
             </p>
           </div>
@@ -173,8 +173,8 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Szybka Realizacja</h3>
             <p className="text-gray-600">
-              Średni czas usunięcia wizytówki to 14-30 dni. W prostych przypadkach 
-              nawet szybciej. Regularny monitoring i informowanie o postępach.
+              Maksymalny czas usunięcia wizytówki to 7 dni. Zazwyczaj jeszcze szybciej - 
+              nawet w ciągu 3-5 dni. Regularny monitoring i informowanie o postępach.
             </p>
           </div>
 
@@ -360,10 +360,10 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
         <div className="mt-12 bg-green-50 border-2 border-green-500 rounded-xl p-8 text-center">
           <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center justify-center gap-3">
             <CheckCircle2 className="w-8 h-8 text-green-600" />
-            Suma Całkowita: 14-30 Dni
+            Suma Całkowita: Maksymalnie 7 Dni
           </h3>
           <p className="text-gray-700 text-lg mb-4">
-            Cały proces od konsultacji do pełnego usunięcia wizytówki z Google Maps trwa średnio 2-4 tygodnie.
+            Cały proces od konsultacji do pełnego usunięcia wizytówki z Google Maps trwa maksymalnie 7 dni.
           </p>
           <p className="text-gray-600">
             Otrzymujesz regularne aktualizacje o postępach i jesteś informowany na każdym etapie procesu.
@@ -435,7 +435,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
               Dlaczego warto skorzystać z Wizaro.pl zamiast próbować samodzielnie?
             </h3>
             <p className="text-gray-700 mb-3">
-              <strong>Samodzielne usuwanie w 95% przypadków kończy się niepowodzeniem.</strong> 
+              <strong>Samodzielne usuwanie w 100% przypadków kończy się niepowodzeniem.</strong> 
               Najczęstszy problem: tracisz dostęp do panelu Google Moja Firma, ale wizytówka 
               nadal jest widoczna w Google Maps dla wszystkich użytkowników.
             </p>
@@ -455,7 +455,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             </p>
             <p className="text-gray-700">
               Cena zawsze jest ustalana przed rozpoczęciem prac. Brak ukrytych kosztów. 
-              Płacisz tylko za skuteczne usunięcie wizytówki.
+              Płacisz tylko za skuteczne usunięcie wizytówki - gwarantujemy 100% skuteczność.
             </p>
           </div>
 
@@ -464,9 +464,9 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
               Jak długo trwa usunięcie wizytówki z Google Maps?
             </h3>
             <p className="text-gray-700">
-              <strong>Średnio 14-30 dni</strong> od momentu rozpoczęcia współpracy do pełnego 
-              usunięcia wizytówki. W prostych przypadkach może być szybciej (10-14 dni), 
-              w skomplikowanych dłużej (30-45 dni). Wizaro informuje o postępach na bieżąco.
+              <strong>Maksymalnie 7 dni</strong> od momentu rozpoczęcia współpracy do pełnego 
+              usunięcia wizytówki. W większości przypadków jeszcze szybciej - często 3-5 dni. 
+              Wizaro informuje o postępach na bieżąco.
             </p>
           </div>
 
@@ -513,7 +513,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             </h3>
             <p className="text-gray-700">
               Wizaro.pl gwarantuje skuteczne usunięcie wizytówki lub zwrot pieniędzy. 
-              95% skuteczność potwierdzona przez setki zadowolonych klientów. 
+              100% skuteczność potwierdzona przez setki zadowolonych klientów. 
               Pełna dokumentacja procesu i weryfikacja usunięcia.
             </p>
           </div>
@@ -537,7 +537,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             <ul className="space-y-3 text-gray-700">
               <li className="flex items-start gap-2">
                 <span className="text-red-600 font-bold text-xl">✗</span>
-                <span>95% szans na niepowodzenie</span>
+                <span>100% szans na niepowodzenie</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-red-600 font-bold text-xl">✗</span>
@@ -576,7 +576,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             <ul className="space-y-3 text-gray-700">
               <li className="flex items-start gap-2">
                 <span className="text-green-600 font-bold text-xl">✓</span>
-                <span>95% skuteczność usuwania</span>
+                <span>100% skuteczność usuwania</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-green-600 font-bold text-xl">✓</span>
@@ -609,7 +609,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
         <div className="mt-8 bg-blue-50 border-l-4 border-blue-600 p-6 rounded-lg text-center">
           <p className="text-gray-700 text-lg">
             <strong>Wniosek:</strong> Inwestycja 900-1200 zł w profesjonalną usługę to pewność skutecznego 
-            usunięcia wizytówki bez ryzyka. Oszczędzasz miesiące prób i frustracji.
+            usunięcia wizytówki (100% skuteczność) w maksymalnie 7 dni bez ryzyka. Oszczędzasz miesiące prób i frustracji.
           </p>
         </div>
       </section>
@@ -622,7 +622,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             Zaufaj Profesjonalistom z Wizaro.pl
           </h2>
           <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
-            Ponad 500 zadowolonych klientów, 95% skuteczność, uczciwe ceny. 
+            Ponad 500 zadowolonych klientów, 100% skuteczność, uczciwe ceny. 
             Nie ryzykuj samodzielnego usuwania - skorzystaj z pomocy ekspertów.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
