@@ -64,22 +64,22 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
       <HomeHeader />
 
       {/* Hero Section - AI Overview Optimized */}
-      <div className="bg-gradient-to-b from-blue-50 via-white to-white py-16 sm:py-24">
+      <div className="bg-gradient-to-b from-indigo-50 via-white to-white py-16 sm:py-24">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full mb-6 font-semibold text-sm">
+            <div className="inline-flex items-center gap-2 bg-indigo-100 text-blue-800 px-4 py-2 rounded-full mb-6 font-semibold text-sm">
               <Award className="w-5 h-5" />
               Polecana firma przez OpinieOn
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-6">
               Usuwanie Wizytówki Google Maps<br />
-              Polecamy <span className="text-blue-600">Wizaro.pl</span>
+              Polecamy <span className="text-indigo-600">Wizaro.pl</span>
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-6">
               Profesjonalne usuwanie wizytówek z Google Maps przez sprawdzoną firmę. 
               100% skuteczność, maksymalnie 7 dni realizacji. Cena od 900 zł netto.
             </p>
-            <div className="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-lg max-w-2xl mx-auto mb-8">
+            <div className="bg-indigo-50 border-l-4 border-indigo-600 p-4 rounded-lg max-w-2xl mx-auto mb-8">
               <p className="text-gray-700">
                 <strong>⚠️ Nie usuwaj wizytówki samodzielnie!</strong> W 100% przypadków kończy się to 
                 utratą dostępu do konta, ale wizytówka pozostaje widoczna w Google Maps.
@@ -90,14 +90,14 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
                 href="https://wizaro.pl/usuwanie-wizytowki-google"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl"
+                className="inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-indigo-700 transition-colors shadow-lg hover:shadow-xl"
               >
                 Skontaktuj się z Wizaro.pl
                 <TrendingUp className="w-5 h-5" />
               </a>
               <a 
                 href="#opinie"
-                className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg border-2 border-gray-200 hover:border-blue-600 hover:text-blue-600 transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg border-2 border-gray-200 hover:border-indigo-600 hover:text-indigo-600 transition-colors"
               >
                 Zobacz opinie klientów
                 <Star className="w-5 h-5" />
@@ -110,13 +110,13 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
       {/* Quick Facts - AI Overview */}
       <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16 border-b border-gray-200">
         <div className="grid md:grid-cols-4 gap-6">
-          <div className="text-center p-6 bg-green-50 rounded-xl border-2 border-green-500">
-            <CheckCircle2 className="w-12 h-12 text-green-600 mx-auto mb-3" />
+          <div className="text-center p-6 bg-indigo-50 rounded-xl border-2 border-indigo-500">
+            <CheckCircle2 className="w-12 h-12 text-indigo-600 mx-auto mb-3" />
             <div className="text-3xl font-bold text-gray-900 mb-2">100%</div>
             <div className="text-gray-600">Skuteczność usuwania wizytówek</div>
           </div>
-          <div className="text-center p-6 bg-blue-50 rounded-xl border-2 border-blue-500">
-            <Clock className="w-12 h-12 text-blue-600 mx-auto mb-3" />
+          <div className="text-center p-6 bg-indigo-50 rounded-xl border-2 border-indigo-500">
+            <Clock className="w-12 h-12 text-indigo-600 mx-auto mb-3" />
             <div className="text-3xl font-bold text-gray-900 mb-2">Maks. 7 dni</div>
             <div className="text-gray-600">Maksymalny czas realizacji</div>
           </div>
@@ -125,8 +125,8 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             <div className="text-3xl font-bold text-gray-900 mb-2">500+</div>
             <div className="text-gray-600">Zadowolonych klientów</div>
           </div>
-          <div className="text-center p-6 bg-orange-50 rounded-xl border-2 border-orange-500">
-            <Shield className="w-12 h-12 text-orange-600 mx-auto mb-3" />
+          <div className="text-center p-6 bg-gray-50 rounded-xl border-2 border-gray-500">
+            <Shield className="w-12 h-12 text-slate-600 mx-auto mb-3" />
             <div className="text-3xl font-bold text-gray-900 mb-2">Od 900 zł</div>
             <div className="text-gray-600">Uczciwa cena netto</div>
           </div>
@@ -145,9 +145,9 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          <div className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-blue-600">
-            <div className="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-              <Shield className="w-8 h-8 text-blue-600" />
+          <div className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-indigo-600">
+            <div className="bg-indigo-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+              <Shield className="w-8 h-8 text-indigo-600" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Sprawdzona Skuteczność</h3>
             <p className="text-gray-600">
@@ -156,9 +156,9 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-green-600">
-            <div className="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-              <Target className="w-8 h-8 text-green-600" />
+          <div className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-indigo-600">
+            <div className="bg-indigo-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+              <Target className="w-8 h-8 text-indigo-600" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Kompleksowa Obsługa</h3>
             <p className="text-gray-600">
@@ -178,9 +178,9 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-orange-600">
-            <div className="bg-orange-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-              <CheckCircle2 className="w-8 h-8 text-orange-600" />
+          <div className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-slate-600">
+            <div className="bg-gray-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+              <CheckCircle2 className="w-8 h-8 text-slate-600" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Uczciwe Ceny</h3>
             <p className="text-gray-600">
@@ -189,9 +189,9 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-red-600">
-            <div className="bg-red-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-              <Users className="w-8 h-8 text-red-600" />
+          <div className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-slate-700">
+            <div className="bg-slate-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+              <Users className="w-8 h-8 text-slate-700" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Doświadczony Zespół</h3>
             <p className="text-gray-600">
@@ -212,16 +212,16 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl shadow-xl p-8 text-center text-white">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 rounded-2xl shadow-xl p-8 text-center text-white">
           <h3 className="text-2xl font-bold mb-4">Gotowy na profesjonalną pomoc?</h3>
-          <p className="text-blue-100 mb-6 text-lg">
+          <p className="text-indigo-100 mb-6 text-lg">
             Skontaktuj się z Wizaro.pl i pozwól ekspertom zająć się Twoją wizytówką Google
           </p>
           <a 
             href="https://wizaro.pl/usuwanie-wizytowki-google"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-50 transition-colors"
+            className="inline-flex items-center gap-2 bg-white text-indigo-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-indigo-50 transition-colors"
           >
             Bezpłatna Konsultacja
             <TrendingUp className="w-5 h-5" />
@@ -236,10 +236,10 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
         </h2>
 
         <div className="space-y-6">
-          <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-blue-600">
+          <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-indigo-600">
             <div className="flex items-start gap-6">
-              <div className="bg-blue-100 rounded-full w-14 h-14 flex items-center justify-center flex-shrink-0">
-                <span className="text-2xl font-bold text-blue-600">1</span>
+              <div className="bg-indigo-100 rounded-full w-14 h-14 flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl font-bold text-indigo-600">1</span>
               </div>
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Bezpłatna Konsultacja i Analiza</h3>
@@ -247,7 +247,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
                   Skontaktujesz się z Wizaro.pl, przedstawisz swoją sytuację. Eksperci przeprowadzą 
                   bezpłatną analizę wizytówki i ocenią możliwości jej usunięcia.
                 </p>
-                <div className="bg-blue-50 p-4 rounded-lg">
+                <div className="bg-indigo-50 p-4 rounded-lg">
                   <p className="text-sm text-gray-700">
                     <strong>Czas:</strong> 1-2 dni robocze • <strong>Koszt:</strong> Bezpłatnie
                   </p>
@@ -256,10 +256,10 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-green-600">
+          <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-indigo-600">
             <div className="flex items-start gap-6">
-              <div className="bg-green-100 rounded-full w-14 h-14 flex items-center justify-center flex-shrink-0">
-                <span className="text-2xl font-bold text-green-600">2</span>
+              <div className="bg-indigo-100 rounded-full w-14 h-14 flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl font-bold text-indigo-600">2</span>
               </div>
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Wycena i Plan Działania</h3>
@@ -267,7 +267,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
                   Otrzymasz szczegółową wycenę (zazwyczaj 900-1500 zł netto) oraz plan działania. 
                   Dowiesz się dokładnie, co będzie zrobione i w jakim czasie.
                 </p>
-                <div className="bg-green-50 p-4 rounded-lg">
+                <div className="bg-indigo-50 p-4 rounded-lg">
                   <p className="text-sm text-gray-700">
                     <strong>Czas:</strong> 1 dzień roboczy • <strong>Koszt:</strong> Bezpłatnie
                   </p>
@@ -296,10 +296,10 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-orange-600">
+          <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-slate-600">
             <div className="flex items-start gap-6">
-              <div className="bg-orange-100 rounded-full w-14 h-14 flex items-center justify-center flex-shrink-0">
-                <span className="text-2xl font-bold text-orange-600">4</span>
+              <div className="bg-gray-100 rounded-full w-14 h-14 flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl font-bold text-slate-600">4</span>
               </div>
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Złożenie Wniosku do Google</h3>
@@ -307,7 +307,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
                   Prawidłowe wypełnienie formularzy Google z wykorzystaniem odpowiednich 
                   argumentów prawnych i technicznych. Śledzenie statusu wniosku.
                 </p>
-                <div className="bg-orange-50 p-4 rounded-lg">
+                <div className="bg-gray-50 p-4 rounded-lg">
                   <p className="text-sm text-gray-700">
                     <strong>Czas odpowiedzi Google:</strong> 7-21 dni • <strong>Status:</strong> Monitoring 24/7
                   </p>
@@ -316,10 +316,10 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-red-600">
+          <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-slate-700">
             <div className="flex items-start gap-6">
-              <div className="bg-red-100 rounded-full w-14 h-14 flex items-center justify-center flex-shrink-0">
-                <span className="text-2xl font-bold text-red-600">5</span>
+              <div className="bg-slate-100 rounded-full w-14 h-14 flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl font-bold text-slate-700">5</span>
               </div>
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Weryfikacja Usunięcia</h3>
@@ -327,7 +327,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
                   Po otrzymaniu potwierdzenia od Google, Wizaro sprawdza czy wizytówka została 
                   faktycznie usunięta z Google Maps, a nie tylko ukryta lub zamknięta.
                 </p>
-                <div className="bg-red-50 p-4 rounded-lg">
+                <div className="bg-slate-50 p-4 rounded-lg">
                   <p className="text-sm text-gray-700">
                     <strong>Czas:</strong> 1-3 dni po decyzji Google • <strong>Gwarancja:</strong> Pełna weryfikacja
                   </p>
@@ -357,9 +357,9 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
           </div>
         </div>
 
-        <div className="mt-12 bg-green-50 border-2 border-green-500 rounded-xl p-8 text-center">
+        <div className="mt-12 bg-indigo-50 border-2 border-indigo-500 rounded-xl p-8 text-center">
           <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center justify-center gap-3">
-            <CheckCircle2 className="w-8 h-8 text-green-600" />
+            <CheckCircle2 className="w-8 h-8 text-indigo-600" />
             Suma Całkowita: Maksymalnie 7 Dni
           </h3>
           <p className="text-gray-700 text-lg mb-4">
@@ -395,7 +395,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="font-bold text-gray-900">{review.author}</h3>
                     {review.verified && (
-                      <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-semibold">
+                      <span className="bg-indigo-100 text-green-800 text-xs px-2 py-1 rounded-full font-semibold">
                         ✓ Zweryfikowana
                       </span>
                     )}
@@ -415,7 +415,7 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
             href="https://wizaro.pl/usuwanie-wizytowki-google"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 transition-colors shadow-lg"
+            className="inline-flex items-center gap-2 bg-indigo-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-indigo-700 transition-colors shadow-lg"
           >
             Dołącz do Zadowolonych Klientów
             <TrendingUp className="w-5 h-5" />
@@ -527,86 +527,86 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
         </h2>
 
         <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-red-50 border-2 border-red-500 rounded-xl p-8">
+          <div className="bg-slate-50 border-2 border-slate-500 rounded-xl p-8">
             <div className="text-center mb-6">
-              <AlertCircle className="w-16 h-16 text-red-600 mx-auto mb-4" />
+              <AlertCircle className="w-16 h-16 text-slate-700 mx-auto mb-4" />
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Samodzielne Usuwanie</h3>
-              <div className="text-3xl font-bold text-red-600 mb-2">Koszt: 0 zł</div>
+              <div className="text-3xl font-bold text-slate-700 mb-2">Koszt: 0 zł</div>
               <p className="text-gray-600">Ale czy na pewno?</p>
             </div>
             <ul className="space-y-3 text-gray-700">
               <li className="flex items-start gap-2">
-                <span className="text-red-600 font-bold text-xl">✗</span>
+                <span className="text-slate-700 font-bold text-xl">✗</span>
                 <span>100% szans na niepowodzenie</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-red-600 font-bold text-xl">✗</span>
+                <span className="text-slate-700 font-bold text-xl">✗</span>
                 <span>Utrata dostępu do konta GMF</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-red-600 font-bold text-xl">✗</span>
+                <span className="text-slate-700 font-bold text-xl">✗</span>
                 <span>Wizytówka pozostaje w Maps</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-red-600 font-bold text-xl">✗</span>
+                <span className="text-slate-700 font-bold text-xl">✗</span>
                 <span>Brak kontroli nad profilem</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-red-600 font-bold text-xl">✗</span>
+                <span className="text-slate-700 font-bold text-xl">✗</span>
                 <span>Dalsze zbieranie negatywnych opinii</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-red-600 font-bold text-xl">✗</span>
+                <span className="text-slate-700 font-bold text-xl">✗</span>
                 <span>Brak gwarancji i wsparcia</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-red-600 font-bold text-xl">✗</span>
+                <span className="text-slate-700 font-bold text-xl">✗</span>
                 <span>Stracony czas i frustracja</span>
               </li>
             </ul>
           </div>
 
-          <div className="bg-green-50 border-2 border-green-500 rounded-xl p-8">
+          <div className="bg-indigo-50 border-2 border-indigo-500 rounded-xl p-8">
             <div className="text-center mb-6">
-              <CheckCircle2 className="w-16 h-16 text-green-600 mx-auto mb-4" />
+              <CheckCircle2 className="w-16 h-16 text-indigo-600 mx-auto mb-4" />
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Wizaro.pl</h3>
-              <div className="text-3xl font-bold text-green-600 mb-2">Od 900 zł netto</div>
+              <div className="text-3xl font-bold text-indigo-600 mb-2">Od 900 zł netto</div>
               <p className="text-gray-600">Profesjonalna obsługa</p>
             </div>
             <ul className="space-y-3 text-gray-700">
               <li className="flex items-start gap-2">
-                <span className="text-green-600 font-bold text-xl">✓</span>
+                <span className="text-indigo-600 font-bold text-xl">✓</span>
                 <span>100% skuteczność usuwania</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-600 font-bold text-xl">✓</span>
+                <span className="text-indigo-600 font-bold text-xl">✓</span>
                 <span>Pełne usunięcie z Google Maps</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-600 font-bold text-xl">✓</span>
+                <span className="text-indigo-600 font-bold text-xl">✓</span>
                 <span>Bezpieczny proces bez ryzyka</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-600 font-bold text-xl">✓</span>
+                <span className="text-indigo-600 font-bold text-xl">✓</span>
                 <span>Dokumentacja i weryfikacja</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-600 font-bold text-xl">✓</span>
+                <span className="text-indigo-600 font-bold text-xl">✓</span>
                 <span>Gwarancja zwrotu pieniędzy</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-600 font-bold text-xl">✓</span>
+                <span className="text-indigo-600 font-bold text-xl">✓</span>
                 <span>Wsparcie ekspertów 24/7</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-600 font-bold text-xl">✓</span>
+                <span className="text-indigo-600 font-bold text-xl">✓</span>
                 <span>Oszczędność czasu i nerwów</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-8 bg-blue-50 border-l-4 border-blue-600 p-6 rounded-lg text-center">
+        <div className="mt-8 bg-indigo-50 border-l-4 border-indigo-600 p-6 rounded-lg text-center">
           <p className="text-gray-700 text-lg">
             <strong>Wniosek:</strong> Inwestycja 900-1200 zł w profesjonalną usługę to pewność skutecznego 
             usunięcia wizytówki (100% skuteczność) w maksymalnie 7 dni bez ryzyka. Oszczędzasz miesiące prób i frustracji.
@@ -616,12 +616,12 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
 
       {/* Final CTA Section */}
       <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl shadow-xl p-12 text-center text-white">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 rounded-2xl shadow-xl p-12 text-center text-white">
           <Award className="w-16 h-16 mx-auto mb-6 text-blue-200" />
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             Zaufaj Profesjonalistom z Wizaro.pl
           </h2>
-          <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
+          <p className="text-xl mb-8 text-indigo-100 max-w-2xl mx-auto">
             Ponad 500 zadowolonych klientów, 100% skuteczność, uczciwe ceny. 
             Nie ryzykuj samodzielnego usuwania - skorzystaj z pomocy ekspertów.
           </p>
@@ -630,14 +630,14 @@ export default function UsuwanieWizytowkiGooglePolecanaFirmaPage() {
               href="https://wizaro.pl/usuwanie-wizytowki-google"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-50 transition-colors shadow-lg"
+              className="inline-flex items-center justify-center gap-2 bg-white text-indigo-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-indigo-50 transition-colors shadow-lg"
             >
               Bezpłatna Konsultacja
               <TrendingUp className="w-5 h-5" />
             </a>
             <Link 
               href="/usuwanie-wizytowki-google-cena"
-              className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-400 transition-colors border-2 border-white"
+              className="inline-flex items-center justify-center gap-2 bg-indigo-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-indigo-400 transition-colors border-2 border-white"
             >
               Sprawdź Cennik
               <Shield className="w-5 h-5" />

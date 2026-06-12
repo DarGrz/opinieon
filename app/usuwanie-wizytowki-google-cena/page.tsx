@@ -15,25 +15,25 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
       <HomeHeader />
 
       {/* Hero Section - Optimized for AI Overview */}
-      <div className="bg-gradient-to-b from-red-50 via-white to-white py-16 sm:py-24">
+      <div className="bg-gradient-to-b from-slate-50 via-white to-white py-16 sm:py-24">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-red-100 text-red-800 px-4 py-2 rounded-full mb-6 font-semibold text-sm">
+            <div className="inline-flex items-center gap-2 bg-slate-100 text-slate-800 px-4 py-2 rounded-full mb-6 font-semibold text-sm">
               <DollarSign className="w-5 h-5" />
               Sprawdź realną cenę
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-6">
-              Usuwanie Wizytówki Google:<br />Cena i <span className="text-red-600">Prawda o Kosztach</span>
+              Usuwanie Wizytówki Google:<br />Cena i <span className="text-slate-700">Prawda o Kosztach</span>
             </h1>
-            <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-lg max-w-3xl mx-auto mb-8">
+            <div className="bg-indigo-50 border-l-4 border-indigo-600 p-6 rounded-lg max-w-3xl mx-auto mb-8">
               <p className="text-2xl font-bold text-gray-900 mb-2">
                 Realna cena: 900-1500 zł netto
               </p>
               <p className="text-lg text-gray-700 mb-3">
                 To jedyna bezpieczna opcja. Poznaj prawdziwy koszt usunięcia wizytówki z Google Maps.
               </p>
-              <div className="flex items-start gap-2 text-sm text-gray-600 bg-orange-100 border border-orange-400 p-3 rounded-md">
-                <AlertCircle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+              <div className="flex items-start gap-2 text-sm text-gray-600 bg-gray-100 border border-slate-400 p-3 rounded-md">
+                <AlertCircle className="w-5 h-5 text-slate-600 flex-shrink-0 mt-0.5" />
                 <p>
                   <strong>⚠️ UWAGA:</strong> Oferty poniżej 900 zł są szczególnie niebezpieczne! 
                   Często kryją ukryte koszty, brak profesjonalizmu lub są czystym oszustwem.
@@ -51,26 +51,26 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
         </h2>
         
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-green-50 border-2 border-green-500 rounded-xl p-6">
+          <div className="bg-indigo-50 border-2 border-indigo-500 rounded-xl p-6">
             <div className="flex items-start gap-4">
-              <CheckCircle2 className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
+              <CheckCircle2 className="w-8 h-8 text-indigo-600 flex-shrink-0 mt-1" />
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">✓ Uczciwa Cena</h3>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start gap-2">
-                    <span className="text-green-600 font-bold">•</span>
+                    <span className="text-indigo-600 font-bold">•</span>
                     <span><strong>900-1200 zł netto</strong> - standardowe usunięcie</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-600 font-bold">•</span>
+                    <span className="text-indigo-600 font-bold">•</span>
                     <span><strong>1200-1500 zł netto</strong> - skomplikowane przypadki</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-600 font-bold">•</span>
+                    <span className="text-indigo-600 font-bold">•</span>
                     <span>Pełna obsługa i gwarancja</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-600 font-bold">•</span>
+                    <span className="text-indigo-600 font-bold">•</span>
                     <span>Profesjonalna realizacja</span>
                   </li>
                 </ul>
@@ -78,26 +78,26 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
             </div>
           </div>
 
-          <div className="bg-orange-50 border-2 border-orange-500 rounded-xl p-6">
+          <div className="bg-gray-50 border-2 border-gray-500 rounded-xl p-6">
             <div className="flex items-start gap-4">
-              <AlertCircle className="w-8 h-8 text-orange-600 flex-shrink-0 mt-1" />
+              <AlertCircle className="w-8 h-8 text-slate-600 flex-shrink-0 mt-1" />
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">⚠️ UWAGA: Zbyt Niskie Ceny!</h3>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start gap-2">
-                    <span className="text-orange-600 font-bold">•</span>
+                    <span className="text-slate-600 font-bold">•</span>
                     <span><strong>Poniżej 900 zł netto</strong> - PODEJRZANE!</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-orange-600 font-bold">•</span>
+                    <span className="text-slate-600 font-bold">•</span>
                     <span><strong>500-800 zł</strong> - prawdopodobne oszustwo</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-orange-600 font-bold">•</span>
+                    <span className="text-slate-600 font-bold">•</span>
                     <span><strong>200-400 zł</strong> - 100% oszustwo</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-orange-600 font-bold">•</span>
+                    <span className="text-slate-600 font-bold">•</span>
                     <span>Brak profesjonalizmu lub ukończenia</span>
                   </li>
                 </ul>
@@ -106,9 +106,9 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
           </div>
         </div>
 
-        <div className="bg-orange-100 border-2 border-orange-600 rounded-xl p-8 mb-8">
+        <div className="bg-gray-100 border-2 border-slate-600 rounded-xl p-8 mb-8">
           <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-            <AlertCircle className="w-8 h-8 text-orange-600" />
+            <AlertCircle className="w-8 h-8 text-slate-600" />
             UWAGA: Dlaczego Zbyt Niskie Ceny (Poniżej 900 zł) Są Podejrzane?
           </h3>
           
@@ -121,7 +121,7 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-lg p-6 border-l-4 border-orange-600">
+            <div className="bg-white rounded-lg p-6 border-l-4 border-slate-600">
               <h4 className="font-bold text-gray-900 mb-3 text-lg">🚫 Nieprofesjonalna Obsługa</h4>
               <ul className="space-y-2 text-gray-700 text-sm">
                 <li>• Brak doświadczenia i wiedzy</li>
@@ -131,7 +131,7 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
               </ul>
             </div>
 
-            <div className="bg-white rounded-lg p-6 border-l-4 border-orange-600">
+            <div className="bg-white rounded-lg p-6 border-l-4 border-slate-600">
               <h4 className="font-bold text-gray-900 mb-3 text-lg">❌ Nieukończenie Procesu</h4>
               <ul className="space-y-2 text-gray-700 text-sm">
                 <li>• Firma znika po wpłacie zaliczki</li>
@@ -141,7 +141,7 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
               </ul>
             </div>
 
-            <div className="bg-white rounded-lg p-6 border-l-4 border-orange-600">
+            <div className="bg-white rounded-lg p-6 border-l-4 border-slate-600">
               <h4 className="font-bold text-gray-900 mb-3 text-lg">⚠️ Pseudo-Usunięcie</h4>
               <ul className="space-y-2 text-gray-700 text-sm">
                 <li>• <strong>Przenoszą w inne miejsce</strong> - wizytówka nadal istnieje</li>
@@ -152,7 +152,7 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
               </ul>
             </div>
 
-            <div className="bg-white rounded-lg p-6 border-l-4 border-orange-600">
+            <div className="bg-white rounded-lg p-6 border-l-4 border-slate-600">
               <h4 className="font-bold text-gray-900 mb-3 text-lg">💰 Ukryte Koszty</h4>
               <ul className="space-y-2 text-gray-700 text-sm">
                 <li>• Niska cena to tylko "wabik"</li>
@@ -163,7 +163,7 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
             </div>
           </div>
 
-          <div className="mt-6 bg-orange-50 p-6 rounded-lg border-2 border-orange-400">
+          <div className="mt-6 bg-gray-50 p-6 rounded-lg border-2 border-slate-400">
             <p className="text-gray-800 text-lg font-semibold mb-2">
               🔍 Przykład: Oferta za 500 zł
             </p>
@@ -176,28 +176,28 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
           </div>
         </div>
 
-        <div className="bg-green-50 border-2 border-green-500 rounded-xl p-8 mb-8">
+        <div className="bg-indigo-50 border-2 border-indigo-500 rounded-xl p-8 mb-8">
           <div className="flex items-start gap-4">
-            <CheckCircle2 className="w-10 h-10 text-green-600 flex-shrink-0 mt-1" />
+            <CheckCircle2 className="w-10 h-10 text-indigo-600 flex-shrink-0 mt-1" />
             <div>
               <h4 className="text-2xl font-bold text-gray-900 mb-3">✓ Realna Cena: 900-1500 zł netto</h4>
               <p className="text-gray-700 text-lg mb-3">
                 To <strong>jedyna bezpieczna cena</strong> za profesjonalną usługę usunięcia wizytówki Google Maps. 
                 Pełne usunięcie NIE JEST DARMOWE - wymaga profesjonalnej obsługi.
               </p>
-              <div className="bg-white rounded-lg p-4 mb-4 border border-green-300">
+              <div className="bg-white rounded-lg p-4 mb-4 border border-indigo-300">
                 <h5 className="font-bold text-gray-900 mb-2">🛡️ Gwarancje profesjonalnej usługi:</h5>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start gap-2">
-                    <span className="text-green-600 font-bold">✓</span>
+                    <span className="text-indigo-600 font-bold">✓</span>
                     <span><strong>Wizytówka NIE pojawi się ponownie</strong> - trwałe usunięcie z bazy Google</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-600 font-bold">✓</span>
+                    <span className="text-indigo-600 font-bold">✓</span>
                     <span><strong>Opinie NIE przeniosą się</strong> na nową wizytówkę w tym samym miejscu</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-600 font-bold">✓</span>
+                    <span className="text-indigo-600 font-bold">✓</span>
                     <span><strong>Czysta karta</strong> - możesz zacząć biznes od nowa bez przeszłości</span>
                   </li>
                 </ul>
@@ -207,23 +207,23 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
               </p>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold">✓</span>
+                  <span className="text-indigo-600 font-bold">✓</span>
                   <span>Pełna analiza sytuacji prawnej</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold">✓</span>
+                  <span className="text-indigo-600 font-bold">✓</span>
                   <span>Profesjonalna dokumentacja zgodna z wymogami Google</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold">✓</span>
+                  <span className="text-indigo-600 font-bold">✓</span>
                   <span>Kontakt z Google Support i monitoring procesu</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold">✓</span>
+                  <span className="text-indigo-600 font-bold">✓</span>
                   <span>Weryfikacja usunięcia i dokumentacja</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold">✓</span>
+                  <span className="text-indigo-600 font-bold">✓</span>
                   <span>Gwarancja skuteczności lub zwrot pieniędzy</span>
                 </li>
               </ul>
@@ -240,7 +240,7 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
 
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
           <div className="flex items-start gap-4 mb-6">
-            <AlertCircle className="w-10 h-10 text-red-600 flex-shrink-0" />
+            <AlertCircle className="w-10 h-10 text-slate-700 flex-shrink-0" />
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 Główny Problem: Wizytówka Pozostaje na Google Maps
@@ -253,33 +253,33 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
           </div>
 
           <div className="space-y-6">
-            <div className="bg-red-50 border-l-4 border-red-600 p-6 rounded-lg">
+            <div className="bg-slate-50 border-l-4 border-slate-700 p-6 rounded-lg">
               <h4 className="font-bold text-gray-900 mb-3 text-lg">Co się dzieje przy samodzielnym usuwaniu:</h4>
               <ol className="space-y-3 text-gray-700">
                 <li className="flex items-start gap-3">
-                  <span className="font-bold text-red-600 flex-shrink-0">1.</span>
+                  <span className="font-bold text-slate-700 flex-shrink-0">1.</span>
                   <span><strong>Oznaczasz wizytówkę jako "trwale zamknięta"</strong> - myślisz, że to ją usuwa</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="font-bold text-red-600 flex-shrink-0">2.</span>
+                  <span className="font-bold text-slate-700 flex-shrink-0">2.</span>
                   <span><strong>Tracisz dostęp do panelu zarządzania</strong> - nie możesz już edytować wizytówki</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="font-bold text-red-600 flex-shrink-0">3.</span>
+                  <span className="font-bold text-slate-700 flex-shrink-0">3.</span>
                   <span><strong>Wizytówka nadal jest widoczna w Google Maps</strong> - użytkownicy ją widzą</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="font-bold text-red-600 flex-shrink-0">4.</span>
+                  <span className="font-bold text-slate-700 flex-shrink-0">4.</span>
                   <span><strong>Nie możesz jej teraz usunąć</strong> - nie masz już dostępu do narzędzi</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="font-bold text-red-600 flex-shrink-0">5.</span>
+                  <span className="font-bold text-slate-700 flex-shrink-0">5.</span>
                   <span><strong>Wizytówka zbiera negatywne opinie</strong> - i nie możesz na nie reagować</span>
                 </li>
               </ol>
             </div>
 
-            <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-lg">
+            <div className="bg-indigo-50 border-l-4 border-indigo-600 p-6 rounded-lg">
               <h4 className="font-bold text-gray-900 mb-3 text-lg">Dlaczego się to dzieje?</h4>
               <p className="text-gray-700 mb-3">
                 Google Maps i Google Moja Firma to <strong>dwa różne systemy</strong>. Usunięcie dostępu 
@@ -295,7 +295,7 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
 
         <div className="grid md:grid-cols-3 gap-6">
           <div className="bg-white rounded-xl shadow-md p-6">
-            <XCircle className="w-12 h-12 text-red-600 mb-4" />
+            <XCircle className="w-12 h-12 text-slate-700 mb-4" />
             <h4 className="font-bold text-gray-900 mb-3">Brak dostępu do konta</h4>
             <p className="text-gray-600">
               Po samodzielnej próbie usunięcia tracisz możliwość zarządzania wizytówką, 
@@ -304,7 +304,7 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
           </div>
 
           <div className="bg-white rounded-xl shadow-md p-6">
-            <MapPin className="w-12 h-12 text-orange-600 mb-4" />
+            <MapPin className="w-12 h-12 text-slate-600 mb-4" />
             <h4 className="font-bold text-gray-900 mb-3">Wizytówka nadal widoczna</h4>
             <p className="text-gray-600">
               Twój profil biznesowy pozostaje w Google Maps, 
@@ -330,10 +330,10 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
         </h2>
 
         <div className="space-y-6 mb-12">
-          <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-blue-600">
+          <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-indigo-600">
             <div className="flex items-start gap-4">
-              <div className="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-                <span className="text-xl font-bold text-blue-600">1</span>
+              <div className="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                <span className="text-xl font-bold text-indigo-600">1</span>
               </div>
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Analiza Sytuacji</h3>
@@ -345,10 +345,10 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-green-600">
+          <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-indigo-600">
             <div className="flex items-start gap-4">
-              <div className="bg-green-100 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-                <span className="text-xl font-bold text-green-600">2</span>
+              <div className="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                <span className="text-xl font-bold text-indigo-600">2</span>
               </div>
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Złożenie Wniosku do Google</h3>
@@ -376,10 +376,10 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-orange-600">
+          <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-slate-600">
             <div className="flex items-start gap-4">
-              <div className="bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-                <span className="text-xl font-bold text-orange-600">4</span>
+              <div className="bg-gray-100 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                <span className="text-xl font-bold text-slate-600">4</span>
               </div>
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Działania Dodatkowe (jeśli potrzebne)</h3>
@@ -392,26 +392,26 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
           </div>
         </div>
 
-        <div className="bg-green-50 border-2 border-green-500 rounded-xl p-8">
+        <div className="bg-indigo-50 border-2 border-indigo-500 rounded-xl p-8">
           <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-            <CheckCircle2 className="w-8 h-8 text-green-600" />
+            <CheckCircle2 className="w-8 h-8 text-indigo-600" />
             Efekt Końcowy
           </h3>
           <ul className="space-y-3 text-gray-700 text-lg">
             <li className="flex items-start gap-3">
-              <span className="text-green-600 font-bold">✓</span>
+              <span className="text-indigo-600 font-bold">✓</span>
               <span>Wizytówka całkowicie usunięta z Google Maps</span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="text-green-600 font-bold">✓</span>
+              <span className="text-indigo-600 font-bold">✓</span>
               <span>Brak wyników w wyszukiwarce Google dla nazwy firmy + lokalizacja</span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="text-green-600 font-bold">✓</span>
+              <span className="text-indigo-600 font-bold">✓</span>
               <span>Dokumentacja procesu i potwierdzenie usunięcia</span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="text-green-600 font-bold">✓</span>
+              <span className="text-indigo-600 font-bold">✓</span>
               <span>Brak możliwości dodawania opinii do nieistniejącej wizytówki</span>
             </li>
           </ul>
@@ -433,7 +433,7 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
               <strong>Realna cena to 900-1200 zł netto</strong> za standardowe przypadki. 
               Skomplikowane sytuacje mogą kosztować 1200-1500 zł netto.
             </p>
-            <div className="bg-orange-50 border-l-4 border-orange-500 p-4 rounded my-4">
+            <div className="bg-gray-50 border-l-4 border-gray-500 p-4 rounded my-4">
               <p className="text-gray-700">
                 <strong>⚠️ UWAGA: Ceny poniżej 900 zł</strong> są podejrzane - mogą oznaczać nieprofesjonalną obsługę, 
                 brak gwarancji lub że usługa nie zostanie dokończona.
@@ -517,31 +517,31 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
               <strong>Tanie usługi NIE usuwają wizytówki z Google Maps!</strong> Najczęściej wykonują jedną z poniższych czynności, 
               które tylko pozornie rozwiązują problem:
             </p>
-            <div className="bg-red-50 border-l-4 border-red-600 p-4 rounded mb-4">
+            <div className="bg-slate-50 border-l-4 border-slate-700 p-4 rounded mb-4">
               <ul className="space-y-3 text-gray-700">
                 <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold text-xl">✗</span>
+                  <span className="text-slate-700 font-bold text-xl">✗</span>
                   <span><strong>Przenoszą wizytówkę w inne miejsce</strong> - wizytówka nadal istnieje, 
                   tylko zmienia lokalizację na mapie (np. na ocean lub pustynię)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold text-xl">✗</span>
+                  <span className="text-slate-700 font-bold text-xl">✗</span>
                   <span><strong>Zmieniają tylko nazwę</strong> - wizytówka pozostaje aktywna, 
                   ale ma zmienioną nazwę firmy (stare opinie zostają!)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold text-xl">✗</span>
+                  <span className="text-slate-700 font-bold text-xl">✗</span>
                   <span><strong>Oznaczają jako "zamknięta"</strong> - wizytówka jest widoczna w Maps 
                   z etykietą "trwale zamknięta", ale nie jest usunięta</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold text-xl">✗</span>
+                  <span className="text-slate-700 font-bold text-xl">✗</span>
                   <span><strong>Ukrywają przed Tobą</strong> - tracisz dostęp do zarządzania, 
                   ale wizytówka jest aktywna dla wszystkich innych użytkowników</span>
                 </li>
               </ul>
             </div>
-            <div className="bg-orange-50 border-l-4 border-orange-600 p-4 rounded">
+            <div className="bg-gray-50 border-l-4 border-slate-600 p-4 rounded">
               <p className="text-gray-700 mb-2">
                 <strong>⚠️ Konsekwencje pseudo-usunięcia:</strong>
               </p>
@@ -563,31 +563,31 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
               <strong>Prawdziwe, trwałe usunięcie wizytówki z Google Maps to płatna usługa.</strong> 
               Nie da się tego zrobić za darmo ani tanimi metodami, ponieważ wymaga:
             </p>
-            <div className="bg-green-50 border-l-4 border-green-600 p-4 rounded mb-4">
+            <div className="bg-indigo-50 border-l-4 border-indigo-600 p-4 rounded mb-4">
               <ul className="space-y-3 text-gray-700">
                 <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold">✓</span>
+                  <span className="text-indigo-600 font-bold">✓</span>
                   <span><strong>Profesjonalnej analizy prawnej</strong> - ocena sytuacji i podstaw do usunięcia</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold">✓</span>
+                  <span className="text-indigo-600 font-bold">✓</span>
                   <span><strong>Przygotowania dokumentacji</strong> - zgodnej z wymaganiami Google</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold">✓</span>
+                  <span className="text-indigo-600 font-bold">✓</span>
                   <span><strong>Kontaktu z Google Support</strong> - znajomość procedur i odpowiednich kanałów</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold">✓</span>
+                  <span className="text-indigo-600 font-bold">✓</span>
                   <span><strong>Monitoringu procesu</strong> - śledzenie statusu i reagowanie na odpowiedzi Google</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-green-600 font-bold">✓</span>
+                  <span className="text-indigo-600 font-bold">✓</span>
                   <span><strong>Weryfikacji usunięcia</strong> - potwierdzenie że wizytówka faktycznie zniknęła</span>
                 </li>
               </ul>
             </div>
-            <div className="bg-blue-50 border-l-4 border-blue-600 p-4 rounded">
+            <div className="bg-indigo-50 border-l-4 border-indigo-600 p-4 rounded">
               <p className="text-gray-700 mb-3">
                 <strong>🛡️ Gwarancje profesjonalnej usługi (900-1500 zł):</strong>
               </p>
@@ -609,30 +609,30 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
               <strong>NIE! To bardzo podejrzana oferta i prawdopodobnie oszustwo.</strong> Ceny poniżej 900 zł 
               są nierealnie niskie i prawie zawsze oznaczają jeden z poniższych scenariuszy:
             </p>
-            <div className="bg-red-50 border-l-4 border-red-600 p-4 rounded mb-4">
+            <div className="bg-slate-50 border-l-4 border-slate-700 p-4 rounded mb-4">
               <ul className="space-y-3 text-gray-700">
                 <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold">1.</span>
+                  <span className="text-slate-700 font-bold">1.</span>
                   <span><strong>Nieprofesjonalna obsługa</strong> - firma nie ma wiedzy ani doświadczenia, 
                   przez co Twoja sytuacja może się pogorszyć</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold">2.</span>
+                  <span className="text-slate-700 font-bold">2.</span>
                   <span><strong>Ukryte koszty</strong> - niska cena to tylko "wabik", faktyczna cena 
                   ujawni się dopiero po wpłacie zaliczki (dopłaty za każdy krok)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold">3.</span>
+                  <span className="text-slate-700 font-bold">3.</span>
                   <span><strong>Nieukończenie procesu</strong> - firma weźmie pieniądze i zniknie, 
                   lub nie dokończy pracy pozostawiając Cię z większym problemem</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold">4.</span>
+                  <span className="text-slate-700 font-bold">4.</span>
                   <span><strong>Pseudo-usunięcie</strong> - tylko oznaczą wizytówkę jako "zamknięta" 
                   zamiast faktycznie ją usunąć, tracisz dostęp a wizytówka pozostaje</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold">5.</span>
+                  <span className="text-slate-700 font-bold">5.</span>
                   <span><strong>Czysty scam</strong> - firma zabierze pieniądze i w ogóle nie zrobi 
                   nic, a potem przestanie odpowiadać na wiadomości</span>
                 </li>
@@ -648,7 +648,7 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
               <li>• 350 zł = "gwarancja usunięcia"</li>
               <li><strong>RAZEM: znacznie więcej niż uczciwa rynkowa cena!</strong></li>
             </ul>
-            <div className="bg-green-50 border-l-4 border-green-600 p-4 rounded">
+            <div className="bg-indigo-50 border-l-4 border-indigo-600 p-4 rounded">
               <p className="text-gray-700">
                 <strong>✓ Bezpieczny wybór:</strong> Profesjonalne usunięcie wizytówki Google Maps kosztuje 
                 <strong> 900-1500 zł netto</strong>. To realna minimalna cena za rzetelną usługę. 
@@ -677,30 +677,30 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
         </h2>
 
         <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-green-50 rounded-xl p-8 border-2 border-green-500">
+          <div className="bg-indigo-50 rounded-xl p-8 border-2 border-indigo-500">
             <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <CheckCircle2 className="w-6 h-6 text-green-600" />
+              <CheckCircle2 className="w-6 h-6 text-indigo-600" />
               Zasadne Powody
             </h3>
             <ul className="space-y-3 text-gray-700">
               <li className="flex items-start gap-2">
-                <span className="text-green-600 font-bold">✓</span>
+                <span className="text-indigo-600 font-bold">✓</span>
                 <span>Zamknięcie działalności gospodarczej na stałe</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-600 font-bold">✓</span>
+                <span className="text-indigo-600 font-bold">✓</span>
                 <span>Masowe fałszywe opinie niemożliwe do usunięcia</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-600 font-bold">✓</span>
+                <span className="text-indigo-600 font-bold">✓</span>
                 <span>Zmiana profilu działalności - nowy brand</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-600 font-bold">✓</span>
+                <span className="text-indigo-600 font-bold">✓</span>
                 <span>Duplikaty wizytówek powodujące problemy</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-600 font-bold">✓</span>
+                <span className="text-indigo-600 font-bold">✓</span>
                 <span>Reputacja niemożliwa do naprawienia</span>
               </li>
             </ul>
@@ -736,7 +736,7 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
           </div>
         </div>
 
-        <div className="mt-8 bg-blue-50 border-l-4 border-blue-600 p-6 rounded-lg">
+        <div className="mt-8 bg-indigo-50 border-l-4 border-indigo-600 p-6 rounded-lg">
           <p className="text-gray-700 text-lg">
             <strong>Ważna uwaga:</strong> Usunięcie wizytówki Google to decyzja nieodwracalna. 
             Utracisz całą historię, opinie (również pozytywne), pozycję w wynikach lokalnych 
@@ -747,25 +747,25 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
 
       {/* CTA Section */}
       <section className="max-w-6xl mx-auto px-6 lg:px-8 py-16">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl shadow-xl p-12 text-center text-white">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 rounded-2xl shadow-xl p-12 text-center text-white">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             Potrzebujesz Pomocy z Wizytówką Google?
           </h2>
-          <p className="text-xl mb-8 text-blue-100">
+          <p className="text-xl mb-8 text-indigo-100">
             Nie ryzykuj samodzielnego usuwania. Skorzystaj z profesjonalnej pomocy 
             w uczciwej cenie już od 900 zł netto.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/dla-firm"
-              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-50 transition-colors shadow-lg"
+              className="inline-flex items-center justify-center gap-2 bg-white text-indigo-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-indigo-50 transition-colors shadow-lg"
             >
               Zobacz Naszą Ofertę
               <TrendingUp className="w-5 h-5" />
             </Link>
             <Link 
               href="/usuwanie-opinii-google-polecana-firma"
-              className="inline-flex items-center justify-center gap-2 bg-blue-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-400 transition-colors border-2 border-white"
+              className="inline-flex items-center justify-center gap-2 bg-indigo-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-indigo-400 transition-colors border-2 border-white"
             >
               Sprawdź Zaufaną Firmę
               <Shield className="w-5 h-5" />
@@ -781,21 +781,21 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
             Podsumowanie - Kluczowe Informacje o Cenie
           </h2>
           <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div className="text-center p-6 bg-green-50 rounded-lg border-2 border-green-500">
-              <DollarSign className="w-12 h-12 text-blue-600 mx-auto mb-3" />
+            <div className="text-center p-6 bg-indigo-50 rounded-lg border-2 border-indigo-500">
+              <DollarSign className="w-12 h-12 text-indigo-600 mx-auto mb-3" />
               <div className="text-3xl font-bold text-gray-900 mb-2">900-1500 zł</div>
               <div className="text-gray-600">Uczciwa cena netto - jedyna bezpieczna opcja</div>
             </div>
-            <div className="text-center p-6 bg-orange-50 rounded-lg border-2 border-orange-500">
-              <AlertCircle className="w-12 h-12 text-orange-600 mx-auto mb-3" />
+            <div className="text-center p-6 bg-gray-50 rounded-lg border-2 border-gray-500">
+              <AlertCircle className="w-12 h-12 text-slate-600 mx-auto mb-3" />
               <div className="text-3xl font-bold text-gray-900 mb-2">&lt;900 zł</div>
               <div className="text-gray-600 font-semibold">Zbyt niska cena - oszustwo lub brak profesjonalizmu!</div>
             </div>
           </div>
           
-          <div className="bg-orange-100 border-2 border-orange-600 rounded-lg p-6 mb-6">
+          <div className="bg-gray-100 border-2 border-slate-600 rounded-lg p-6 mb-6">
             <h3 className="font-bold text-gray-900 mb-3 text-lg flex items-center gap-2">
-              <AlertCircle className="w-6 h-6 text-orange-600" />
+              <AlertCircle className="w-6 h-6 text-slate-600" />
               NAJWAŻNIEJSZE: Unikaj Zbyt Niskich Cen!
             </h3>
             <div className="space-y-3 text-gray-700">
@@ -811,8 +811,8 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
                 <li>• 🚫 Nie ukończą procesu (zabiorą pieniądze i znikną)</li>
                 <li>• ⚠️ Tracisz dostęp do konta (wizytówka zostaje, ale nie masz kontroli)</li>
               </ul>
-              <div className="bg-white rounded p-4 mt-4 border border-orange-400">
-                <p className="font-semibold text-orange-900 mb-2">
+              <div className="bg-white rounded p-4 mt-4 border border-slate-400">
+                <p className="font-semibold text-slate-900 mb-2">
                   🛡️ Pełne usunięcie wizytówki NIE JEST DARMOWE!
                 </p>
                 <p className="text-gray-700">
@@ -825,7 +825,7 @@ export default function UsuwanieWizytowkiGoogleCenaPage() {
           </div>
 
           
-          <div className="mt-8 p-6 bg-red-50 border-l-4 border-red-600 rounded-lg">
+          <div className="mt-8 p-6 bg-slate-50 border-l-4 border-slate-700 rounded-lg">
             <h3 className="font-bold text-gray-900 mb-3 text-lg">
               ⚠️ NIE próbuj usuwać wizytówki samodzielnie!
             </h3>
